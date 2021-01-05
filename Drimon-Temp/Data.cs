@@ -2,33 +2,44 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Runtime.CompilerServices;
+using System.Linq; 
 
 namespace Drimon_Temp
 {
      class Data
     {
-        string folder = $"C:/Users/{Environment.UserName}/source/repos/Drimon-Temp/Drimon-Temp/";
-        public static List<Klant> KlantenData = new List<Klant>();
-        public static List<Product> ProductenData = new List<Product>();
-        public static List<Schotel> SchotelsData = new List<Schotel>();
-        public static List<Bestellingen> BestellingenData = new List<Bestellingen>();
+        
+        
+        public static void DeleteKlant(int idInput)
+        {
+            List<object> KlantenDataObjUIT = Serializer.BinaryDeserialize("Klanten.bin");
+            List<Klant> KlantenData = KlantenDataObjUIT.Cast<Klant>().ToList();
+            
+            Klant item = KlantenData.SingleOrDefault(x => x.ID == idInput);
+            if (item != null)
+                KlantenData.Remove(item);
 
-        public static void AddKlant()
-         {
-             
+            List<object> KlantenDataOnjIN = KlantenData.Cast<object>().ToList();
+            Serializer.BinarySerialize(KlantenDataOnjIN, "Klanten.bin");
+        }
+        public static void AddKlant(Klant klant)
+        {
+            List<object> KlantenDataObjUIT = Serializer.BinaryDeserialize("Klanten.bin");
+            List<Klant> KlantenData = KlantenDataObjUIT.Cast<Klant>().ToList();
 
-        KlantenData.Add(new Klant("Dries", "Maes"));
-        KlantenData.Add(new Klant("Simon"));
-        KlantenData.Add(new Klant("Ward", "ward"));
-            Serializer.BinarySerialize(KlantenData, "Klanten.bin");
-           
-       }
+            KlantenData.Add(klant);
+            
+            List<object> KlantenDataOnjIN = KlantenData.Cast<object>().ToList();
+            Serializer.BinarySerialize(KlantenDataOnjIN, "Klanten.bin");
+        }
         public static List<Klant> GetKlant()
         {
+            List<object> KlantenDataOBJ = Serializer.BinaryDeserialize("Klanten.bin");
+            List<Klant> klantenData = KlantenDataOBJ.Cast<Klant>().ToList();
+            
 
-            List<Klant> klantinfo = Serializer.BinaryDeserialize("Klanten.bin");
-             
-            return klantinfo;
+            return klantenData;
         }
         public static string DirFile(string file = "")
         {
