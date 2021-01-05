@@ -8,23 +8,27 @@ namespace Drimon_Temp
      class Data
     {
         string folder = $"C:/Users/{Environment.UserName}/source/repos/Drimon-Temp/Drimon-Temp/";
-        public static List<object> KlantenData = new List<object>();
+        public static List<Klant> KlantenData = new List<Klant>();
         public static List<Product> ProductenData = new List<Product>();
         public static List<Schotel> SchotelsData = new List<Schotel>();
         public static List<Bestellingen> BestellingenData = new List<Bestellingen>();
+
         public static void AddKlant()
-        {
-            Serializer dataSerializer = new Serializer();
+         {
+             
 
-            /*KlantenData = dataSerializer.BinaryDeserialize($"C:/Users/{Environment.UserName}/source/repos/Drimon-Temp/Drimon-Temp/klant.data");
-            */
-
-            KlantenData.Add(new Klant("Dries"));
-            KlantenData.Add(new Klant("Simon"));
-            
+        KlantenData.Add(new Klant("Dries", "Maes"));
+        KlantenData.Add(new Klant("Simon"));
+        KlantenData.Add(new Klant("Ward", "ward"));
+            Serializer.BinarySerialize(KlantenData, "Klanten.bin");
            
-            dataSerializer.BinarySerialize(KlantenData, $"C:/Users/{Environment.UserName}/source/repos/Drimon-Temp/Drimon-Temp/klant.data");
+       }
+        public static List<Klant> GetKlant()
+        {
 
+            List<Klant> klantinfo = Serializer.BinaryDeserialize("Klanten.bin");
+             
+            return klantinfo;
         }
         public static string DirFile(string file = "")
         {
