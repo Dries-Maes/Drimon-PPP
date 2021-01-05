@@ -6,9 +6,8 @@ namespace Drimon_Temp
 {
     internal class Serializer
     {
-        public static void BinarySerialize(List<Klant> data, string file)
+        public static void BinarySerialize(List<object> data, string file)
         {
-            
             try
             {
                 using (Stream stream = File.Open(Data.DirFile(file), FileMode.Create))
@@ -17,21 +16,21 @@ namespace Drimon_Temp
                     bin.Serialize(stream, data);
                 }
             }
-            catch (IOException)
+            catch (IOException) //opzoeken wat dit doet.
             {
             }
         }
 
-        public static List<Klant> BinaryDeserialize(string file)
+        public static List<object> BinaryDeserialize(string file)
         {
-            List<Klant> resultaat = null;
+            List<object> resultaat = null;
             try
             {
                 using (Stream stream = File.Open(Data.DirFile(file), FileMode.Open))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
 
-                    resultaat = (List<Klant>)bin.Deserialize(stream);
+                    resultaat = (List<object>)bin.Deserialize(stream);
                 }
             }
             catch (IOException)
