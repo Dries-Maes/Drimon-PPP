@@ -7,7 +7,7 @@ namespace Drimon_Temp
 {
     internal class Data
     {
-
+        
         public static void DeleteKlant(int idInput)
         {
             List<object> KlantenDataObjUIT = Serializer.BinaryDeserialize("Klanten.bin");
@@ -19,8 +19,11 @@ namespace Drimon_Temp
 
         public static void AddKlant(Klant klant)
         {
+            List<Klant> KlantenData = new List<Klant>();
             List<object> KlantenDataObjUIT = Serializer.BinaryDeserialize("Klanten.bin");
-            List<Klant> KlantenData = KlantenDataObjUIT.Cast<Klant>().ToList();
+            if (KlantenDataObjUIT != null) {    KlantenData = KlantenDataObjUIT.Cast<Klant>().ToList();
+            };
+            
             KlantenData.Add(klant);
             List<object> KlantenDataOnjIN = KlantenData.Cast<object>().ToList();
             Serializer.BinarySerialize(KlantenDataOnjIN, "Klanten.bin");
@@ -32,7 +35,6 @@ namespace Drimon_Temp
             List<Klant> klantenData = KlantenDataOBJ.Cast<Klant>().ToList();
             return klantenData;
         }
-
         public static void DeleteBestelling(int idInput)
         {
             List<object> BestellingenDataObjUIT = Serializer.BinaryDeserialize("Bestellingen.bin");
