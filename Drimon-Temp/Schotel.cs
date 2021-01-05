@@ -12,13 +12,13 @@ namespace Drimon_Temp
         public List<Product> Producten { get; set; }
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
-
+        public bool Actief { get; set; }
         public Schotel(string naam, decimal prijs, int voorraad = 0)
         {
             Naam = naam;
             Prijs = prijs;
             Voorraad = voorraad;
-
+            Actief = true;
 
             ID = PID++;
         }
