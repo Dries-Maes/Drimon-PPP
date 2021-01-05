@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Drimon_Temp
 {
-    class Bestellingen
+    class Bestelling
     {
         private int PID = 1;
         public int ID { get; set; }
@@ -14,7 +14,7 @@ namespace Drimon_Temp
         public List<(int ID, decimal Prijs, int Aantal)> Producten { get; set; }
         public int KlantID { get; set; }
 
-        public Bestellingen(int klantID)
+        public Bestelling(int klantID)
         {
             Afgerond = false;
             KlantID = klantID;

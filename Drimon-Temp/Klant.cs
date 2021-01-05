@@ -19,6 +19,7 @@ namespace Drimon_Temp
         public string HuisBusNummer { get; set; }
         public int Postcode { get; set; }
         public string Telefoonnummer { get; set; }
+        public bool Actief { get; set; }
 
 
 
@@ -27,7 +28,7 @@ namespace Drimon_Temp
             DatumAanmaak = DateTime.Now;
             VoorNaam = voornaam;
             AchterNaam = achternaam;
-
+            Actief = true;
 
 
             ID = PID++;
