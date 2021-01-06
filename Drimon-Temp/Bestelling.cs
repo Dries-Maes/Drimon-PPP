@@ -37,7 +37,7 @@ namespace Drimon_Temp
                 ID = 1;
             }
             else {
-                ID = Data.GetBestelling()[Data.GetBestelling().Count-1].ID + 1;
+                ID = Data.GetBestelling()[Data.GetBestelling().Count-1].ID + 1; // indien bestelling 1/-/3/4 -> next=5 // indien 1/2/3/-/ next = 4!! ok of niet?
             }
             }
 

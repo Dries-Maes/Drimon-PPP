@@ -8,12 +8,13 @@ namespace Drimon_Temp
     class Schotel
     {
 
-        private List<int> productID = new List<int>();
+        private List<int> productIDLijst = new List<int>(); 
+        //Eventueel library van maken om aantal van producten toe te voegen (eerste unieke waarde = product, 2de waarde aantal)
 
-        public List<int> ProductID
+        public List<int> ProductIDLijst
         {
-            get { return productID; }
-            set { productID = value; }
+            get { return productIDLijst; }
+            set { productIDLijst = value; }
         }
         public int ID { get; set; }
         public string Naam { get; set; }

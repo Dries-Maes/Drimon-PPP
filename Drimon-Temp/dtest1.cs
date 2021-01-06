@@ -12,7 +12,8 @@ namespace Drimon_Temp
             Console.WriteLine("Testzone Dries");
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
             // TEST KLANTEN ADD/GET/DELETE
-            /*Klant Dries = new Klant("Dries","Maes");
+            /*
+            Klant Dries = new Klant("Dries","Maes");
             Dries.HuisBusNummer = "59";
             Dries.Straat = "Tarwestraat";
             Dries.Postcode = 9000;
@@ -30,7 +31,9 @@ namespace Drimon_Temp
             Michiel.Postcode = 1000;
             Michiel.Telefoonnummer = "0032485224567";
             Data.AddKlant(Michiel);
+
             Data.DeleteKlant(1);
+
             foreach (var item in Data.GetKlant())
             {
                 Console.WriteLine(item.ID);
@@ -45,7 +48,8 @@ namespace Drimon_Temp
             }*/
 
             // TEST PRODUCTEN ADD/GET/DELETE
-            /*Product Tomaten = new Product("Tomaten", 1.99M, 77);
+            /*
+            Product Tomaten = new Product("Tomaten", 1.99M, 77);
             Data.AddProduct(Tomaten);
             Product Bouillon = new Product("Bouillon", 0.50M, 123);
             Data.AddProduct(Bouillon);
@@ -59,8 +63,8 @@ namespace Drimon_Temp
                 Console.WriteLine(item.Prijs);
                 Console.WriteLine("items beschikbaar: " + item.Voorraad);
                 Console.WriteLine(item.Actief);
-            }*/
-
+            }
+            */
             // TEST SCHOTELS ADD/GET/DELETE
 
             /*
@@ -71,9 +75,9 @@ namespace Drimon_Temp
             Schotel Garnaalsalade = new Schotel("Garnaalsalade", 4.50M, 48);
             Data.AddSchotel(Garnaalsalade);
             Schotel Tomatensoep = new Schotel("Tomatensoep", 4.50M, 48);
-            Tomatensoep.ProductID.Add(1);
-            Tomatensoep.ProductID.Add(2);
-            Tomatensoep.ProductID.Add(3);
+            Tomatensoep.ProductIDLijst.Add(1); 
+            Tomatensoep.ProductIDLijst.Add(2);
+            Tomatensoep.ProductIDLijst.Add(3);
             Tomatensoep.Prijs = 2.22M;
             Tomatensoep.Actief = false;
             Data.AddSchotel(Tomatensoep);
@@ -83,19 +87,19 @@ namespace Drimon_Temp
                 Console.WriteLine(item.Naam);
                 Console.WriteLine(item.Prijs);
                 Console.WriteLine("items beschikbaar: " + item.Voorraad);
-               foreach (var ID in item.ProductID)
+               foreach (var ID in item.ProductIDLijst)
                 { Console.WriteLine("Ingrediënt:" + Data.GetProduct()[ID - 1].Naam); }
             }
             */
-            // TEST SCHOTELS ADD/GET/DELETE
+            // TEST Bestellingen ADD/GET/DELETE
             /*
             Bestelling order1 = new Bestelling(1);
-            order1.Producten.Add((1, 2.22M, 4));
-            order1.Producten.Add((2, 2.05M, 3));
-            order1.Producten.Add((3, 1.99M, 7));
-            order1.Schotels.Add((1, 2.22M, 4));
-            order1.Schotels.Add((2, 2.05M, 3));
-            order1.Schotels.Add((3, 1.99M, 7));
+            order1.Producten.Add((1, Data.GetProduct()[1- 1].Prijs, 4));
+            order1.Producten.Add((2, Data.GetProduct()[2 - 1].Prijs, 3));
+            order1.Producten.Add((3, Data.GetProduct()[3 - 1].Prijs, 7));
+            order1.Schotels.Add((1, Data.GetSchotel()[1 - 1].Prijs, 4));
+            order1.Schotels.Add((2, Data.GetSchotel()[2 - 1].Prijs, 3));
+            order1.Schotels.Add((3, Data.GetSchotel()[3 - 1].Prijs, 7));
             Data.AddBestelling(order1);
             Bestelling order2 = new Bestelling(2);
             order2.Producten.Add((1, 2.22M, 1));
@@ -104,14 +108,16 @@ namespace Drimon_Temp
             order2.Schotels.Add((2, 2.05M, 1));
             order2.Schotels.Add((3, 1.99M, 1));
             Data.AddBestelling(order2);
-            Bestelling order3 = new Bestelling(3);
-            order3.Producten.Add((3, 1.99M, 7));
-            order3.Schotels.Add((1, 2.22M, 4));
-            order3.Schotels.Add((2, 2.05M, 55));
-            order3.Schotels.Add((3, 1.99M, 7));
-            Data.AddBestelling(order3);
+            
+            Bestelling orderX = new Bestelling(3);
+            orderX.Producten.Add((3, 1.99M, 99));
+            orderX.Schotels.Add((1, 2.22M, 99));
+            orderX.Schotels.Add((2, 2.05M, 55));
+            orderX.Schotels.Add((3, 1.99M, 99));
+            Data.AddBestelling(orderX);
             
             //Data.DeleteBestelling(2);
+            
             foreach (var item in Data.GetBestelling())
             {
                 Console.WriteLine("-----------------------------------------");
