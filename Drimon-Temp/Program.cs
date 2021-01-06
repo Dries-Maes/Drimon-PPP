@@ -8,7 +8,13 @@ namespace Drimon_Temp
         private static void Main(string[] args)
         {
             Console.WriteLine("Hello Simon!");
-         
+            Console.WriteLine();
+
+            dtest1.TestVeld();
+            
+
+            
+
             Console.ReadLine();
             
         }

@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Drimon_Temp
 {
+    [Serializable]
     internal class Product
     {
         
 
-        private int PID = 1;
+       
         public int ID { get; set; }
         public string Naam { get; set; }
         public decimal Prijs { get; set; }
@@ -20,7 +21,7 @@ namespace Drimon_Temp
             Prijs = prijs;
             Voorraad = voorraad;
             Actief = true;
-            ID = PID++;
+            ID = Data.GetProduct().Count + 1;
         }
     }
 }
