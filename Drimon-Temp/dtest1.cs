@@ -49,25 +49,25 @@ namespace Drimon_Temp
 
             // TEST PRODUCTEN ADD/GET/DELETE
             /*
-            Product Tomaten = new Product("Tomaten", 1.99M, 77);
-            Data.AddProduct(Tomaten);
-            Product Bouillon = new Product("Bouillon", 0.50M, 123);
-            Data.AddProduct(Bouillon);
-            Product Room = new Product("Room", 1.07M, 54);
-            Data.AddProduct(Room);
-                     Data.DeleteProduct(2);
-            foreach (var item in Data.GetProduct())
-            {
-                Console.WriteLine(item.ID);
-                Console.WriteLine(item.Naam);
-                Console.WriteLine(item.Prijs);
-                Console.WriteLine("items beschikbaar: " + item.Voorraad);
-                Console.WriteLine(item.Actief);
-            }
-            */
-            // TEST SCHOTELS ADD/GET/DELETE
+           Product Tomaten = new Product("Tomaten", 1.99M, 77);
+           Data.AddProduct(Tomaten);
+           Product Bouillon = new Product("Bouillon", 0.50M, 123);
+           Data.AddProduct(Bouillon);
+           Product Room = new Product("Room", 1.07M, 54);
+           Data.AddProduct(Room);
+           Data.DeleteProduct(2);
+           foreach (var item in Data.GetProduct())
+           {
+               Console.WriteLine(item.ID);
+               Console.WriteLine(item.Naam);
+               Console.WriteLine(item.Prijs);
+               Console.WriteLine("items beschikbaar: " + item.Voorraad);
+               Console.WriteLine(item.Actief);
+           }*/
 
+            // TEST SCHOTELS ADD/GET/DELETE
             /*
+            
             Schotel vissalade = new Schotel("Vissalade", 4.50M, 48);
             Data.AddSchotel(vissalade);
             Schotel Vleessalade = new Schotel("Vleessalade", 4.50M, 48);
@@ -81,6 +81,7 @@ namespace Drimon_Temp
             Tomatensoep.Prijs = 2.22M;
             Tomatensoep.Actief = false;
             Data.AddSchotel(Tomatensoep);
+            
             foreach (var item in Data.GetSchotel())
             {
                 Console.WriteLine(item.ID);
@@ -90,6 +91,7 @@ namespace Drimon_Temp
                foreach (var ID in item.ProductIDLijst)
                 { Console.WriteLine("Ingrediënt:" + Data.GetProduct()[ID - 1].Naam); }
             }
+            
             */
             // TEST Bestellingen ADD/GET/DELETE
             /*
@@ -116,7 +118,7 @@ namespace Drimon_Temp
             orderX.Schotels.Add((3, 1.99M, 99));
             Data.AddBestelling(orderX);
             
-            //Data.DeleteBestelling(2);
+            Data.DeleteBestelling(2);
             
             foreach (var item in Data.GetBestelling())
             {
