@@ -4,12 +4,20 @@ using System.Text;
 
 namespace Drimon_Temp
 {
+    [Serializable]
     class Schotel
     {
-        private int PID = 1;
+
+        private List<int> productID = new List<int>();
+
+        public List<int> ProductID
+        {
+            get { return productID; }
+            set { productID = value; }
+        }
         public int ID { get; set; }
         public string Naam { get; set; }
-        public List<Product> Producten { get; set; }
+        
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
         public bool Actief { get; set; }
@@ -20,7 +28,7 @@ namespace Drimon_Temp
             Voorraad = voorraad;
             Actief = true;
 
-            ID = PID++;
+            ID = Data.GetSchotel().Count + 1;
         }
 
         

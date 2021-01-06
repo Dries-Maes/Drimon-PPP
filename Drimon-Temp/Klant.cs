@@ -9,7 +9,7 @@ namespace Drimon_Temp
     public class Klant
     {
         
-        private int PID = 1;
+       
 
         public int ID { get; set; }
         public DateTime DatumAanmaak { get; set; }
@@ -31,7 +31,7 @@ namespace Drimon_Temp
             Actief = true;
 
 
-            ID = PID++;
+            ID = Data.GetKlant().Count + 1;
         }
         
     }
