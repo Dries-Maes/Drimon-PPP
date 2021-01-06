@@ -144,13 +144,16 @@ namespace Drimon_Temp
             List<int> keuzelijst = new List<int>();
             do
             {
-                keuzelijst.Add(menuAantalIntern);
+                keuzelijst.Add(menuAantalIntern+96);
+                keuzelijst.Add(menuAantalIntern+111);
+                keuzelijst.Add(menuAantalIntern+48);
+                
             menuAantalIntern--;
             } while (menuAantalIntern != 0);
             int input;
             do
             {
-                input = (int)(Console.ReadKey().Key)-96;
+                input = (int)(Console.ReadKey().Key);
                 Console.CursorLeft = 0;
                 Console.Write(" ");
                 Console.CursorLeft = 0;
