@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Drimon_Temp
 {
     internal class Program
@@ -8,15 +9,8 @@ namespace Drimon_Temp
         private static void Main(string[] args)
         {
             Console.WriteLine("Hello Simon!");
-            Console.WriteLine();
-
             dtest1.TestVeld();
-            
-
-            
-
             Console.ReadLine();
-            
         }
     }
 }

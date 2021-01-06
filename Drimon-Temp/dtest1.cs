@@ -11,6 +11,9 @@ namespace Drimon_Temp
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
             Console.WriteLine("Testzone Dries");
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+            int test = Data.MenuKiezer(5);
+            Console.WriteLine(test);
+
             // TEST KLANTEN ADD/GET/DELETE
             /*
             Klant Dries = new Klant("Dries","Maes");
@@ -126,24 +129,24 @@ namespace Drimon_Temp
                 Console.WriteLine("----- Bestel-ID: "+item.ID +" ---------------------- ");
                 Console.WriteLine(item.DatumAanmaak);
                 Console.WriteLine("Besteld door: " + Data.GetKlant()[item.KlantID - 1].VoorNaam);
-                Console.WriteLine(">>>Bestelde producten:");
+                Console.WriteLine("\t\t>>>Bestelde producten:");
                 decimal totaalprijs = 0.0M;
                 foreach (var product in item.Producten)
                 {
-                    Console.WriteLine($"{Data.GetProduct()[product.ID - 1].Naam}, prijs: {product.Prijs} euro, {product.Aantal} stuks.");
+                    Console.WriteLine($"\t\t\t{Data.GetProduct()[product.ID - 1].Naam}, prijs: {product.Prijs} euro, {product.Aantal} stuks.");
                     totaalprijs += (product.Prijs * product.Aantal);
                 }
-                Console.WriteLine(">>>Bestelde Schotels:");
+                Console.WriteLine("\t\t>>>Bestelde Schotels:");
                 foreach (var schotels in item.Schotels)
                 {
-                    Console.WriteLine($"{Data.GetSchotel()[schotels.ID - 1].Naam}, prijs: {schotels.Prijs} euro, {schotels.Aantal} stuks.");
+                    Console.WriteLine($"\t\t\t{Data.GetSchotel()[schotels.ID - 1].Naam}, prijs: {schotels.Prijs} euro, {schotels.Aantal} stuks.");
                     totaalprijs += (schotels.Prijs * schotels.Aantal);
                 }
                 Console.WriteLine($"$$$ - Totaalprijs: {totaalprijs} euro - $$$");
                 
             }
+            
             */
-
         }
     }
 }
