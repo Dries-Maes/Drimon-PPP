@@ -24,7 +24,7 @@ namespace Drimon_Temp
         public int ID { get; set; }
         public DateTime DatumAanmaak { get; set; }
         public bool Afgerond { get; set; } 
-                public int KlantID { get; set; }
+        public  int KlantID { get; set; }
 
         public Bestelling(int klantID)
         {

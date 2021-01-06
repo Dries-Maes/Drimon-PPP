@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using System;
 namespace Drimon_Temp
 {
     internal class Serializer
     {
+        private static object foutmelding;
+
         public static void BinarySerialize(List<object> data, string file)
         {
             try
@@ -16,8 +18,11 @@ namespace Drimon_Temp
                     bin.Serialize(stream, data);
                 }
             }
-            catch (IOException) //opzoeken wat dit doet.
+            catch (IOException foutmelding) 
             {
+                Console.WriteLine("Serializerfout; reden -->  " + foutmelding.Message);
+                Console.WriteLine("press any key to exit");
+                Console.ReadLine();
             }
         }
 
@@ -33,8 +38,11 @@ namespace Drimon_Temp
                     resultaat = (List<object>)bin.Deserialize(stream);
                 }
             }
-            catch (IOException)
+            catch (IOException foutmelding)
             {
+                Console.WriteLine("Serializerfout; reden -->  " + foutmelding.Message);
+                Console.WriteLine("press any key to exit");
+                Console.ReadLine();
             }
             return resultaat;
         }
