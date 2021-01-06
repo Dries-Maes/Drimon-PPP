@@ -138,5 +138,25 @@ namespace Drimon_Temp
             string combined = projectDirectory + "\\" + file;
             return combined;
         }
+        public static int MenuKiezer(int menuAantal)
+        {
+         int menuAantalIntern =   menuAantal;
+            List<int> keuzelijst = new List<int>();
+            do
+            {
+                keuzelijst.Add(menuAantalIntern);
+            menuAantalIntern--;
+            } while (menuAantalIntern != 0);
+            int input;
+            do
+            {
+                input = (int)(Console.ReadKey().Key)-96;
+                Console.CursorLeft = 0;
+                Console.Write(" ");
+                Console.CursorLeft = 0;
+            } while (!keuzelijst.Contains(input));
+            return input;
+        }
+
     }
 }
