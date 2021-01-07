@@ -16,7 +16,11 @@ namespace Drimon_Temp
             List<object> KlantenDataOnjIN = KlantenData.Cast<object>().ToList();
             Serializer.BinarySerialize(KlantenDataOnjIN, "Klanten.bin");
         }
-
+        public static void SetKlant(List<Klant> input)
+        {
+            List<object> output = input.Cast<object>().ToList();
+            Serializer.BinarySerialize(output, "Klanten.bin");
+        }
         public static void AddKlant(Klant input)
         {
             List<Klant> KlantenData = new List<Klant>();
@@ -26,7 +30,7 @@ namespace Drimon_Temp
             List<object> KlantenDataOnjIN = KlantenData.Cast<object>().ToList();
             Serializer.BinarySerialize(KlantenDataOnjIN, "Klanten.bin");
         }
-
+       
         public static List<Klant> GetKlant()
         {
             if (File.Exists(Data.DirFile("Klanten.bin")))
@@ -134,32 +138,11 @@ namespace Drimon_Temp
         public static string DirFile(string file = "")
         {
             string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
             string combined = projectDirectory + "\\" + file;
             return combined;
         }
-        public static int MenuKiezer(int menuAantal)
-        {
-         int menuAantalIntern =   menuAantal;
-            List<int> keuzelijst = new List<int>();
-            do
-            {
-                keuzelijst.Add(menuAantalIntern+96);
-                keuzelijst.Add(menuAantalIntern+111);
-                keuzelijst.Add(menuAantalIntern+48);
-                
-            menuAantalIntern--;
-            } while (menuAantalIntern != 0);
-            int input;
-            do
-            {
-                input = (int)(Console.ReadKey().Key);
-                Console.CursorLeft = 0;
-                Console.Write(" ");
-                Console.CursorLeft = 0;
-            } while (!keuzelijst.Contains(input));
-            return input;
-        }
+        
 
     }
 }

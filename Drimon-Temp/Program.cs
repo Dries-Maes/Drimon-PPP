@@ -8,9 +8,12 @@ namespace Drimon_Temp
     {
         private static void Main(string[] args)
         {
-            MenuKlant
 
+
+
+            Menu.Hoofdmenu();
             
+            Console.ReadLine();
         }
     }
 }

@@ -11,11 +11,10 @@ namespace Drimon_Temp
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
             Console.WriteLine("Testzone Dries");
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-            int test = Data.MenuKiezer(5);
-            Console.WriteLine(test);
-
+           
+           
             // TEST KLANTEN ADD/GET/DELETE
-            /*
+            
             Klant Dries = new Klant("Dries","Maes");
             Dries.HuisBusNummer = "59";
             Dries.Straat = "Tarwestraat";
@@ -48,10 +47,10 @@ namespace Drimon_Temp
                 Console.WriteLine(item.Postcode);
                 Console.WriteLine(item.Telefoonnummer);
                 Console.WriteLine("Actief: " + item.Actief);
-            }*/
+            }
 
             // TEST PRODUCTEN ADD/GET/DELETE
-            /*
+            
            Product Tomaten = new Product("Tomaten", 1.99M, 77);
            Data.AddProduct(Tomaten);
            Product Bouillon = new Product("Bouillon", 0.50M, 123);
@@ -66,10 +65,10 @@ namespace Drimon_Temp
                Console.WriteLine(item.Prijs);
                Console.WriteLine("items beschikbaar: " + item.Voorraad);
                Console.WriteLine(item.Actief);
-           }*/
+           }
 
             // TEST SCHOTELS ADD/GET/DELETE
-            /*
+            
             
             Schotel vissalade = new Schotel("Vissalade", 4.50M, 48);
             Data.AddSchotel(vissalade);
@@ -95,9 +94,9 @@ namespace Drimon_Temp
                 { Console.WriteLine("Ingrediënt:" + Data.GetProduct()[ID - 1].Naam); }
             }
             
-            */
+            
             // TEST Bestellingen ADD/GET/DELETE
-            /*
+            
             Bestelling order1 = new Bestelling(1);
             order1.Producten.Add((1, Data.GetProduct()[1- 1].Prijs, 4));
             order1.Producten.Add((2, Data.GetProduct()[2 - 1].Prijs, 3));
@@ -146,7 +145,7 @@ namespace Drimon_Temp
                 
             }
             
-            */
+            
         }
     }
 }
