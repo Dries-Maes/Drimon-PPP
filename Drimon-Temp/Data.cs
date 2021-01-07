@@ -52,7 +52,11 @@ namespace Drimon_Temp
             List<object> BestellingenDataOnjIN = BestellingenData.Cast<object>().ToList();
             Serializer.BinarySerialize(BestellingenDataOnjIN, "Bestellingen.bin");
         }
-
+        public static void SetBestelling(List<Bestelling> input)
+        {
+            List<object> output = input.Cast<object>().ToList();
+            Serializer.BinarySerialize(output, "Bestellingen.bin");
+        }
         public static void AddBestelling(Bestelling input)
         {
             List<Bestelling> BestellingenData = new List<Bestelling>();
