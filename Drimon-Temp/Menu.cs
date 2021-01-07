@@ -18,6 +18,7 @@ namespace Drimon_Temp
                     break;
 
                 case 2:
+                    Console.Clear();
                     KlantMenu.MenuKlantHoofdmenu();
                     break;
                 case 3:
