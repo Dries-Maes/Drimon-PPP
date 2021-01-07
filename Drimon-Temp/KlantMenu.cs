@@ -7,7 +7,6 @@ namespace Drimon_Temp
     {
         public static void MenuKlantHoofdmenu()
         {
-            Console.Clear();
             Console.WriteLine($"1.Klant zoeken\n2.Klant Toevoegen\n3.Terug naar hoofdmenu");
             switch (Menu.Kiezer(3))
             {
@@ -25,17 +24,12 @@ namespace Drimon_Temp
                 case 3:
                     Menu.MenuHoofdmenu();
                     break;
-
-                default:
-                    break;
             }
         }
 
         public static void MenuKlantZoeken()
         {
-            Console.WriteLine();
-            Console.WriteLine($"1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
-
+            Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
             string userinput;
             switch (Menu.Kiezer(6))
             {
@@ -46,12 +40,10 @@ namespace Drimon_Temp
                     int input = MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     MenuKlantEnkel(input, "zoeken");
-
                     break;
 
                 case 2:
                     Console.Clear();
-                    OverzichtKlantLijst();
                     MenuKlantHoofdmenu();
                     break;
 
@@ -94,17 +86,13 @@ namespace Drimon_Temp
                     OverzichtKlantLijst("postcode", input2.ToString());
                     MenuKlantZoeken();
                     break;
-
-                default:
-
-                    break;
             }
         }
 
         public static void MenuKlantEnkel(int klantID, string zoekenToevoegen)
         {
             OverzichtKlantEnkel(klantID);
-            ;
+
             Console.WriteLine($"1.Klant aanpassen\n2.Bestellingen tonen\n3.Terug");
             switch (Menu.Kiezer(3))
             {
@@ -125,18 +113,13 @@ namespace Drimon_Temp
                         case 1:
                             Console.WriteLine("TODO");                                                  ///////////// TODO > GO TO MAIN BESTELMENU
                             Console.ReadLine();
-                            MenuKlantEnkel(klantID, zoekenToevoegen);
                             break;
 
                         case 2:
-                            Console.Clear();
-                            MenuKlantEnkel(klantID, zoekenToevoegen);
-                            break;
-
-                        default:
                             break;
                     }
-
+                    Console.Clear();
+                    MenuKlantEnkel(klantID, zoekenToevoegen);
                     break;
 
                 case 3:
@@ -148,12 +131,10 @@ namespace Drimon_Temp
                     }
                     else if (zoekenToevoegen == "toevoegen")
                     {
+                        Console.Clear();
                         MenuKlantHoofdmenu();
                     }
 
-                    break;
-
-                default:
                     break;
             }
         }
@@ -161,24 +142,17 @@ namespace Drimon_Temp
         public static void MenuKlantEdit(int klantID)
         {
             List<Klant> klantEdit = Data.GetKlant();
-
+            
             Console.WriteLine($"1.Verwijder\\herstel klant\n2.Terug\n\nWijzig: \n 3.De voornaam\n 4.De naam\n 5.De straat\n 6.Het huisbusnummer\n 7.De postcode\n 8.Het telefoonnummer");
             switch (Menu.Kiezer(8))
             {
                 case 1:
-                    if (klantEdit[klantID - 1].Actief)
-                    {
-                        klantEdit[klantID - 1].Actief = false;
-                    }
-                    else
-                    {
-                        klantEdit[klantID - 1].Actief = true;
-                    }
-
+                    klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
                     break;
 
-                case 2:
-
+                case 2:               
+                    Console.Clear();
+                    MenuKlantEnkel(klantID, "zoeken");
                     break;
 
                 case 3:
@@ -223,117 +197,72 @@ namespace Drimon_Temp
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
                     break;
 
-                default:
-                    break;
             }
             Data.SetKlant(klantEdit);
             Console.Clear();
-            MenuKlantEnkel(klantID, "toevoegen");
+            OverzichtKlantEnkel(klantID);
+            MenuKlantEdit(klantID);
         }
 
         public static void OverzichtKlantBestellingen(int KlantID)
         {
-            Console.WriteLine($"Bestellingen:\n");
-            foreach (var item in Data.GetBestelling())
-            {
-                string status;
-                if (item.Afgerond)
-                {
-                    status = "----Status: Afgerond";
-                }
-                else
-                {
-                    status = "Status: Open";
-                }
-                if (item.KlantID == KlantID)
-                {
-                    Console.WriteLine($"\tID:-{item.ID}-------------------------------------------------{ item.DatumAanmaak}");
+            Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });
+            
+                
+                    Console.WriteLine($"\tID:-{objectSelectie.ID}-------------------------------------------------{ objectSelectie.DatumAanmaak}");
                     decimal totaalprijs = 0.0M;
-                    foreach (var product in item.Producten)
+                    foreach (var product in objectSelectie.Producten)
                     {
                         Console.WriteLine($"\t{Data.GetProduct()[product.ID - 1].Naam.PadRight(23)}|\tPrijs: {product.Prijs} euro\t|\t{product.Aantal} stuks");
                         totaalprijs += (product.Prijs * product.Aantal);
                     }
-                    foreach (var schotels in item.Schotels)
+                    foreach (var schotels in objectSelectie.Schotels)
                     {
                         Console.WriteLine($"\t{Data.GetSchotel()[schotels.ID - 1].Naam.PadRight(23)}|\tPrijs: {schotels.Prijs} euro\t|\t{schotels.Aantal} stuks");
                         totaalprijs += (schotels.Prijs * schotels.Aantal);
                     }
-
-                    Console.WriteLine($"\tTotaal: {totaalprijs} euro-----------------------------------------{status}\n");
-                }
-            }
+                   Console.WriteLine($"\tTotaal: {totaalprijs} euro-----------------------------------------{objectSelectie.IsAfgerond()}\n");
+                
+            
         }
 
         public static void OverzichtKlantEnkel(int klantID)
         {
-            klantID = klantID - 1;
-
-            List<Klant> klantEdit = Data.GetKlant();
-
-            if (!klantEdit[klantID].Actief)
+            Klant objectSelectie = Data.GetKlant().Find(delegate (Klant del) { return del.ID == klantID;});
+            
+            if (!objectSelectie.Actief)
             {
                 Console.WriteLine($"\n\tLET OP: DEZE KLANT WERD VERWIJDERD");
             }
-            Console.WriteLine($"\n\tID: {klantEdit[klantID].ID}\n\tNaam: {klantEdit[klantID].VoorNaam} {klantEdit[klantID].AchterNaam}\n\tAdres: {klantEdit[klantID].Straat} {klantEdit[klantID].HuisBusNummer}\n\tPostcode: {klantEdit[klantID].Postcode}\n\tTelefoonnummer: {klantEdit[klantID].Telefoonnummer}\n\tDatum aanmaak: {klantEdit[klantID].DatumAanmaak}\n");
+            Console.WriteLine($"\n\tID: {objectSelectie.ID}\n\tNaam: {objectSelectie.VoorNaam} {objectSelectie.AchterNaam}\n\tAdres: {objectSelectie.Straat} {objectSelectie.HuisBusNummer}\n\tPostcode: {objectSelectie.Postcode}\n\tTelefoonnummer: {objectSelectie.Telefoonnummer}\n\tDatum aanmaak: {objectSelectie.DatumAanmaak}\n");
         }
 
         public static void OverzichtKlantLijst(string zoekmethode = "alles", string parameter = "alles")
         {
+                    List<Klant> results = Data.GetKlant();
+                    switch (zoekmethode)
+                    {
+                        case "voornaam":
+                            results = Data.GetKlant().FindAll(x => x.VoorNaam.ToLower() == parameter.ToLower());
+                            break;
+                        case "naam":
+                            results = Data.GetKlant().FindAll(x => x.AchterNaam.ToLower() == parameter.ToLower());
+                            break;
+                        case "straat":
+                            results = Data.GetKlant().FindAll(x => x.Straat.ToLower() == parameter.ToLower());
+                            break;
+                        case "postcode":
+                            results = Data.GetKlant().FindAll(x => x.Postcode == Int32.Parse(parameter));
+                            break;
+                        case "alles":   
+                            break;
+                    }
             Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
-            switch (zoekmethode)
-            {
-                case "ID":
-                    foreach (var item in Data.GetKlant())
+
+            foreach (var item in results)
                     {
-                        if (item.ID == Convert.ToInt32(parameter))
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
+                        Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}");
                     }
-                    break;
-
-                case "voornaam":
-                    foreach (var item in Data.GetKlant())
-                    {
-                        if (item.VoorNaam.ToLower() == parameter.ToLower())
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
-                    }
-                    break;
-
-                case "naam":
-                    foreach (var item in Data.GetKlant())
-                    {
-                        if (item.AchterNaam.ToLower() == parameter.ToLower())
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
-                    }
-                    break;
-
-                case "straat":
-                    foreach (var item in Data.GetKlant())
-                    {
-                        if (item.Straat.ToLower() == parameter.ToLower())
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
-                    }
-                    break;
-
-                case "postcode":
-                    foreach (var item in Data.GetKlant())
-                    {
-                        if (item.Postcode.ToString() == parameter)
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
-                    }
-                    break;
-
-                case "alles":
-                    foreach (var item in Data.GetKlant())
-                    {
-                        { Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}"); }
-                    }
-                    break;
-
-                default:
-
-                    break;
-            }
         }
 
         public static void MethodeKlantToevoegen()
