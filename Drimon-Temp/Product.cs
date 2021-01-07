@@ -7,7 +7,7 @@ namespace Drimon_Temp
     [Serializable]
     internal class Product
     {
-         
+
         public int ID { get; set; }
         public string Naam { get; set; }
         public decimal Prijs { get; set; }
@@ -20,6 +20,8 @@ namespace Drimon_Temp
             Voorraad = voorraad;
             Actief = true;
             ID = Data.GetProduct().Count + 1;
+
         }
+        
     }
 }

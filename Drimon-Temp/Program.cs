@@ -8,8 +8,11 @@ namespace Drimon_Temp
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello Simon!");
-            dtest1.TestVeld();
+
+
+
+            Menu.Hoofdmenu();
+            
             Console.ReadLine();
         }
     }
