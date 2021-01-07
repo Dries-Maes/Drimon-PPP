@@ -6,7 +6,7 @@ namespace Drimon_Temp
 {
     class Menu
     {
-        public static void Hoofdmenu()
+        public static void MenuHoofdmenu()
         {
             Console.Clear();
             Console.WriteLine($"1.Nieuwe bestelling\n2.Klanten\n3.Overzicht bestellingen\n4.Producten beheren");
@@ -14,15 +14,15 @@ namespace Drimon_Temp
             {
                 case 1:
                     Console.WriteLine("ToDo, press any key to return. ");//ToDo
-                    Hoofdmenu();
+                    MenuHoofdmenu();
                     break;
 
                 case 2:
-                    KlantMenu.Klant();
+                    KlantMenu.MenuKlantHoofdmenu();
                     break;
                 case 3:
                     Console.WriteLine("ToDo, press any key to return. ");//ToDo
-                    Hoofdmenu();
+                    MenuHoofdmenu();
                     break;
 
                 case 4:

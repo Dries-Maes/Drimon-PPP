@@ -36,7 +36,6 @@ namespace Drimon_Temp
 
         public void NieuweKlant()
         {
-            Console.Clear();
             Console.WriteLine("Geef de voornaam in gevolgd door 'enter':");
             VoorNaam = Console.ReadLine();
             Console.WriteLine("Geef de naam in gevolgd door 'enter':");
@@ -46,10 +45,7 @@ namespace Drimon_Temp
             Console.WriteLine("Geef de huis en busnummer in gevolgd door 'enter':");
             HuisBusNummer = Console.ReadLine();
             Console.WriteLine("Geef de postcode in gevolgd door 'enter':");
-            int postcodeInput = 0;
-            while (!Int32.TryParse(Console.ReadLine(), out postcodeInput))
-            { }
-            Postcode = postcodeInput;
+            Postcode = KlantMenu.MethodeCheckforInt(Console.ReadLine());
             Console.WriteLine("Geef de telefoonnummer in gevolgd door 'enter':");
             Telefoonnummer = Console.ReadLine();
            
