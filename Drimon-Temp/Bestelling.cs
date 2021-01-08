@@ -57,6 +57,19 @@ namespace Drimon_Temp
             }
       
         }
+        public int totaalPrijs()
+        {
+            decimal result = 0;
+            foreach (var item in producten)
+            {
+                result += item.Prijs;         
+            }
+            foreach (var item in schotels)
+            {
+                result += item.Prijs;
+            }
+            return Convert.ToInt32(result);
+        }
 
     }
 }
