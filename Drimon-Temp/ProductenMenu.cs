@@ -9,7 +9,7 @@ namespace Drimon_Temp
     {
         public static void MenuProductHoofdmenu()
         {
-            Console.WriteLine($"1.Product zoeken\n2.Product Toevoegen\n3.Terug naar hoofdmenu");
+            Console.WriteLine($"1.Product zoeken \n2.Product Toevoegen \n3.Schotels \n4.Terug naar hoofdmenu");
             switch (Menu.Kiezer(3))
             {
                 case 1:
@@ -24,6 +24,11 @@ namespace Drimon_Temp
                     break;
 
                 case 3:
+                    Console.Clear();
+                    SchotelMenu.MenuSchotelHoofdmenu();
+                    break;
+
+                case 4:
                     Menu.MenuHoofdmenu();
                     break;
             }
