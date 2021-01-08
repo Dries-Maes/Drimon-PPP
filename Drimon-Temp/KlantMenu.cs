@@ -265,7 +265,7 @@ namespace Drimon_Temp
                     }
         }
 
-        public static void MethodeKlantToevoegen()
+        public static void MethodeKlantToevoegen()   // to add: escape optie
         {
             Klant foo = new Klant("bar");
             foo.NieuweKlant();

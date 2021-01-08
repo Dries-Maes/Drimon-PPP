@@ -11,7 +11,7 @@ namespace Drimon_Temp
         {
             
             
-            Console.WriteLine($"1.Bestelling Overzicht\n2.Klant Toevoegen\n3.Terug naar hoofdmenu");
+            Console.WriteLine($"1.Bestelling toevoegen\n2.Bestelling overzicht\n3.Terug naar hoofdmenu");
             switch (Menu.Kiezer(3))
             {
                 case 1:
