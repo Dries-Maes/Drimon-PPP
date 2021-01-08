@@ -48,6 +48,9 @@ namespace Drimon_Temp
                 case "groterdan":
                     results = toEdit.FindAll(x => x.totaalPrijs() > getal);
                     break;
+                case "product":
+                    //results = toEdit.FindAll(x => x.Producten.Item1 = true) ;
+                    break;
 
                 case "alles":
                     // -- Producten -- schotels -- afgerondj/n -- //

@@ -206,7 +206,7 @@ namespace Drimon_Temp
 
         public static void OverzichtKlantBestellingen(int KlantID)
         {
-            Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });                                /// To test, moet
+           /* Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });                                /// To test, moet
                 
                     Console.WriteLine($"\tID:-{objectSelectie.ID}-------------------------------------------------{ objectSelectie.DatumAanmaak}");
                     decimal totaalprijs = 0.0M;
@@ -221,7 +221,7 @@ namespace Drimon_Temp
                         totaalprijs += (schotels.Prijs * schotels.Aantal);
                     }
                    Console.WriteLine($"\tTotaal: {totaalprijs} euro-----------------------------------------{objectSelectie.IsAfgerond()}\n");
-                
+                */
             
         }
 

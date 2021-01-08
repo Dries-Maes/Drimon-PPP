@@ -6,8 +6,20 @@ namespace Drimon_Temp
 {
     public class dtest1
     {
-        public static void Dostuff()
+        
+    public static void Dostuff2()
         {
+            Console.WriteLine("geef klantID in:");
+            Bestelling nieuw = new Bestelling(KlantMenu.MethodeCheckforInt(Console.ReadLine()));
+            Console.Clear();
+            nieuw.NieuweBestelling();
+            Data.AddBestelling(nieuw);
+
+
+
+
+            
+            
             Console.WriteLine("doing stuff.");
             Schotel toEdit = new Schotel("Warme schotel 1", 0.5M, 2);
 

@@ -12,7 +12,7 @@ namespace Drimon_Temp
             switch (Kiezer(4))
             {
                 case 1:
-                    dtest1.Dostuff();
+                    dtest1.Dostuff2();
                     MenuHoofdmenu();
                     break;
 
