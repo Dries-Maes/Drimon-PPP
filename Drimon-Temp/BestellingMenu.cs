@@ -29,29 +29,31 @@ namespace Drimon_Temp
                     break;
             }
         }
-        public static void OverzichtBestellingen (string zoekmethode = "alles", string parameter = "alles", int getal = 0)
+        public static void OverzichtBestellingen (string zoekmethode = "vergeleijk", string parameter = "alles", int getal = 0)
         {
-            List<Bestelling> results = Data.GetBestelling();
+            List<Bestelling> toEdit = Data.GetBestelling();
+            List<Bestelling> results = toEdit;
             switch (zoekmethode)
             {
                 case "ID":
-                    results = Data.GetBestelling().FindAll(x => x.KlantID == getal);
+                    results = toEdit.FindAll(x => x.KlantID == getal);
                     break;
                 case "kleinerdan":
-                    results = Data.GetBestelling().FindAll(x => x.totaalPrijs() < getal);
+                    results = toEdit.FindAll(x => x.totaalPrijs() < getal);
                     break;
                 case "gelijkaan":
-                    results = Data.GetBestelling().FindAll(x => x.totaalPrijs() == getal);
+                    results = toEdit.FindAll(x => x.totaalPrijs() == getal);
                     break;
                 case "groterdan":
-                    results = Data.GetBestelling().FindAll(x => x.totaalPrijs() > getal);
+                    results = toEdit.FindAll(x => x.totaalPrijs() > getal);
                     break;
                 case "alles":
+                    // -- Producten -- schotels -- afgerondj/n -- //
                     break;
             }
+
             
-            
-            //Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
+            //Console.WriteLine(" |ID".PadRight(maxid) + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
 
             foreach (var item in results)
             {
