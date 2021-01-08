@@ -28,6 +28,12 @@ namespace Drimon_Temp
             Serializer.BinarySerialize(output, "Producten.bin");
         }
 
+        public static void SetSchotel(List<Schotel> input)
+        {
+            List<object> output = input.Cast<object>().ToList();
+            Serializer.BinarySerialize(output, "Schotels.bin");
+        }
+
         public static void AddKlant(Klant input)
         {
             List<Klant> KlantenData = new List<Klant>();
@@ -98,8 +104,8 @@ namespace Drimon_Temp
             List<object> SchotelenDataObjUIT = Serializer.BinaryDeserialize("Schotels.bin");
             if (SchotelenDataObjUIT != null) SchotelenData = SchotelenDataObjUIT.Cast<Schotel>().ToList();
             SchotelenData.Add(input);
-            List<object> SchotelenDataOnjIN = SchotelenData.Cast<object>().ToList();
-            Serializer.BinarySerialize(SchotelenDataOnjIN, "Schotels.bin");
+            List<object> SchotelenDataObjIN = SchotelenData.Cast<object>().ToList();
+            Serializer.BinarySerialize(SchotelenDataObjIN, "Schotels.bin");
         }
 
         public static List<Schotel> GetSchotel()

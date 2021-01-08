@@ -12,6 +12,7 @@ namespace Drimon_Temp
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
         public bool Actief { get; set; }
+        public DateTime DatumAanmaak { get; set; }
 
         public Product(string naam, decimal prijs, int voorraad = 0)
         {
@@ -29,6 +30,7 @@ namespace Drimon_Temp
             Voorraad = 0;
             Actief = true;
             ID = Data.GetProduct().Count + 1;
+            DatumAanmaak = DateTime.Now;
         }
 
         public void NieuwProduct()

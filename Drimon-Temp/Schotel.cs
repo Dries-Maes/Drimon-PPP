@@ -5,10 +5,9 @@ using System.Text;
 namespace Drimon_Temp
 {
     [Serializable]
-    class Schotel
+    internal class Schotel
     {
-
-        private List<int> productIDLijst = new List<int>(); 
+        private List<int> productIDLijst = new List<int>();
         //Eventueel library van maken om aantal van producten toe te voegen (eerste unieke waarde = product, 2de waarde aantal)
 
         public List<int> ProductIDLijst
@@ -16,12 +15,16 @@ namespace Drimon_Temp
             get { return productIDLijst; }
             set { productIDLijst = value; }
         }
+
         public int ID { get; set; }
         public string Naam { get; set; }
-        
+
+        public DateTime DatumAanmaak { get; set; }
+
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
         public bool Actief { get; set; }
+
         public Schotel(string naam, decimal prijs, int voorraad = 0)
         {
             Naam = naam;
@@ -32,7 +35,19 @@ namespace Drimon_Temp
             ID = Data.GetSchotel().Count + 1;
         }
 
-        
-        
+        public Schotel()
+        {
+            Naam = "null";
+            Actief = false;
+            Voorraad = 0;
+        }
+
+        public void Maakschotel()
+        {
+            Schotel werkschotel = new Schotel();
+            Data.GetSchotel();
+            Data.AddSchotel(werkschotel);
+            List<Product> editlist = new List<Product>();
+        }
     }
 }
