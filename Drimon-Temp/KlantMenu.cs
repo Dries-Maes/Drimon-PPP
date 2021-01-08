@@ -29,6 +29,7 @@ namespace Drimon_Temp
 
         public static void MenuKlantZoeken()
         {
+            
             Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
             string userinput;
             switch (Menu.Kiezer(6))
@@ -206,8 +207,7 @@ namespace Drimon_Temp
 
         public static void OverzichtKlantBestellingen(int KlantID)
         {
-            Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });
-            
+            Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });                                /// To test, moet
                 
                     Console.WriteLine($"\tID:-{objectSelectie.ID}-------------------------------------------------{ objectSelectie.DatumAanmaak}");
                     decimal totaalprijs = 0.0M;
