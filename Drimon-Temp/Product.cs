@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
@@ -21,6 +19,7 @@ namespace Drimon_Temp
             Voorraad = voorraad;
             Actief = true;
             ID = Data.GetProduct().Count + 1;
+            DatumAanmaak = DateTime.Now;
         }
 
         public Product(string naam)

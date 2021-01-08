@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
-    
     [Serializable]
     public class Klant
     {
-        
-       
-
         public int ID { get; set; }
         public DateTime DatumAanmaak { get; set; }
         public string VoorNaam { get; set; }
@@ -21,15 +15,12 @@ namespace Drimon_Temp
         public string Telefoonnummer { get; set; }
         public bool Actief { get; set; }
 
-
-
         public Klant(string voornaam, string achternaam = null)
         {
             DatumAanmaak = DateTime.Now;
             VoorNaam = voornaam;
             AchterNaam = achternaam;
             Actief = true;
-
 
             ID = Data.GetKlant().Count + 1;
         }
@@ -48,7 +39,6 @@ namespace Drimon_Temp
             Postcode = KlantMenu.MethodeCheckforInt(Console.ReadLine());
             Console.WriteLine("Geef de telefoonnummer in gevolgd door 'enter':");
             Telefoonnummer = Console.ReadLine();
-           
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
@@ -24,6 +23,7 @@ namespace Drimon_Temp
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
         public bool Actief { get; set; }
+        public List<Product> Ingredienten { get; set; }
 
         public Schotel(string naam, decimal prijs, int voorraad = 0)
         {
@@ -31,6 +31,7 @@ namespace Drimon_Temp
             Prijs = prijs;
             Voorraad = voorraad;
             Actief = true;
+            DatumAanmaak = DateTime.Now;
 
             ID = Data.GetSchotel().Count + 1;
         }
@@ -40,6 +41,7 @@ namespace Drimon_Temp
             Naam = "null";
             Actief = false;
             Voorraad = 0;
+            DatumAanmaak = DateTime.Now;
         }
 
         public void Maakschotel()

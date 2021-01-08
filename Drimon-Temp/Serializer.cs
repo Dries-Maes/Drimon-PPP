@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System;
+
 namespace Drimon_Temp
 {
     internal class Serializer
@@ -18,7 +19,7 @@ namespace Drimon_Temp
                     bin.Serialize(stream, data);
                 }
             }
-            catch (IOException foutmelding) 
+            catch (IOException foutmelding)
             {
                 Console.WriteLine("Serializerfout; reden -->  " + foutmelding.Message);
                 Console.WriteLine("press any key to exit");

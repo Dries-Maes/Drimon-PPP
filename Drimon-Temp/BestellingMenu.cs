@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Drimon_Temp
+﻿namespace Drimon_Temp
 {
-    class BestellingMenu
+    internal class BestellingMenu
     {
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
@@ -28,9 +27,23 @@ namespace Drimon_Temp
             }
         }
 
-        public static void MethodeSchotelSamenstellen()
+        public static void MethodeSchotelSamenstellen(string zoekmethode = "alles", string parameter = "alles")
         {
-            //dostuff
+            OverzichtSchotelLijst();
+
+            List<Schotel> newschotel = Data.GetSchotel();
+            List<Product> ingredienten = Data.GetProduct();
+
+            {
+                List<Product> results = Data.GetProduct();
+
+                Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Status".PadRight(20) + $"Kolom".PadRight(10) + $"|Kolom".PadRight(20) + $"|Aanmaakdatum ");
+                foreach (var item in results)
+                {
+                    Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
+                }
+            }
+            MenuSchotelZoeken();
         }
 
         public static void OverzichtSchotelLijst(string zoekmethode = "alles", string parameter = "alles")
