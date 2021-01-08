@@ -28,6 +28,7 @@ namespace Drimon_Temp
 
         public Schotel(string naam, decimal prijs, int voorraad = 0)
         {
+            IDlijst = new Dictionary<int, int>();
             Naam = naam;
             Prijs = prijs;
             Voorraad = voorraad;

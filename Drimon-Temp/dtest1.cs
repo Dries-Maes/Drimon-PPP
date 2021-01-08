@@ -12,21 +12,27 @@ namespace Drimon_Temp
             Schotel toEdit = new Schotel("Warme schotel 1", 0.5M, 2);
 
             List<Product> temprecipe = Data.GetProduct();
-
+            toEdit.IDlijst.Add(3, 5);
             toEdit.IDlijst.Add(4, 3);
             toEdit.IDlijst.Add(5, 2);
             toEdit.IDlijst.Add(1, 3);
-            toEdit.IDlijst.Add(1, 3);
 
-            //foreach (var product in temprecipe)
-            //{
-            //    if (product.ID == toEdit.IDlijst.ContainsKey)
-            //    {
-            //        Console.WriteLine();
-            //    }
 
-            //}
-            Console.WriteLine();
+            foreach (var koppel in toEdit.IDlijst)
+            {
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine($"Naam van product: {temprecipe[koppel.Key-1].Naam}");
+                Console.WriteLine($"Stock: {temprecipe[koppel.Key-1].Voorraad}" +
+                    $"\ngebruik in recept: {koppel.Value} (per recept) x {toEdit.Voorraad} (voorraad van het recept) = {koppel.Value*toEdit.Voorraad} (totaal dat recept gebruikt)" +
+                    $"\nNieuwe Stock: {temprecipe[koppel.Key-1].Voorraad} (stock) - {koppel.Value * toEdit.Voorraad} (totaal dat recept gebruikt) = {temprecipe[koppel.Key-1].Voorraad - (koppel.Value * toEdit.Voorraad)} (nieuwe stock na aanmaak schotel)");
+                Console.WriteLine("----------------------------------------------");
+                temprecipe[koppel.Key - 1].Voorraad = temprecipe[koppel.Key - 1].Voorraad - (koppel.Value * toEdit.Voorraad);
+
+            }
+            
+            Data.AddSchotel(toEdit);
+            Data.SetProduct(temprecipe);
+            Console.ReadLine();
         }
 
         //public static void TestVeld()

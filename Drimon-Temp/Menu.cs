@@ -12,7 +12,7 @@ namespace Drimon_Temp
             switch (Kiezer(4))
             {
                 case 1:
-                    Console.WriteLine("ToDo, press any key to return. ");//ToDo
+                    dtest1.Dostuff();
                     MenuHoofdmenu();
                     break;
 
