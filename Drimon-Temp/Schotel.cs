@@ -7,8 +7,9 @@ namespace Drimon_Temp
     internal class Schotel
     {
         private List<int> productIDLijst = new List<int>();
+
+        public Dictionary<int, int> IDlijst { get; set; }
         //Eventueel dictionary van maken om aantal van producten toe te voegen (eerste unieke waarde = product, 2de waarde aantal)
-        //private Dictionary<int, int> IDlijst = new Dictionary<int, int>();
 
         public List<int> ProductIDLijst
         {
