@@ -31,8 +31,21 @@ namespace Drimon_Temp
         {
             OverzichtSchotelLijst();
 
-            List<Schotel> newschotel = Data.GetSchotel();
+            List<Schotel> schotelsedit = Data.GetSchotel();
+            List<Schotel> newschotel = new List<Schotel>();
             List<Product> ingredienten = Data.GetProduct();
+            Product ingredient = new Product(9999);
+            List<Product> recept = new List<Product>();
+
+            Console.WriteLine("Schotel SAMENSTELLEN");
+            Console.WriteLine("Geef productID in om schotel te maken:");
+            int userinput = Convert.ToInt32(Console.ReadLine());
+            ingredient.ID = userinput;
+            recept.Add(new Product(ingredient.ID));
+
+            foreach (var item in schotelsedit)
+            {
+            }
 
             {
                 List<Product> results = Data.GetProduct();

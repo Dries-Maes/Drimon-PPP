@@ -32,6 +32,16 @@ namespace Drimon_Temp
             DatumAanmaak = DateTime.Now;
         }
 
+        public Product(int ID)
+        {
+            Naam = "";
+            Prijs = 0;
+            Voorraad = 0;
+            Actief = false;
+            ID = 9999;
+            DatumAanmaak = DateTime.Now;
+        }
+
         public void NieuwProduct()
         {
             Console.WriteLine("Geef de naam van het product in:");
