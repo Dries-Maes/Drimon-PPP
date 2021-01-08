@@ -143,7 +143,7 @@ namespace Drimon_Temp
         public static void MenuKlantEdit(int klantID)
         {
             List<Klant> klantEdit = Data.GetKlant();
-            
+
             Console.WriteLine($"1.Verwijder\\herstel klant\n2.Terug\n\nWijzig: \n 3.De voornaam\n 4.De naam\n 5.De straat\n 6.Het huisbusnummer\n 7.De postcode\n 8.Het telefoonnummer");
             switch (Menu.Kiezer(8))
             {
@@ -151,7 +151,7 @@ namespace Drimon_Temp
                     klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
                     break;
 
-                case 2:               
+                case 2:
                     Console.Clear();
                     MenuKlantEnkel(klantID, "zoeken");
                     break;
@@ -197,7 +197,6 @@ namespace Drimon_Temp
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
                     break;
-
             }
             Data.SetKlant(klantEdit);
             Console.Clear();
@@ -228,8 +227,8 @@ namespace Drimon_Temp
 
         public static void OverzichtKlantEnkel(int klantID)
         {
-            Klant objectSelectie = Data.GetKlant().Find(delegate (Klant del) { return del.ID == klantID;});
-            
+            Klant objectSelectie = Data.GetKlant().Find(delegate (Klant del) { return del.ID == klantID; });
+
             if (!objectSelectie.Actief)
             {
                 Console.WriteLine($"\n\tLET OP: DEZE KLANT WERD VERWIJDERD");
@@ -239,30 +238,34 @@ namespace Drimon_Temp
 
         public static void OverzichtKlantLijst(string zoekmethode = "alles", string parameter = "alles")
         {
-                    List<Klant> results = Data.GetKlant();
-                    switch (zoekmethode)
-                    {
-                        case "voornaam":
-                            results = Data.GetKlant().FindAll(x => x.VoorNaam.ToLower() == parameter.ToLower());
-                            break;
-                        case "naam":
-                            results = Data.GetKlant().FindAll(x => x.AchterNaam.ToLower() == parameter.ToLower());
-                            break;
-                        case "straat":
-                            results = Data.GetKlant().FindAll(x => x.Straat.ToLower() == parameter.ToLower());
-                            break;
-                        case "postcode":
-                            results = Data.GetKlant().FindAll(x => x.Postcode == Int32.Parse(parameter));
-                            break;
-                        case "alles":   
-                            break;
-                    }
+            List<Klant> results = Data.GetKlant();
+            switch (zoekmethode)
+            {
+                case "voornaam":
+                    results = Data.GetKlant().FindAll(x => x.VoorNaam.ToLower() == parameter.ToLower());
+                    break;
+
+                case "naam":
+                    results = Data.GetKlant().FindAll(x => x.AchterNaam.ToLower() == parameter.ToLower());
+                    break;
+
+                case "straat":
+                    results = Data.GetKlant().FindAll(x => x.Straat.ToLower() == parameter.ToLower());
+                    break;
+
+                case "postcode":
+                    results = Data.GetKlant().FindAll(x => x.Postcode == Int32.Parse(parameter));
+                    break;
+
+                case "alles":
+                    break;
+            }
             Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
 
             foreach (var item in results)
-                    {
-                        Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}");
-                    }
+            {
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}");
+            }
         }
 
         public static void MethodeKlantToevoegen()   // to add: escape optie

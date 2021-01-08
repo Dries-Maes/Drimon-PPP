@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
-    class Menu
+    internal class Menu
     {
         public static void MenuHoofdmenu()
         {
@@ -21,20 +20,23 @@ namespace Drimon_Temp
                     Console.Clear();
                     KlantMenu.MenuKlantHoofdmenu();
                     break;
+
                 case 3:
                     Console.WriteLine("ToDo, press any key to return. ");//ToDo
                     MenuHoofdmenu();
                     break;
 
                 case 4:
-                    Console.WriteLine("ToDo, press any key to return. ");//ToDo
+                    Console.Clear();
+                    ProductMenu.MenuProductHoofdmenu();
                     // go to productenbeheermenu >
-                   break;
-                                       
+                    break;
+
                 default:
-                  break;
+                    break;
             }
         }
+
         public static int Kiezer(int menuAantal)
         {
             int menuAantalIntern = menuAantal;

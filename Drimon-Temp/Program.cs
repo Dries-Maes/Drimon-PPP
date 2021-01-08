@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 namespace Drimon_Temp
 {
@@ -9,7 +7,7 @@ namespace Drimon_Temp
         private static void Main(string[] args)
         {
             Menu.MenuHoofdmenu();
-            
+
             Console.ReadLine();
         }
     }

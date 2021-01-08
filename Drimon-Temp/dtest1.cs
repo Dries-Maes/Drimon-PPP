@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
@@ -11,11 +9,10 @@ namespace Drimon_Temp
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
             Console.WriteLine("Testzone Dries");
             Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-           
-           
+
             // TEST KLANTEN ADD/GET/DELETE
-            
-            Klant Dries = new Klant("Dries","Maes");
+
+            Klant Dries = new Klant("Dries", "Maes");
             Dries.HuisBusNummer = "59";
             Dries.Straat = "Tarwestraat";
             Dries.Postcode = 9000;
@@ -50,26 +47,25 @@ namespace Drimon_Temp
             }
 
             // TEST PRODUCTEN ADD/GET/DELETE
-            
-           Product Tomaten = new Product("Tomaten", 1.99M, 77);
-           Data.AddProduct(Tomaten);
-           Product Bouillon = new Product("Bouillon", 0.50M, 123);
-           Data.AddProduct(Bouillon);
-           Product Room = new Product("Room", 1.07M, 54);
-           Data.AddProduct(Room);
-           Data.DeleteProduct(2);
-           foreach (var item in Data.GetProduct())
-           {
-               Console.WriteLine(item.ID);
-               Console.WriteLine(item.Naam);
-               Console.WriteLine(item.Prijs);
-               Console.WriteLine("items beschikbaar: " + item.Voorraad);
-               Console.WriteLine(item.Actief);
-           }
+
+            Product Tomaten = new Product("Tomaten", 1.99M, 77);
+            Data.AddProduct(Tomaten);
+            Product Bouillon = new Product("Bouillon", 0.50M, 123);
+            Data.AddProduct(Bouillon);
+            Product Room = new Product("Room", 1.07M, 54);
+            Data.AddProduct(Room);
+            Data.DeleteProduct(2);
+            foreach (var item in Data.GetProduct())
+            {
+                Console.WriteLine(item.ID);
+                Console.WriteLine(item.Naam);
+                Console.WriteLine(item.Prijs);
+                Console.WriteLine("items beschikbaar: " + item.Voorraad);
+                Console.WriteLine(item.Actief);
+            }
 
             // TEST SCHOTELS ADD/GET/DELETE
-            
-            
+
             Schotel vissalade = new Schotel("Vissalade", 4.50M, 48);
             Data.AddSchotel(vissalade);
             Schotel Vleessalade = new Schotel("Vleessalade", 4.50M, 48);
@@ -77,28 +73,27 @@ namespace Drimon_Temp
             Schotel Garnaalsalade = new Schotel("Garnaalsalade", 4.50M, 48);
             Data.AddSchotel(Garnaalsalade);
             Schotel Tomatensoep = new Schotel("Tomatensoep", 4.50M, 48);
-            Tomatensoep.ProductIDLijst.Add(1); 
+            Tomatensoep.ProductIDLijst.Add(1);
             Tomatensoep.ProductIDLijst.Add(2);
             Tomatensoep.ProductIDLijst.Add(3);
             Tomatensoep.Prijs = 2.22M;
             Tomatensoep.Actief = false;
             Data.AddSchotel(Tomatensoep);
-            
+
             foreach (var item in Data.GetSchotel())
             {
                 Console.WriteLine(item.ID);
                 Console.WriteLine(item.Naam);
                 Console.WriteLine(item.Prijs);
                 Console.WriteLine("items beschikbaar: " + item.Voorraad);
-               foreach (var ID in item.ProductIDLijst)
+                foreach (var ID in item.ProductIDLijst)
                 { Console.WriteLine("Ingrediënt:" + Data.GetProduct()[ID - 1].Naam); }
             }
-            
-            
+
             // TEST Bestellingen ADD/GET/DELETE
-            
+
             Bestelling order1 = new Bestelling(1);
-            order1.Producten.Add((1, Data.GetProduct()[1- 1].Prijs, 4));
+            order1.Producten.Add((1, Data.GetProduct()[1 - 1].Prijs, 4));
             order1.Producten.Add((2, Data.GetProduct()[2 - 1].Prijs, 3));
             order1.Producten.Add((3, Data.GetProduct()[3 - 1].Prijs, 7));
             order1.Schotels.Add((1, Data.GetSchotel()[1 - 1].Prijs, 4));
@@ -112,20 +107,20 @@ namespace Drimon_Temp
             order2.Schotels.Add((2, 2.05M, 1));
             order2.Schotels.Add((3, 1.99M, 1));
             Data.AddBestelling(order2);
-            
+
             Bestelling orderX = new Bestelling(3);
             orderX.Producten.Add((3, 1.99M, 99));
             orderX.Schotels.Add((1, 2.22M, 99));
             orderX.Schotels.Add((2, 2.05M, 55));
             orderX.Schotels.Add((3, 1.99M, 99));
             Data.AddBestelling(orderX);
-            
+
             Data.DeleteBestelling(2);
-            
+
             foreach (var item in Data.GetBestelling())
             {
                 Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("----- Bestel-ID: "+item.ID +" ---------------------- ");
+                Console.WriteLine("----- Bestel-ID: " + item.ID + " ---------------------- ");
                 Console.WriteLine(item.DatumAanmaak);
                 Console.WriteLine("Besteld door: " + Data.GetKlant()[item.KlantID - 1].VoorNaam);
                 Console.WriteLine("\t\t>>>Bestelde producten:");
@@ -142,12 +137,7 @@ namespace Drimon_Temp
                     totaalprijs += (schotels.Prijs * schotels.Aantal);
                 }
                 Console.WriteLine($"$$$ - Totaalprijs: {totaalprijs} euro - $$$");
-                
             }
-            
-            
         }
     }
 }
-
-
