@@ -38,7 +38,7 @@ namespace Drimon_Temp
                 case 1:
 
                     Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
-                    int input = MethodeCheckforInt(Console.ReadLine());
+                    int input = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     if (vanWaar == "bestelling")
                     {
@@ -95,7 +95,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtKlantLijst();
                     Console.WriteLine("\nGeef postcode in gevolgd door 'enter':");
-                    int input2 = MethodeCheckforInt(Console.ReadLine());
+                    int input2 = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     OverzichtKlantLijst("postcode", input2.ToString());
                     MenuKlantZoeken(vanWaar);
@@ -204,7 +204,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].Postcode = MethodeCheckforInt(Console.ReadLine());
+                    klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
                     break;
 
                 case 8:
@@ -271,15 +271,6 @@ namespace Drimon_Temp
             MenuKlantEnkel(foo.ID, "toevoegen");
         }
 
-        public static int MethodeCheckforInt(string stringInput)
-        {
-            string tocheck = stringInput;
-            int output;
-            while (!Int32.TryParse(tocheck, out output))
-            {
-                tocheck = Console.ReadLine();
-            }
-            return output;
-        }
+        
     }
 }
