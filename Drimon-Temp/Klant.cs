@@ -36,7 +36,7 @@ namespace Drimon_Temp
             Console.WriteLine("Geef de huis en busnummer in gevolgd door 'enter':");
             HuisBusNummer = Console.ReadLine();
             Console.WriteLine("Geef de postcode in gevolgd door 'enter':");
-            Postcode = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+            Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
             Console.WriteLine("Geef de telefoonnummer in gevolgd door 'enter':");
             Telefoonnummer = Console.ReadLine();
         }

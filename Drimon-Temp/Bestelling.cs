@@ -108,19 +108,22 @@ namespace Drimon_Temp
                         Console.Clear();
                         ProductMenu.OverzichtProductLijst();
                         Console.WriteLine("\nGeef het productID in:");
-                        Product tempProduct = huidigeProducten[KlantMenu.MethodeCheckforInt(Console.ReadLine()) - 1];
+                        Product tempProduct = huidigeProducten[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
+                        Menu.Clearline(-1);
+                        Console.WriteLine(tempProduct.Naam);
                         Console.WriteLine("\nGeef het productID aantal in:");
-                        tempProduct.AantalBesteld = KlantMenu.MethodeCheckforInt(Console.ReadLine());
-                        Console.WriteLine($"\nJe koos {tempProduct.Naam} en wil dit {tempProduct.AantalBesteld} keer bestellen.\n\n1.Toevoegen aan bestelling\n2.Niet toevoegen en opnieuw kiezen");
-                        switch (Menu.Kiezer(2))
-                        {
-                            case 1:
+                        tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
 
-                                besteldeProducten.Add(tempProduct);
+                       
+                        switch (tempProduct.AantalBesteld)
+                        {
+                            case 0:
+
+                                
                                 break;
 
-                            case 2:
-
+                            default:
+                                besteldeProducten.Add(tempProduct);
                                 break;
                         }
                         break;
@@ -129,9 +132,9 @@ namespace Drimon_Temp
                         Console.Clear();
                         SchotelMenu.OverzichtSchotelLijst();
                         Console.WriteLine("\nGeef het schotel ID in:");
-                        Schotel tempSchotel = huidigeSchotels[KlantMenu.MethodeCheckforInt(Console.ReadLine()) - 1];
+                        Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
                         Console.WriteLine("\nGeef het schotel ID aantal in:");
-                        tempSchotel.AantalBesteld = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                        tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
 
                         Console.WriteLine($"\nJe koos {tempSchotel.Naam} en wil dit {tempSchotel.AantalBesteld} keer bestellen.\n\n1.Toevoegen aan bestelling\n2.Niet toevoegen en opnieuw kiezen");
                         switch (Menu.Kiezer(2))

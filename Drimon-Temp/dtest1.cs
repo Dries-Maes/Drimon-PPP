@@ -9,7 +9,7 @@ namespace Drimon_Temp
             KlantMenu.OverzichtKlantLijst();
             Console.WriteLine("geef klantID in:");
 
-            Bestelling nieuw = new Bestelling(KlantMenu.MethodeCheckforInt(Console.ReadLine()));
+            Bestelling nieuw = new Bestelling(Menu.MethodeCheckforInt(Console.ReadLine()));
             Console.Clear();
             nieuw.NieuweBestelling();
             Data.AddBestelling(nieuw);

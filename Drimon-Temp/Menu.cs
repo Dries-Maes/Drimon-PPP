@@ -73,5 +73,29 @@ namespace Drimon_Temp
             } while (input != 0);
             return output;
         }
+        
+        
+            public static void Clearline(int relativeY)
+            {
+                int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
+                if (intendedY < 0) { intendedY = 0; }
+                if (intendedY > Console.WindowHeight) { intendedY = Console.WindowHeight; }
+                Console.SetCursorPosition(0, intendedY);
+                Console.Write(new string(' ', Console.WindowWidth));
+                Console.SetCursorPosition(0, intendedY);
+            }
+
+        public static int MethodeCheckforInt(string stringInput)
+        {
+            string tocheck = stringInput;
+            int output;
+            while (!Int32.TryParse(tocheck, out output))
+            {
+                tocheck = Console.ReadLine();
+            }
+            return output;
+        }
+
+
     }
 }

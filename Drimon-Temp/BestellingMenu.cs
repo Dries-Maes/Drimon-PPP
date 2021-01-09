@@ -24,21 +24,21 @@ namespace Drimon_Temp
                     {
                         case 1:
                             Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
                             OverzichtBestellingen(">", tempWaarde);
                             break;
 
                         case 2:
                             Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
                             OverzichtBestellingen("<", tempWaarde);
                             break;
 
                         case 3:
                             Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
                             OverzichtBestellingen("=", tempWaarde);
                             break;
@@ -47,14 +47,14 @@ namespace Drimon_Temp
 
                 case 3:
                     Console.WriteLine("\nGeef een product ID in:");
-                    tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     OverzichtBestellingen("product", tempWaarde);
                     break;
 
                 case 4:
                     Console.WriteLine("\nGeef een schotel ID in:");
-                    tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     OverzichtBestellingen("=", tempWaarde);
                     break;
