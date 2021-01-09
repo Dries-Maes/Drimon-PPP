@@ -5,7 +5,6 @@ namespace Drimon_Temp
     [Serializable]
     internal class Product
     {
-        
         public int ID { get; set; }
         public string Naam { get; set; }
         public decimal Prijs { get; set; }
@@ -13,8 +12,6 @@ namespace Drimon_Temp
         public int AantalBesteld { get; set; }
         public bool Actief { get; set; }
         public DateTime DatumAanmaak { get; set; }
-
-        
 
         public Product(string naam, decimal prijs, int voorraad = 0)
         {

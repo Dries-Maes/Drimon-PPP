@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Drimon_Temp
 {
     public class dtest1
     {
-
         public static void Dostuff2()
         {
             KlantMenu.OverzichtKlantLijst();
@@ -17,11 +14,6 @@ namespace Drimon_Temp
             nieuw.NieuweBestelling();
             Data.AddBestelling(nieuw);
 
-
-
-
-
-
             /*Console.WriteLine("doing stuff.");
             Schotel toEdit = new Schotel("Warme schotel 1", 0.5M, 2);
 
@@ -30,7 +22,6 @@ namespace Drimon_Temp
             toEdit.IDlijst.Add(4, 3);
             toEdit.IDlijst.Add(5, 2);
             toEdit.IDlijst.Add(1, 3);
-
 
             foreach (var koppel in toEdit.IDlijst)
             {
@@ -41,9 +32,8 @@ namespace Drimon_Temp
                     $"\nNieuwe Stock: {temprecipe[koppel.Key-1].Voorraad} (stock) - {koppel.Value * toEdit.Voorraad} (totaal dat recept gebruikt) = {temprecipe[koppel.Key-1].Voorraad - (koppel.Value * toEdit.Voorraad)} (nieuwe stock na aanmaak schotel)");
                 Console.WriteLine("----------------------------------------------");
                 temprecipe[koppel.Key - 1].Voorraad = temprecipe[koppel.Key - 1].Voorraad - (koppel.Value * toEdit.Voorraad);
-
             }
-            
+
             Data.AddSchotel(toEdit);
             Data.SetProduct(temprecipe);
             Console.ReadLine();

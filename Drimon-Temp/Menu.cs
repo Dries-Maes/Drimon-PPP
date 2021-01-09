@@ -8,24 +8,23 @@ namespace Drimon_Temp
         public static void MenuHoofdmenu()
         {
             Console.Clear();
-            Console.WriteLine($"1.Nieuwe bestelling\n2.Klanten\n3.Overzicht bestellingen\n4.Producten beheren");
+            Console.WriteLine($"1.Nieuwe bestelling\n2.Overzicht bestellingen\n2.Klanten\n4.Producten beheren");
             switch (Kiezer(4))
             {
                 case 1:
                     Console.Clear();
                     KlantMenu.OverzichtKlantLijst();
                     KlantMenu.MenuKlantZoeken("bestelling");
-                    
                     break;
 
                 case 2:
                     Console.Clear();
-                    KlantMenu.MenuKlantHoofdmenu();
+                    BestellingMenu.MenuBestellingenHoofdmenu();
                     break;
 
                 case 3:
                     Console.Clear();
-                    BestellingMenu.MenuBestellingenHoofdmenu();                    
+                    KlantMenu.MenuKlantHoofdmenu();
                     break;
 
                 case 4:
