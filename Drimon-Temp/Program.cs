@@ -8,7 +8,6 @@ namespace Drimon_Temp
         {
             Menu.MenuHoofdmenu();
 
-
             Console.ReadLine();
         }
     }

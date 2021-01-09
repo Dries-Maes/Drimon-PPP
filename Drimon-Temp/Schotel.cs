@@ -24,6 +24,7 @@ namespace Drimon_Temp
 
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
+        public int AantalBesteld { get; set; }
         public bool Actief { get; set; }
 
         public Schotel(string naam, decimal prijs, int voorraad = 0)

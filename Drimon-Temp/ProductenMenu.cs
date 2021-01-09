@@ -223,7 +223,7 @@ namespace Drimon_Temp
 
             foreach (var item in results)
             {
-                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
             }
         }
 
