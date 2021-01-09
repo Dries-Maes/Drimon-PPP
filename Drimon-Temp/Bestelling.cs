@@ -114,12 +114,10 @@ namespace Drimon_Temp
                         Console.WriteLine("\nGeef het productID aantal in:");
                         tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
 
-                       
                         switch (tempProduct.AantalBesteld)
                         {
                             case 0:
 
-                                
                                 break;
 
                             default:
