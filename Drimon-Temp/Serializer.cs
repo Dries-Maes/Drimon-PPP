@@ -7,17 +7,15 @@ namespace Drimon_Temp
 {
     internal class Serializer
     {
-        private static object foutmelding;
-
+        
+       private static object foutmelding;
         public static void BinarySerialize(List<object> data, string file)
         {
             try
             {
-                using (Stream stream = File.Open(Data.DirFile(file), FileMode.Create))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, data);
-                }
+                using Stream stream = File.Open(Data.DirFile(file), FileMode.Create);
+                BinaryFormatter bin = new BinaryFormatter();
+                bin.Serialize(stream, data);
             }
             catch (IOException foutmelding)
             {
@@ -32,12 +30,10 @@ namespace Drimon_Temp
             List<object> resultaat = null;
             try
             {
-                using (Stream stream = File.Open(Data.DirFile(file), FileMode.Open))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
+                using Stream stream = File.Open(Data.DirFile(file), FileMode.Open);
+                BinaryFormatter bin = new BinaryFormatter();
 
-                    resultaat = (List<object>)bin.Deserialize(stream);
-                }
+                resultaat = (List<object>)bin.Deserialize(stream);
             }
             catch (IOException foutmelding)
             {

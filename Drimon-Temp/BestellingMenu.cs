@@ -7,11 +7,11 @@ namespace Drimon_Temp
     {
         public static void MenuBestellingenHoofdmenu(string menukeuze = "open", int waarde = 0)
         {
-            int tempWaarde = waarde;
+           
             
 
             Console.WriteLine($"\n 1.Toon alle bestellingen\n 2.Filter op prijs\n 3.Filter op product \n 4.Filter op schotel \n 5.Toon enkel afgeronde bestellingen\n 6.Toon enkel open bestellingen \n 7.Terug");
-            switch (Menu.Kiezer(7))
+            switch (Menu.MethodeKiezer(7))
             {
                 case 1:
                     Console.Clear();
@@ -20,43 +20,44 @@ namespace Drimon_Temp
 
                 case 2:
                     Console.WriteLine("\n 1.Groter dan\n 2.Kleiner dan\n 3.Gelijk aan");
-                    switch (Menu.Kiezer(6))
+                    
+                    switch (Menu.MethodeKiezer(6))
                     {
                         case 1:
                             Console.WriteLine("\n Geef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen(">", tempWaarde);
+                            OverzichtBestellingen(">", waarde);
                             break;
 
                         case 2:
                             Console.WriteLine("\n Geef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen("<", tempWaarde);
+                            OverzichtBestellingen("<", waarde);
                             break;
 
                         case 3:
                             Console.WriteLine("\n Geef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen("=", tempWaarde);
+                            OverzichtBestellingen("=", waarde);
                             break;
                     }
                     break;
 
                 case 3:
                     Console.WriteLine("\n Geef een product ID in:");
-                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                    waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
-                    OverzichtBestellingen("product", tempWaarde);
+                    OverzichtBestellingen("product", waarde);
                     break;
 
                 case 4:
                     Console.WriteLine("\n Geef een schotel ID in:");
-                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                    waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
-                    OverzichtBestellingen("=", tempWaarde);
+                    OverzichtBestellingen("=", waarde);
                     break;
 
                 case 5:
@@ -90,15 +91,15 @@ namespace Drimon_Temp
                     break;
 
                 case "<":
-                    results = toEdit.FindAll(x => x.totaalPrijs() < getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() < getal);
                     break;
 
                 case "=":
-                    results = toEdit.FindAll(x => x.totaalPrijs() == getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() == getal);
                     break;
 
                 case ">":
-                    results = toEdit.FindAll(x => x.totaalPrijs() > getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() > getal);
                     break;
 
                 case "product":
@@ -126,7 +127,7 @@ namespace Drimon_Temp
             foreach (var item in results)
             {
                 decimal totaalPrijsBestelling = 0.00M;
-                Console.WriteLine($" ID: {item.ID}".PadRight(6) + $"  Klant: {Data.GetKlant()[item.KlantID - 1].VoorNaam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Afgerond: {item.Afgerond.ToString()}".PadRight(20));
+                Console.WriteLine($" ID: {item.ID}".PadRight(6) + $"  Klant: {Data.GetKlant()[item.KlantID - 1].VoorNaam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Afgerond: {item.Afgerond}".PadRight(20));
                 Console.Write("\tProducten:");
 
                 foreach (var instance in item.Producten)
@@ -148,7 +149,7 @@ namespace Drimon_Temp
         {
             Bestelling nieuw = new Bestelling(klantID);
             Console.Clear();
-            nieuw.NieuweBestelling();
+            nieuw.MethodeNieuweBestelling();
             Data.AddBestelling(nieuw);
             Menu.MenuHoofdmenu();
         }
