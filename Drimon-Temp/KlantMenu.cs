@@ -7,7 +7,7 @@ namespace Drimon_Temp
     {
         public static void MenuKlantHoofdmenu()
         {
-            Console.WriteLine($"1.Klant zoeken\n2.Klant Toevoegen\n3.Terug naar hoofdmenu");
+            Console.WriteLine($" 1.Klant zoeken\n 2.Klant Toevoegen\n 3.Terug naar hoofdmenu");
             switch (Menu.Kiezer(3))
             {
                 case 1:
@@ -31,13 +31,13 @@ namespace Drimon_Temp
         {
             string userinput;
 
-            Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
+            Console.WriteLine($"\n 1.Selecteer klant\n 2.Terug\n\n Zoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
 
             switch (Menu.Kiezer(6))
             {
                 case 1:
 
-                    Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
+                    Console.WriteLine("\n Geef het ID gevolgd door 'enter':");
                     int inputID = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     if (vanWaar == "bestelling")
@@ -61,7 +61,7 @@ namespace Drimon_Temp
                 case 3:
                     Console.Clear();
                     OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de voornaam in gevolgd door 'enter':");
+                    Console.WriteLine("\n Geef de voornaam in gevolgd door 'enter':");
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("voornaam", userinput);
@@ -71,7 +71,7 @@ namespace Drimon_Temp
                 case 4:
                     Console.Clear();
                     OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de naam in gevolgd door 'enter':");
+                    Console.WriteLine("\n Geef de naam in gevolgd door 'enter':");
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("naam", userinput);
@@ -81,7 +81,7 @@ namespace Drimon_Temp
                 case 5:
                     Console.Clear();
                     OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de straatnaam in gevolgd door 'enter':");
+                    Console.WriteLine("\n Geef de straatnaam in gevolgd door 'enter':");
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("straat", userinput);
@@ -91,7 +91,7 @@ namespace Drimon_Temp
                 case 6:
                     Console.Clear();
                     OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef postcode in gevolgd door 'enter':");
+                    Console.WriteLine("\n Geef postcode in gevolgd door 'enter':");
                     int input2 = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     OverzichtKlantLijst("postcode", input2.ToString());
@@ -104,7 +104,7 @@ namespace Drimon_Temp
         {
             OverzichtKlantEnkel(klantID);
 
-            Console.WriteLine($"1.Klant aanpassen\n2.Bestellingen tonen\n3.Terug");
+            Console.WriteLine($" 1.Klant aanpassen\n 2.Bestellingen tonen\n 3.Terug");
             switch (Menu.Kiezer(3))
             {
                 case 1:
@@ -118,7 +118,7 @@ namespace Drimon_Temp
                 case 2:
                     Console.Clear();
                     BestellingMenu.OverzichtBestellingen("klant", klantID);
-                    Console.WriteLine($"\n1.Nieuwe bestelling plaatsen\n2.Terug");
+                    Console.WriteLine($"\n 1.Nieuwe bestelling plaatsen\n 2.Terug");
                     switch (Menu.Kiezer(2))
                     {
                         case 1:
@@ -157,7 +157,7 @@ namespace Drimon_Temp
         {
             List<Klant> klantEdit = Data.GetKlant();
 
-            Console.WriteLine($"\nWijzig: \n 1.Voornaam\n 2.Naam\n 3.Straat\n 4.Huisbusnummer\n 5.Postcode\n 6.Telefoonnummer\n\n7.Verwijder\\herstel klant\n8.Terug");
+            Console.WriteLine($"\n Wijzig:  \n  1.Voornaam\n  2.Naam\n  3.Straat\n  4.Huisbusnummer\n  5.Postcode\n  6.Telefoonnummer\n\n 7.Verwijder\\herstel klant\n 8.Terug");
             switch (Menu.Kiezer(8))
             {
                 
@@ -165,42 +165,42 @@ namespace Drimon_Temp
                 case 1:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].VoorNaam = Console.ReadLine();
                     break;
 
                 case 2:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].AchterNaam = Console.ReadLine();
                     break;
 
                 case 3:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Straat = Console.ReadLine();
                     break;
 
                 case 4:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].HuisBusNummer = Console.ReadLine();
                     break;
 
                 case 5:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
                     break;
 
                 case 6:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
                     break;
                 case 7:
@@ -266,6 +266,7 @@ namespace Drimon_Temp
             Klant foo = new Klant("bar");
             foo.NieuweKlant();
             Data.AddKlant(foo);
+            Console.Clear();
             MenuKlantEnkel(foo.ID, "toevoegen");
         }
     }

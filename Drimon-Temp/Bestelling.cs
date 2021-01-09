@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Drimon_Temp
 {
@@ -99,53 +100,44 @@ namespace Drimon_Temp
                         Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
                         totaalPrijsBestelling += (item.Prijs * item.AantalBesteld);
                     }
-                    Console.WriteLine($"\nTotaalprijs van de bestelling is: {totaalPrijsBestelling} euro\n");
+                    Console.WriteLine($"\n Totaalprijs van de bestelling is: {totaalPrijsBestelling} euro\n");
                 }
-                Console.WriteLine($"Dag {Data.GetKlant()[KlantID - 1].VoorNaam}, wat wil je bestellen?\n1.Een product\n2.Een schotel\n3.Annuleer bestelling\n4.Plaats bestelling!");
+                Console.WriteLine($" Dag {Data.GetKlant()[KlantID - 1].VoorNaam}, wat wil je bestellen?\n 1.Een product\n 2.Een schotel\n 3.Annuleer bestelling\n 4.Plaats bestelling!");
                 switch (Menu.Kiezer(4))
                 {
                     case 1:
                         Console.Clear();
                         ProductMenu.OverzichtProductLijst();
-                        Console.WriteLine("\nGeef het productID in:");
+                        Console.WriteLine("\n Geef het productID in:");
                         Product tempProduct = huidigeProducten[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
                         Menu.Clearline(-1);
-                        Console.WriteLine(tempProduct.Naam);
-                        Console.WriteLine("\nGeef het productID aantal in:");
+                        Console.WriteLine(" " +tempProduct.Naam);
+                        Console.WriteLine("\n Geef het productID aantal in:");
                         tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
-
-                        switch (tempProduct.AantalBesteld)
+                        
+                        if (tempProduct.AantalBesteld != 0)
                         {
-                            case 0:
-
-                                break;
-
-                            default:
-                                besteldeProducten.Add(tempProduct);
-                                break;
+                                besteldeProducten.Add(tempProduct);        
                         }
                         break;
 
                     case 2:
                         Console.Clear();
                         SchotelMenu.OverzichtSchotelLijst();
-                        Console.WriteLine("\nGeef het schotel ID in:");
+                        Console.WriteLine("\n Geef het schotel ID in:");
+                        
                         Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
-                        Console.WriteLine("\nGeef het schotel ID aantal in:");
+                        Menu.Clearline(-1);
+                        Console.WriteLine(" " + tempSchotel.Naam);
+                        Console.WriteLine("\n Geef het schotel ID aantal in:");
                         tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
+                        Thread.Sleep(1000);
 
-                        Console.WriteLine($"\nJe koos {tempSchotel.Naam} en wil dit {tempSchotel.AantalBesteld} keer bestellen.\n\n1.Toevoegen aan bestelling\n2.Niet toevoegen en opnieuw kiezen");
-                        switch (Menu.Kiezer(2))
+                        if (tempSchotel.AantalBesteld != 0 )
                         {
-                            case 1:
-
-                                besteldeSchotels.Add(tempSchotel);
-                                break;
-
-                            case 2:
-
-                                break;
+                            besteldeSchotels.Add(tempSchotel);
                         }
+                        
                         break;
 
                     case 3:

@@ -21,6 +21,7 @@ namespace Drimon_Temp
 
                 case 2:
                     Console.Clear();
+                    BestellingMenu.OverzichtBestellingen();
                     BestellingMenu.MenuBestellingenHoofdmenu();
                     break;
 
@@ -36,7 +37,9 @@ namespace Drimon_Temp
                     break;
 
                 case 5:
-                    VisWinkel();
+                    //VisWinkel();
+                    Console.Clear();
+                    Spinner();
                     MenuHoofdmenu();
                     break;
 
@@ -174,6 +177,46 @@ namespace Drimon_Temp
                     WriteFullLine("");
 
                     Thread.Sleep(50);
+                }
+            }
+        }
+        public static void Spinner()
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Clear();
+
+                    var margin = "".PadLeft(j);
+                    
+                    
+
+                    
+                    Console.Write(margin + ">))´>" );
+                    Console.WriteLine("");
+
+                    Thread.Sleep(50);
+                    Console.ResetColor();
+                }
+                for (int j = 10; j > 0; j--)
+                {
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Clear();
+
+                    var margin = "".PadLeft(j);
+
+
+
+                    
+                    Console.Write(margin + "<`((< ");
+                    Console.WriteLine("");
+
+                    Thread.Sleep(50);
+                    Console.ResetColor();
                 }
             }
         }

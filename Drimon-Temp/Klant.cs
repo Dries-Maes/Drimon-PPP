@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Drimon_Temp
 {
@@ -27,18 +28,31 @@ namespace Drimon_Temp
 
         public void NieuweKlant()
         {
-            Console.WriteLine("Geef de voornaam in gevolgd door 'enter':");
+            Console.WriteLine(" Geef de voornaam in gevolgd door 'enter':");
             VoorNaam = Console.ReadLine();
-            Console.WriteLine("Geef de naam in gevolgd door 'enter':");
+            Menu.Clearline(-1);
+            Console.WriteLine(" "+VoorNaam);
+            Console.WriteLine(" Geef de naam in gevolgd door 'enter':");
             AchterNaam = Console.ReadLine();
-            Console.WriteLine("Geef de straat in gevolgd door 'enter':");
+            Menu.Clearline(-1);
+            Console.WriteLine(" " + AchterNaam);
+            Console.WriteLine(" Geef de straat in gevolgd door 'enter':");
             Straat = Console.ReadLine();
-            Console.WriteLine("Geef de huis en busnummer in gevolgd door 'enter':");
+            Menu.Clearline(-1);
+            Console.WriteLine(" " + Straat);
+            Console.WriteLine(" Geef de huis en busnummer in gevolgd door 'enter':");
             HuisBusNummer = Console.ReadLine();
-            Console.WriteLine("Geef de postcode in gevolgd door 'enter':");
+            Menu.Clearline(-1);
+            Console.WriteLine(" " + HuisBusNummer);
+            Console.WriteLine(" Geef de postcode in gevolgd door 'enter':");
             Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
-            Console.WriteLine("Geef de telefoonnummer in gevolgd door 'enter':");
+            Menu.Clearline(-1);
+            Console.WriteLine(" " + Postcode);
+            Console.WriteLine(" Geef de telefoonnummer in gevolgd door 'enter':");
             Telefoonnummer = Console.ReadLine();
+            Menu.Clearline(-1);
+            Console.WriteLine(" " + Telefoonnummer);
+            Thread.Sleep(1000);
         }
     }
 }
