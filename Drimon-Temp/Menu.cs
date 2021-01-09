@@ -33,6 +33,7 @@ namespace Drimon_Temp
                     ProductMenu.MenuProductHoofdmenu();
                     // go to productenbeheermenu >
                     break;
+
                 case 5:
                     VisWinkel();
                     MenuHoofdmenu();
@@ -78,17 +79,16 @@ namespace Drimon_Temp
             } while (input != 0);
             return output;
         }
-        
-        
-            public static void Clearline(int relativeY)
-            {
-                int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
-                if (intendedY < 0) { intendedY = 0; }
-                if (intendedY > Console.WindowHeight) { intendedY = Console.WindowHeight; }
-                Console.SetCursorPosition(0, intendedY);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, intendedY);
-            }
+
+        public static void Clearline(int relativeY)
+        {
+            int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
+            if (intendedY < 0) { intendedY = 0; }
+            if (intendedY > Console.WindowHeight) { intendedY = Console.WindowHeight; }
+            Console.SetCursorPosition(0, intendedY);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, intendedY);
+        }
 
         public static int MethodeCheckforInt(string stringInput)
         {
@@ -101,7 +101,7 @@ namespace Drimon_Temp
             return output;
         }
 
-        static void WriteFullLine(string value)
+        private static void WriteFullLine(string value)
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -117,26 +117,24 @@ namespace Drimon_Temp
                 {
                     Console.Clear();
 
-
                     var margin = "".PadLeft(j);
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("" + @"
-                        ██╗   ██╗██╗███████╗██╗    ██╗██╗███╗   ██╗██╗  ██╗███████╗██╗     
-                        ██║   ██║██║██╔════╝██║    ██║██║████╗  ██║██║ ██╔╝██╔════╝██║     
-                        ██║   ██║██║███████╗██║ █╗ ██║██║██╔██╗ ██║█████╔╝ █████╗  ██║     
-                        ╚██╗ ██╔╝██║╚════██║██║███╗██║██║██║╚██╗██║██╔═██╗ ██╔══╝  ██║     
+                        ██╗   ██╗██╗███████╗██╗    ██╗██╗███╗   ██╗██╗  ██╗███████╗██╗
+                        ██║   ██║██║██╔════╝██║    ██║██║████╗  ██║██║ ██╔╝██╔════╝██║
+                        ██║   ██║██║███████╗██║ █╗ ██║██║██╔██╗ ██║█████╔╝ █████╗  ██║
+                        ╚██╗ ██╔╝██║╚════██║██║███╗██║██║██║╚██╗██║██╔═██╗ ██╔══╝  ██║
                          ╚████╔╝ ██║███████║╚███╔███╔╝██║██║ ╚████║██║  ██╗███████╗███████╗
                           ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚══════╝
-                                                                                           
-                                ██████╗ ██████╗ ██╗███╗   ███╗ ██████╗ ███╗   ██╗          
-                                ██╔══██╗██╔══██╗██║████╗ ████║██╔═══██╗████╗  ██║          
-                                ██║  ██║██████╔╝██║██╔████╔██║██║   ██║██╔██╗ ██║          
-                                ██║  ██║██╔══██╗██║██║╚██╔╝██║██║   ██║██║╚██╗██║          
-                                ██████╔╝██║  ██║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║          
+
+                                ██████╗ ██████╗ ██╗███╗   ███╗ ██████╗ ███╗   ██╗
+                                ██╔══██╗██╔══██╗██║████╗ ████║██╔═══██╗████╗  ██║
+                                ██║  ██║██████╔╝██║██╔████╔██║██║   ██║██╔██╗ ██║
+                                ██║  ██║██╔══██╗██║██║╚██╔╝██║██║   ██║██║╚██╗██║
+                                ██████╔╝██║  ██║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║
                                 ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝          ");
 
                     Console.ResetColor();
-
 
                     WriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
                     WriteFullLine(margin + "                       O     o           o");
@@ -153,13 +151,6 @@ namespace Drimon_Temp
                     WriteFullLine(margin + "//\\___=                     |  |___/");
                     WriteFullLine(margin + "   ''                      /__/");
                     WriteFullLine("");
-
-                    
-
-
-
-
-
 
                     Thread.Sleep(50);
                 }

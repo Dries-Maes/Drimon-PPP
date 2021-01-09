@@ -270,7 +270,5 @@ namespace Drimon_Temp
             Data.AddKlant(foo);
             MenuKlantEnkel(foo.ID, "toevoegen");
         }
-
-        
     }
 }
