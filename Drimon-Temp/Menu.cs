@@ -37,9 +37,8 @@ namespace Drimon_Temp
                     break;
 
                 case 5:
-                    //VisWinkel();
+                    VisWinkel();
                     Console.Clear();
-                    Spinner();
                     MenuHoofdmenu();
                     break;
 
@@ -190,11 +189,11 @@ namespace Drimon_Temp
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.Clear();
 
-                    var margin = "".PadLeft(j);
-                    
-                    
+                    var margin = " ".PadLeft(j);
 
-                    
+
+
+                    Console.WriteLine("Product wordt besteld...");
                     Console.Write(margin + ">))´>" );
                     Console.WriteLine("");
 
@@ -207,11 +206,11 @@ namespace Drimon_Temp
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.Clear();
 
-                    var margin = "".PadLeft(j);
+                    var margin = " ".PadLeft(j);
 
 
 
-                    
+                    Console.WriteLine("Product wordt besteld...");
                     Console.Write(margin + "<`((< ");
                     Console.WriteLine("");
 

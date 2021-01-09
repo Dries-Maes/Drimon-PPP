@@ -89,7 +89,7 @@ namespace Drimon_Temp
                 if (besteldeSchotels.Count != 0 || besteldeProducten.Count != 0)
                 {
                     decimal totaalPrijsBestelling = 0.00M;
-                    Console.WriteLine($" |ID".PadRight(6) + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Stuks in bestelling".PadRight(12));
+                    Console.WriteLine($"\n |ID".PadRight(6) + $"| Naam".PadRight(12) + $"| Prijs".PadRight(12) + $"| Stuks".PadRight(12));
                     foreach (var item in besteldeProducten)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
@@ -112,9 +112,10 @@ namespace Drimon_Temp
                         Product tempProduct = huidigeProducten[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
                         Menu.Clearline(-1);
                         Console.WriteLine(" " +tempProduct.Naam);
-                        Console.WriteLine("\n Geef het productID aantal in:");
+                        Console.WriteLine("\n Geef het aantal in:");
                         tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
-                        
+                       Menu.Spinner();
+
                         if (tempProduct.AantalBesteld != 0)
                         {
                                 besteldeProducten.Add(tempProduct);        
@@ -129,9 +130,10 @@ namespace Drimon_Temp
                         Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
                         Menu.Clearline(-1);
                         Console.WriteLine(" " + tempSchotel.Naam);
-                        Console.WriteLine("\n Geef het schotel ID aantal in:");
+                        Console.WriteLine("\n Geef het aantal in:");
                         tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
-                        Thread.Sleep(1000);
+                        
+                        Menu.Spinner();
 
                         if (tempSchotel.AantalBesteld != 0 )
                         {
