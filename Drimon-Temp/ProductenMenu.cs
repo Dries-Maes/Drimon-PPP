@@ -42,7 +42,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtProductLijst();
                     Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
-                    int input = MethodeCheckforInt(Console.ReadLine());
+                    int input = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     MenuProductEnkel(input, "zoeken");
                     break;
@@ -219,11 +219,11 @@ namespace Drimon_Temp
                 case "alles":
                     break;
             }
-            Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Status".PadRight(20) + $"Kolom".PadRight(10) + $"|Kolom".PadRight(20) + $"|Aanmaakdatum ");
+            Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Voorraad".PadRight(20) + $"ID".PadRight(10) + $"|Status".PadRight(20) + $"|Aanmaakdatum ");
 
             foreach (var item in results)
             {
-                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.Actief}".PadRight(20) + $"|{item.DatumAanmaak}");
             }
         }
 
@@ -233,17 +233,6 @@ namespace Drimon_Temp
             foo.NieuwProduct();
             Data.AddProduct(foo);
             MenuProductEnkel(foo.ID, "toevoegen");
-        }
-
-        public static int MethodeCheckforInt(string stringInput) //IS DIT DUBBEL? CONTROLERENd
-        {
-            string tocheck = stringInput;
-            int output;
-            while (!Int32.TryParse(tocheck, out output))
-            {
-                tocheck = Console.ReadLine();
-            }
-            return output;
         }
     }
 }

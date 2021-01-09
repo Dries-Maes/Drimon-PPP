@@ -53,7 +53,7 @@ namespace Drimon_Temp
                 Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Status".PadRight(20) + $"Kolom".PadRight(10) + $"|Kolom".PadRight(20) + $"|Aanmaakdatum ");
                 foreach (var item in results)
                 {
-                    Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
+                    Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Actief}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
                 }
             }
             MenuSchotelZoeken();
@@ -79,11 +79,11 @@ namespace Drimon_Temp
                 case "alles":
                     break;
             }
-            Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Status".PadRight(20) + $"Kolom".PadRight(10) + $"|Kolom".PadRight(20) + $"|Aanmaakdatum ");
+            Console.WriteLine(" |ID  " + $"|Naam".PadRight(20) + $"|Prijs".PadRight(12) + $"|Voorraad".PadRight(20) + $"|Status".PadRight(20) + $"|Aanmaakdatum".PadRight(10));
 
             foreach (var item in results)
             {
-                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(20) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}".PadRight(20) + $"|{item.Actief}".PadRight(20) + $"|{item.DatumAanmaak}".PadRight(10));
             }
         }
 
@@ -187,7 +187,8 @@ namespace Drimon_Temp
             {
                 Console.WriteLine($"\n\tLET OP: DEZE SCHOTEL WERD VERWIJDERD");
             }
-            Console.WriteLine($"\n\tID: {objectSelectie.ID}\n\tNaam: {objectSelectie.Naam}\n\t Datum aanmaak: {objectSelectie.DatumAanmaak}\n\t");
+            Console.WriteLine("\n\tSCHOTELSELECTIE");
+            Console.WriteLine($"\n\t|ID:{objectSelectie.ID}\n\t|Naam: {objectSelectie.Naam}\n\t|Datum aanmaak: {objectSelectie.DatumAanmaak}\n\t|Prijs: {objectSelectie.Prijs}\n\tVoorraad: {objectSelectie.Voorraad} \n\tStatus: {objectSelectie.Actief}");
         }
 
         public static void MenuSchotelEdit(int schotelID)
@@ -233,17 +234,6 @@ namespace Drimon_Temp
                     Data.DeleteSchotel(schotelID);
                     Console.WriteLine("Status gewijzigd");
 
-                    //if (schotelEdit[schotelID - 1].Actief == true)
-                    //{
-                    //    schotelEdit[schotelID - 1].Actief = false;
-
-                    //}
-                    //else
-                    //{
-                    //    schotelEdit[schotelID - 1].Actief = true;
-                    //}
-
-                    //schotelEdit[schotelID - 1].Actief = Console.ReadLine();
                     break;
 
                 case 7:

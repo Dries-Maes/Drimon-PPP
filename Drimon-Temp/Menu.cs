@@ -8,7 +8,7 @@ namespace Drimon_Temp
         public static void MenuHoofdmenu()
         {
             Console.Clear();
-            Console.WriteLine($"1.Nieuwe bestelling\n2.Overzicht bestellingen\n2.Klanten\n4.Producten beheren");
+            Console.WriteLine($"1.Nieuwe bestelling\n2.Overzicht bestellingen\n3.Klanten\n4.Producten beheren");
             switch (Kiezer(4))
             {
                 case 1:
@@ -73,17 +73,16 @@ namespace Drimon_Temp
             } while (input != 0);
             return output;
         }
-        
-        
-            public static void Clearline(int relativeY)
-            {
-                int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
-                if (intendedY < 0) { intendedY = 0; }
-                if (intendedY > Console.WindowHeight) { intendedY = Console.WindowHeight; }
-                Console.SetCursorPosition(0, intendedY);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, intendedY);
-            }
+
+        public static void Clearline(int relativeY)
+        {
+            int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
+            if (intendedY < 0) { intendedY = 0; }
+            if (intendedY > Console.WindowHeight) { intendedY = Console.WindowHeight; }
+            Console.SetCursorPosition(0, intendedY);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, intendedY);
+        }
 
         public static int MethodeCheckforInt(string stringInput)
         {
@@ -95,7 +94,5 @@ namespace Drimon_Temp
             }
             return output;
         }
-
-
     }
 }
