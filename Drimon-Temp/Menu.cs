@@ -9,9 +9,9 @@ namespace Drimon_Temp
         public static void MenuHoofdmenu()
         {
             Console.Clear();
-            BannerLine();
+            MethodeBannerLine();
             Console.WriteLine($" 1.Nieuwe bestelling\n 2.Overzicht bestellingen\n 3.Klanten\n 4.Producten beheren\n 5.Intro?");
-            switch (Kiezer(5))
+            switch (MethodeKiezer(5))
             {
                 case 1:
                     Console.Clear();
@@ -37,7 +37,7 @@ namespace Drimon_Temp
                     break;
 
                 case 5:
-                    VisWinkel();
+                    MethodeIntro();
                     Console.Clear();
                     MenuHoofdmenu();
                     break;
@@ -47,7 +47,7 @@ namespace Drimon_Temp
             }
         }
 
-        public static int Kiezer(int menuAantal)
+        public static int MethodeKiezer(int menuAantal)
         {
             int menuAantalIntern = menuAantal;
             List<int> keuzelijst = new List<int>();
@@ -83,7 +83,7 @@ namespace Drimon_Temp
             return output;
         }
 
-        public static void Clearline(int relativeY)
+        public static void MethodeClearLine(int relativeY)
         {
             int intendedY = Console.CursorTop + relativeY; // hier stond - ipv +
             if (intendedY < 0) { intendedY = 0; }
@@ -92,20 +92,20 @@ namespace Drimon_Temp
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, intendedY);
         }
-        public static void BannerLine()
+        public static void MethodeBannerLine()
             {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
             Console.WriteLine(HorizontaleLijn);
             Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1)); 
-            Console.Write(PadBoth("Viswinkel DriMon", Console.WindowWidth / 3)); 
+            Console.Write(MethodePadLeftRight("Viswinkel DriMon", Console.WindowWidth / 3)); 
             Console.WriteLine($"{DateTime.Now}".PadLeft(Console.WindowWidth / 3));
             Console.WriteLine(HorizontaleLijn);
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Cyan;
             
         }
-        public static string PadBoth(string source, int length)
+        public static string MethodePadLeftRight(string source, int length)
         {
             int spaces = length - source.Length;
             int padLeft = spaces / 2 + source.Length;
@@ -123,7 +123,7 @@ namespace Drimon_Temp
             return output;
         }
 
-        private static void WriteFullLine(string value)
+        private static void MethodeWriteFullLine(string value)
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -131,7 +131,7 @@ namespace Drimon_Temp
             Console.ResetColor();
         }
 
-        public static void VisWinkel()
+        public static void MethodeIntro()
         {
             for (int i = 0; i < 1; i++)
             {
@@ -159,27 +159,27 @@ namespace Drimon_Temp
 
                     Console.ResetColor();
 
-                    WriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
-                    WriteFullLine(margin + "                       O     o           o");
-                    WriteFullLine(margin + "         _\\_  o                             o");
-                    WriteFullLine(margin + "      \\\\/  o\\ .              ______      o");
-                    WriteFullLine(margin + "      //\\___=              _/  (   \\_");
-                    WriteFullLine(margin + "        ''       _       _/  (       \\_  O");
-                    WriteFullLine(margin + "                | \\_   _/  (   (   (0) \\");
-                    WriteFullLine(margin + "                |== \\_/  (   (          |");
-                    WriteFullLine(margin + "                |=== _ (   (   (         |");
-                    WriteFullLine(margin + "                |==_/ \\_ (   (      .   |");
-                    WriteFullLine(margin + "   _\\_  o       | _/     \\_ (   (    \\__/");
-                    WriteFullLine(margin + "\\\\/  o\\ .                 \\_ (      _/");
-                    WriteFullLine(margin + "//\\___=                     |  |___/");
-                    WriteFullLine(margin + "   ''                      /__/");
-                    WriteFullLine("");
+                    MethodeWriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
+                    MethodeWriteFullLine(margin + "                       O     o           o");
+                    MethodeWriteFullLine(margin + "         _\\_  o                             o");
+                    MethodeWriteFullLine(margin + "      \\\\/  o\\ .              ______      o");
+                    MethodeWriteFullLine(margin + "      //\\___=              _/  (   \\_");
+                    MethodeWriteFullLine(margin + "        ''       _       _/  (       \\_  O");
+                    MethodeWriteFullLine(margin + "                | \\_   _/  (   (   (0) \\");
+                    MethodeWriteFullLine(margin + "                |== \\_/  (   (          |");
+                    MethodeWriteFullLine(margin + "                |=== _ (   (   (         |");
+                    MethodeWriteFullLine(margin + "                |==_/ \\_ (   (      .   |");
+                    MethodeWriteFullLine(margin + "   _\\_  o       | _/     \\_ (   (    \\__/");
+                    MethodeWriteFullLine(margin + "\\\\/  o\\ .                 \\_ (      _/");
+                    MethodeWriteFullLine(margin + "//\\___=                     |  |___/");
+                    MethodeWriteFullLine(margin + "   ''                      /__/");
+                    MethodeWriteFullLine("");
 
                     Thread.Sleep(50);
                 }
             }
         }
-        public static void Spinner()
+        public static void MethodeSpinner()
         {
             for (int i = 0; i < 1; i++)
             {

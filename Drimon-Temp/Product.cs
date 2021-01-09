@@ -43,7 +43,7 @@ namespace Drimon_Temp
             DatumAanmaak = DateTime.Now;
         }
 
-        public void NieuwProduct()
+        public void MethodeNieuwProduct()
         {
             Console.WriteLine("Geef de naam van het product in:");
             Naam = Console.ReadLine();

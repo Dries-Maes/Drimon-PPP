@@ -8,7 +8,7 @@ namespace Drimon_Temp
         public static void MenuKlantHoofdmenu()
         {
             Console.WriteLine($" 1.Klant zoeken\n 2.Klant Toevoegen\n 3.Terug naar hoofdmenu");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -33,7 +33,7 @@ namespace Drimon_Temp
 
             Console.WriteLine($"\n 1.Selecteer klant\n 2.Terug\n\n Zoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
 
-            switch (Menu.Kiezer(6))
+            switch (Menu.MethodeKiezer(6))
             {
                 case 1:
 
@@ -105,7 +105,7 @@ namespace Drimon_Temp
             OverzichtKlantEnkel(klantID);
 
             Console.WriteLine($" 1.Klant aanpassen\n 2.Bestellingen tonen\n 3.Terug");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -119,12 +119,12 @@ namespace Drimon_Temp
                     Console.Clear();
                     BestellingMenu.OverzichtBestellingen("klant", klantID);
                     Console.WriteLine($"\n 1.Nieuwe bestelling plaatsen\n 2.Terug");
-                    switch (Menu.Kiezer(2))
+                    switch (Menu.MethodeKiezer(2))
                     {
                         case 1:
                             Bestelling nieuw = new Bestelling(klantID);
                             Console.Clear();
-                            nieuw.NieuweBestelling();
+                            nieuw.MethodeNieuweBestelling();
                             Data.AddBestelling(nieuw);
                             Menu.MenuHoofdmenu();
                             break;
@@ -158,7 +158,7 @@ namespace Drimon_Temp
             List<Klant> klantEdit = Data.GetKlant();
 
             Console.WriteLine($"\n Wijzig:  \n  1.Voornaam\n  2.Naam\n  3.Straat\n  4.Huisbusnummer\n  5.Postcode\n  6.Telefoonnummer\n\n 7.Verwijder\\herstel klant\n 8.Terug");
-            switch (Menu.Kiezer(8))
+            switch (Menu.MethodeKiezer(8))
             {
                 
 
