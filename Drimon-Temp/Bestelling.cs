@@ -7,8 +7,8 @@ namespace Drimon_Temp
     [Serializable]
     internal class Bestelling
     {
-        private List<Product> producten;
-        private List<Schotel> schotels;
+        private List<Product> producten = new List<Product>();
+        private List<Schotel> schotels = new List<Schotel>();
 
         public List<Product> Producten
         {
@@ -64,11 +64,11 @@ namespace Drimon_Temp
         public decimal MethodeTotaalPrijs()
         {
             decimal result = 0;
-            foreach (var item in producten)
+            foreach (var item in Producten)
             {
                 result += item.Prijs;
             }
-            foreach (var item in schotels)
+            foreach (var item in Schotels)
             {
                 result += item.Prijs;
             }
@@ -77,8 +77,8 @@ namespace Drimon_Temp
 
         public void MethodeNieuweBestelling() // lege bestelling is mogelijk!
         {
-            List<Product> besteldeProducten = new List<Product>();
-            List<Schotel> besteldeSchotels = new List<Schotel>();
+            
+            
             List<Product> huidigeProducten = Data.GetProduct();
             List<Schotel> huidigeSchotels = Data.GetSchotel();
             bool actief = true;
@@ -86,16 +86,16 @@ namespace Drimon_Temp
             do
             {
                 Console.Clear();
-                if (besteldeSchotels.Count != 0 || besteldeProducten.Count != 0)
+                if (schotels.Count != 0 || producten.Count != 0)
                 {
                     
                     Console.WriteLine($"\n |ID".PadRight(6) + $"| Naam".PadRight(12) + $"| Prijs".PadRight(12) + $"| Stuks".PadRight(12));
-                    foreach (var item in besteldeProducten)
+                    foreach (var item in producten)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
                         
                     }
-                    foreach (var item in besteldeSchotels)
+                    foreach (var item in schotels)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
                        
@@ -118,7 +118,7 @@ namespace Drimon_Temp
 
                         if (tempProduct.AantalBesteld != 0)
                         {
-                                besteldeProducten.Add(tempProduct);        
+                                producten.Add(tempProduct);        
                         }
                         break;
 
@@ -136,7 +136,7 @@ namespace Drimon_Temp
 
                         if (tempSchotel.AantalBesteld != 0 )
                         {
-                            besteldeSchotels.Add(tempSchotel);
+                            schotels.Add(tempSchotel);
                         }
                         
                         break;
@@ -150,8 +150,8 @@ namespace Drimon_Temp
                         break;
                 }
             } while (actief);
-            producten = besteldeProducten;
-            schotels = besteldeSchotels;
+            
+            
         }
     }
 }
