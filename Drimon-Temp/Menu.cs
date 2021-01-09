@@ -9,7 +9,8 @@ namespace Drimon_Temp
         public static void MenuHoofdmenu()
         {
             Console.Clear();
-            Console.WriteLine($"1.Nieuwe bestelling\n2.Overzicht bestellingen\n2.Klanten\n4.Producten beheren\n5.Intro?");
+            BannerLine();
+            Console.WriteLine($" 1.Nieuwe bestelling\n 2.Overzicht bestellingen\n 3.Klanten\n 4.Producten beheren\n 5.Intro?");
             switch (Kiezer(5))
             {
                 case 1:
@@ -89,7 +90,26 @@ namespace Drimon_Temp
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, intendedY);
         }
+        public static void BannerLine()
+            {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
+            Console.WriteLine(HorizontaleLijn);
+            Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1)); 
+            Console.Write(PadBoth("Viswinkel DriMon", Console.WindowWidth / 3)); 
+            Console.WriteLine($"{DateTime.Now}".PadLeft(Console.WindowWidth / 3));
+            Console.WriteLine(HorizontaleLijn);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            
+        }
+        public static string PadBoth(string source, int length)
+        {
+            int spaces = length - source.Length;
+            int padLeft = spaces / 2 + source.Length;
+            return source.PadLeft(padLeft).PadRight(length);
 
+        }
         public static int MethodeCheckforInt(string stringInput)
         {
             string tocheck = stringInput;
@@ -115,6 +135,7 @@ namespace Drimon_Temp
             {
                 for (int j = 0; j < 65; j++)
                 {
+                    Console.ResetColor();
                     Console.Clear();
 
                     var margin = "".PadLeft(j);

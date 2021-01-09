@@ -38,17 +38,14 @@ namespace Drimon_Temp
                 case 1:
 
                     Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
-                    int input = Menu.MethodeCheckforInt(Console.ReadLine());
+                    int inputID = Menu.MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     if (vanWaar == "bestelling")
                     {
-                        Bestelling nieuw = new Bestelling(input);
-                        Console.Clear();
-                        nieuw.NieuweBestelling();
-                        Data.AddBestelling(nieuw);
-                        Menu.MenuHoofdmenu();
+                        BestellingMenu.MethodeNieuweBestelling(inputID);
+                   
                     }
-                    MenuKlantEnkel(input, "zoeken");
+                    MenuKlantEnkel(inputID, "zoeken");
                     break;
 
                 case 2:
@@ -160,58 +157,59 @@ namespace Drimon_Temp
         {
             List<Klant> klantEdit = Data.GetKlant();
 
-            Console.WriteLine($"1.Verwijder\\herstel klant\n2.Terug\n\nWijzig: \n 3.De voornaam\n 4.De naam\n 5.De straat\n 6.Het huisbusnummer\n 7.De postcode\n 8.Het telefoonnummer");
+            Console.WriteLine($"\nWijzig: \n 1.Voornaam\n 2.Naam\n 3.Straat\n 4.Huisbusnummer\n 5.Postcode\n 6.Telefoonnummer\n\n7.Verwijder\\herstel klant\n8.Terug");
             switch (Menu.Kiezer(8))
             {
+                
+
                 case 1:
-                    klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
-                    break;
-
-                case 2:
-                    Console.Clear();
-                    MenuKlantEnkel(klantID, "zoeken");
-                    break;
-
-                case 3:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].VoorNaam = Console.ReadLine();
                     break;
 
-                case 4:
+                case 2:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].AchterNaam = Console.ReadLine();
                     break;
 
-                case 5:
+                case 3:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Straat = Console.ReadLine();
                     break;
 
-                case 6:
+                case 4:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].HuisBusNummer = Console.ReadLine();
                     break;
 
-                case 7:
+                case 5:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
                     break;
 
-                case 8:
+                case 6:
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
+                    break;
+                case 7:
+                    klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
+                    break;
+
+                case 8:
+                    Console.Clear();
+                    MenuKlantEnkel(klantID, "zoeken");
                     break;
             }
             Data.SetKlant(klantEdit);

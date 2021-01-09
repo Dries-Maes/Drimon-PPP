@@ -73,7 +73,9 @@ namespace Drimon_Temp
                 case 7:
                     Menu.MenuHoofdmenu();
                     break;
+                    
             }
+            MenuBestellingenHoofdmenu(menukeuze, waarde);
         }
 
         public static void OverzichtBestellingen(string zoekmethode = "alles", int getal = 0)
@@ -137,6 +139,14 @@ namespace Drimon_Temp
                 }
                 Console.WriteLine($"\n\tTotaalprijs: {totaalPrijsBestelling} euro");
             }
+        }
+        public static void MethodeNieuweBestelling(int klantID)
+        {
+            Bestelling nieuw = new Bestelling(klantID);
+            Console.Clear();
+            nieuw.NieuweBestelling();
+            Data.AddBestelling(nieuw);
+            Menu.MenuHoofdmenu();
         }
     }
 }
