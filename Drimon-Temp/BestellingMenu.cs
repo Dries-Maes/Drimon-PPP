@@ -6,62 +6,127 @@ namespace Drimon_Temp
 {
     internal class BestellingMenu
     {
-        public static void MenuBestellingenHoofdmenu()
+        public static void MenuBestellingenHoofdmenu(string menukeuze = "nietafgerond", int waarde = 0)
         {
-            Console.WriteLine($"1.Bestelling toevoegen\n2.Bestelling overzicht\n3.Terug naar hoofdmenu");
-            switch (Menu.Kiezer(3))
+            int tempWaarde = waarde;
+            OverzichtBestellingen(menukeuze, waarde);
+
+            Console.WriteLine($"\n1.Toon alle bestellingen\n2.Filter op prijs\n3.Filter op product \n4.Filter op schotel \n5.Toon enkel afgeronde bestellingen\n6.Toon enkel open bestellingen \n7.Terug");
+            switch (Menu.Kiezer(7))
             {
                 case 1:
                     Console.Clear();
-
+                    OverzichtBestellingen("alles", waarde);
                     break;
-
                 case 2:
-                    Console.Clear();
-
+                    Console.WriteLine("\n1.Groter dan\n2.Kleiner dan\n3.Gelijk aan");
+                    switch (Menu.Kiezer(6))
+                    {
+                        case 1:
+                            Console.WriteLine("\nGeef een geheel getal in:");
+                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            Console.Clear();
+                            OverzichtBestellingen(">", tempWaarde);
+                            break;
+                        case 2:
+                            Console.WriteLine("\nGeef een geheel getal in:");
+                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            Console.Clear();
+                            OverzichtBestellingen("<", tempWaarde);
+                            break;
+                        case 3:
+                            Console.WriteLine("\nGeef een geheel getal in:");
+                            tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                            Console.Clear();
+                            OverzichtBestellingen("=", tempWaarde);
+                            break;
+                    }
                     break;
-
                 case 3:
+                    Console.WriteLine("\nGeef een product ID in:");
+                    tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                    Console.Clear();
+                    OverzichtBestellingen("product", tempWaarde);
+                    break;
+                case 4:
+                    Console.WriteLine("\nGeef een schotel ID in:");
+                    tempWaarde = KlantMenu.MethodeCheckforInt(Console.ReadLine());
+                    Console.Clear();
+                    OverzichtBestellingen("=", tempWaarde);
+                    break;
+                case 5:
+                    
+                    Console.Clear();
+                    OverzichtBestellingen("afgerond", waarde);
+                    break;
+                case 6:
+                    Console.Clear();
+                    OverzichtBestellingen("open", waarde);
+                    break;
+                case 7:
                     Menu.MenuHoofdmenu();
                     break;
             }
         }
-
-        public static void OverzichtBestellingen(string zoekmethode = "vergeleijk", string parameter = "alles", int getal = 0)
+       
+            public static void OverzichtBestellingen(string zoekmethode = "alles", int getal = 0)
         {
             List<Bestelling> toEdit = Data.GetBestelling();
             List<Bestelling> results = toEdit;
             switch (zoekmethode)
             {
-                case "ID":
+                case "klantID":
                     results = toEdit.FindAll(x => x.KlantID == getal);
                     break;
 
-                case "kleinerdan":
+                case "<":
                     results = toEdit.FindAll(x => x.totaalPrijs() < getal);
                     break;
 
-                case "gelijkaan":
+                case "=":
                     results = toEdit.FindAll(x => x.totaalPrijs() == getal);
                     break;
 
-                case "groterdan":
+                case ">":
                     results = toEdit.FindAll(x => x.totaalPrijs() > getal);
                     break;
                 case "product":
-                    //results = toEdit.FindAll(x => x.Producten.Item1 = true) ;
+                    results = toEdit.FindAll(x => x.Producten.Exists(x => x.ID == getal) == true);  
                     break;
 
-                case "alles":
-                    // -- Producten -- schotels -- afgerondj/n -- //
+                case "schotel":
+                    results = toEdit.FindAll(x => x.Schotels.Exists(x => x.ID == getal) == true);
+                    break;
+
+                case "afgerond":
+                    results = toEdit.FindAll(x => x.Afgerond == true);                   
+                    break;
+                case "open":
+                    results = toEdit.FindAll(x => x.Afgerond == true);
+                    break;
+                default:
                     break;
             }
 
-            //Console.WriteLine(" |ID".PadRight(maxid) + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
 
             foreach (var item in results)
             {
-                //Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}");
+                decimal totaalPrijsBestelling = 0.00M;
+                Console.WriteLine($"ID: {item.ID}".PadRight(6) + $"  Klant: {Data.GetKlant()[item.KlantID - 1].VoorNaam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Afgerond: {item.Afgerond.ToString()}".PadRight(20));
+                Console.Write("\tProducten:");
+                
+                foreach (var instance in item.Producten)
+                {
+                    Console.Write($"{instance.AantalBesteld} x {instance.Naam}, ");
+                    totaalPrijsBestelling += instance.Prijs;
+                }
+                Console.Write("\n\tSchotels:");
+                foreach (var instance in item.Schotels)
+                {
+                    Console.Write($"{instance.AantalBesteld} x {instance.Naam}, ");
+                    totaalPrijsBestelling += instance.Prijs;
+                }
+                Console.WriteLine($"\n\tTotaalprijs: {totaalPrijsBestelling} euro");
             }
         }
     }

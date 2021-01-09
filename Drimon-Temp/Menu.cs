@@ -12,8 +12,10 @@ namespace Drimon_Temp
             switch (Kiezer(4))
             {
                 case 1:
-                    dtest1.Dostuff2();
-                    MenuHoofdmenu();
+                    Console.Clear();
+                    KlantMenu.OverzichtKlantLijst();
+                    KlantMenu.MenuKlantZoeken("bestelling");
+                    
                     break;
 
                 case 2:
@@ -22,8 +24,8 @@ namespace Drimon_Temp
                     break;
 
                 case 3:
-                    Console.WriteLine("ToDo, press any key to return. ");//ToDo
-                    MenuHoofdmenu();
+                    Console.Clear();
+                    BestellingMenu.MenuBestellingenHoofdmenu();                    
                     break;
 
                 case 4:

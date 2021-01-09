@@ -10,8 +10,11 @@ namespace Drimon_Temp
         public string Naam { get; set; }
         public decimal Prijs { get; set; }
         public int Voorraad { get; set; }
+        public int AantalBesteld { get; set; }
         public bool Actief { get; set; }
         public DateTime DatumAanmaak { get; set; }
+
+        
 
         public Product(string naam, decimal prijs, int voorraad = 0)
         {

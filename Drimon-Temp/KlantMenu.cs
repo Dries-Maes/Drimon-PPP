@@ -27,25 +27,44 @@ namespace Drimon_Temp
             }
         }
 
-        public static void MenuKlantZoeken()
+        public static void MenuKlantZoeken(string vanWaar = "nvt")
         {
             
-            Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
-            string userinput;
+                string userinput;
+          
+                Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
+            
+            
+
+            
+            
             switch (Menu.Kiezer(6))
             {
                 case 1:
-                    Console.Clear();
-                    OverzichtKlantLijst();
+                    
                     Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
                     int input = MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
+                    if (vanWaar == "bestelling")
+                    {
+                        
+                        Bestelling nieuw = new Bestelling(input);
+                        Console.Clear();
+                        nieuw.NieuweBestelling();
+                        Data.AddBestelling(nieuw);
+                        Menu.MenuHoofdmenu();
+                    }
                     MenuKlantEnkel(input, "zoeken");
                     break;
 
                 case 2:
                     Console.Clear();
+                    if (vanWaar == "bestelling")
+                    {
+                        Menu.MenuHoofdmenu();
+                    }
                     MenuKlantHoofdmenu();
+                    
                     break;
 
                 case 3:
@@ -55,7 +74,7 @@ namespace Drimon_Temp
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("voornaam", userinput);
-                    MenuKlantZoeken();
+                    MenuKlantZoeken(vanWaar);
                     break;
 
                 case 4:
@@ -65,7 +84,7 @@ namespace Drimon_Temp
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("naam", userinput);
-                    MenuKlantZoeken();
+                    MenuKlantZoeken(vanWaar);
                     break;
 
                 case 5:
@@ -75,7 +94,7 @@ namespace Drimon_Temp
                     userinput = Console.ReadLine();
                     Console.Clear();
                     OverzichtKlantLijst("straat", userinput);
-                    MenuKlantZoeken();
+                    MenuKlantZoeken(vanWaar);
                     break;
 
                 case 6:
@@ -85,7 +104,7 @@ namespace Drimon_Temp
                     int input2 = MethodeCheckforInt(Console.ReadLine());
                     Console.Clear();
                     OverzichtKlantLijst("postcode", input2.ToString());
-                    MenuKlantZoeken();
+                    MenuKlantZoeken(vanWaar);
                     break;
             }
         }
@@ -107,22 +126,25 @@ namespace Drimon_Temp
 
                 case 2:
                     Console.Clear();
-                    OverzichtKlantBestellingen(klantID);
-                    Console.WriteLine($"1.Bestelling selecteren\n2.Terug");
+                    BestellingMenu.OverzichtBestellingen("klant", klantID);
+                    Console.WriteLine($"\n1.Nieuwe bestelling plaatsen\n2.Terug");
                     switch (Menu.Kiezer(2))
                     {
-                        case 1:
-                            Console.WriteLine("TODO");                                                  ///////////// TODO > GO TO MAIN BESTELMENU
-                            Console.ReadLine();
+                       
+                        case 1:                            
+                            Bestelling nieuw = new Bestelling(klantID);
+                            Console.Clear();
+                            nieuw.NieuweBestelling();
+                            Data.AddBestelling(nieuw);
+                            Menu.MenuHoofdmenu();
                             break;
-
                         case 2:
                             break;
                     }
                     Console.Clear();
                     MenuKlantEnkel(klantID, zoekenToevoegen);
                     break;
-
+                
                 case 3:
                     if (zoekenToevoegen == "zoeken")
                     {
@@ -204,29 +226,11 @@ namespace Drimon_Temp
             MenuKlantEdit(klantID);
         }
 
-        public static void OverzichtKlantBestellingen(int KlantID)
-        {
-           /* Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del){  return del.KlantID == KlantID; });                                /// To test, moet
-                
-                    Console.WriteLine($"\tID:-{objectSelectie.ID}-------------------------------------------------{ objectSelectie.DatumAanmaak}");
-                    decimal totaalprijs = 0.0M;
-                    foreach (var product in objectSelectie.Producten)
-                    {
-                        Console.WriteLine($"\t{Data.GetProduct()[product.ID - 1].Naam.PadRight(23)}|\tPrijs: {product.Prijs} euro\t|\t{product.Aantal} stuks");
-                        totaalprijs += (product.Prijs * product.Aantal);
-                    }
-                    foreach (var schotels in objectSelectie.Schotels)
-                    {
-                        Console.WriteLine($"\t{Data.GetSchotel()[schotels.ID - 1].Naam.PadRight(23)}|\tPrijs: {schotels.Prijs} euro\t|\t{schotels.Aantal} stuks");
-                        totaalprijs += (schotels.Prijs * schotels.Aantal);
-                    }
-                   Console.WriteLine($"\tTotaal: {totaalprijs} euro-----------------------------------------{objectSelectie.IsAfgerond()}\n");
-                */
-            
-        }
+        
 
         public static void OverzichtKlantEnkel(int klantID)
         {
+            
             Klant objectSelectie = Data.GetKlant().Find(delegate (Klant del) { return del.ID == klantID; });
 
             if (!objectSelectie.Actief)
@@ -234,6 +238,7 @@ namespace Drimon_Temp
                 Console.WriteLine($"\n\tLET OP: DEZE KLANT WERD VERWIJDERD");
             }
             Console.WriteLine($"\n\tID: {objectSelectie.ID}\n\tNaam: {objectSelectie.VoorNaam} {objectSelectie.AchterNaam}\n\tAdres: {objectSelectie.Straat} {objectSelectie.HuisBusNummer}\n\tPostcode: {objectSelectie.Postcode}\n\tTelefoonnummer: {objectSelectie.Telefoonnummer}\n\tDatum aanmaak: {objectSelectie.DatumAanmaak}\n");
+        
         }
 
         public static void OverzichtKlantLijst(string zoekmethode = "alles", string parameter = "alles")
