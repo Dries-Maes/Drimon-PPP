@@ -8,6 +8,7 @@ namespace Drimon_Temp
     {
         public static void MenuHoofdmenu()
         {
+            
             Console.Clear();
             MethodeBannerLine();
             Console.WriteLine($" 1.Nieuwe bestelling\n 2.Overzicht bestellingen\n 3.Klanten\n 4.Producten beheren\n 5.Intro?");
@@ -133,6 +134,7 @@ namespace Drimon_Temp
 
         public static void MethodeIntro()
         {
+            Console.ReadKey();
             for (int i = 0; i < 1; i++)
             {
                 for (int j = 0; j < 65; j++)
