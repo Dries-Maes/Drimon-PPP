@@ -68,7 +68,7 @@ namespace Drimon_Temp
                     switch (Menu.MethodeKiezer(4))
                     {
                         case 1:
-                            Console.WriteLine("\n Geef een bestel-ID in:");
+                            Console.WriteLine(" Geef een bestel-ID in:");
                             waarde = Menu.MethodeCheckforID("bestelling");
                             Console.Clear();
                             MenuBestellingenHoofdmenu("bestelID", waarde);
@@ -83,10 +83,9 @@ namespace Drimon_Temp
                             SchotelMenu.MenuSchotelHoofdmenu();
                             break;
                         case 4:
-                            Console.WriteLine("\n Geef een klant ID in:");
-                            waarde = Menu.MethodeCheckforID("klant");
+                            
                             Console.Clear();
-                            KlantMenu.MenuKlantZoeken();
+                            KlantMenu.MenuKlantZoeken("alles","alles");
                             break;
                         case 0:
                             Console.Clear();
@@ -182,7 +181,7 @@ namespace Drimon_Temp
             nieuw.MethodeNieuweBestelling();
             Data.AddBestelling(nieuw);
             Console.Clear();
-            OverzichtBestellingen("klantID", klantID);
+            MenuBestellingenHoofdmenu("klantID", klantID);
         }
     }
 }

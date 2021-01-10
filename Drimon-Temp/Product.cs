@@ -27,7 +27,7 @@ namespace Drimon_Temp
         {
             
             Menu.MethodeBannerLine("0");
-            Console.WriteLine("Geef de naam van het product in:");
+            Console.WriteLine(" Geef de naam van het product in:");
             Naam = Console.ReadLine();
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Naam);
@@ -35,11 +35,11 @@ namespace Drimon_Temp
             Prijs = Convert.ToDecimal(Console.ReadLine());
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Prijs);
-            Console.WriteLine("Geef de actuele voorraad in"); //eventueel stockwijziging loggen
+            Console.WriteLine(" Geef de actuele voorraad in"); //eventueel stockwijziging loggen
             Voorraad = Convert.ToInt32(Console.ReadLine());
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Voorraad);
-            Menu.MethodeSpinner("Product wordt aangemaakt...");
+            Menu.MethodeSpinner(" Product wordt aangemaakt...");
 
         }
     }
