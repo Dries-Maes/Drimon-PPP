@@ -25,7 +25,6 @@ namespace Drimon_Temp
 
         public void MethodeNieuwProduct()
         {
-            
             Menu.MethodeBannerLine("0");
             Console.WriteLine(" Geef de naam van het product in:");
             Naam = Console.ReadLine();
@@ -40,7 +39,6 @@ namespace Drimon_Temp
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Voorraad);
             Menu.MethodeSpinner(" Product wordt aangemaakt...");
-
         }
     }
 }

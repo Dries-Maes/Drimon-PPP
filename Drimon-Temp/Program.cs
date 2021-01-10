@@ -9,7 +9,6 @@ namespace Drimon_Temp
             Console.ReadKey();
             Menu.MethodeIntro();
             Menu.MenuHoofdmenu();
-
         }
     }
 }

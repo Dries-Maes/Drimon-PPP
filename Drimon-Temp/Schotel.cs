@@ -27,7 +27,7 @@ namespace Drimon_Temp
         public int AantalBesteld { get; set; }
         public bool Actief { get; set; }
 
-        public Schotel(string naam, decimal prijs=0, int voorraad = 0)
+        public Schotel(string naam, decimal prijs = 0, int voorraad = 0)
         {
             IDlijst = new Dictionary<int, int>();
             Naam = naam;
@@ -39,10 +39,8 @@ namespace Drimon_Temp
             ID = Data.GetSchotel().Count + 1;
         }
 
-        
         public void MethodeNieuweSchotel()
         {
-
             Menu.MethodeBannerLine("0");
             Console.WriteLine(" Geef de naam in van de schotel:");
             Console.WriteLine(" " + Naam);
@@ -50,79 +48,80 @@ namespace Drimon_Temp
             Prijs = Convert.ToDecimal(Console.ReadLine());
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Prijs);
-            Console.WriteLine(" Geef de actuele voorraad in"); 
+            Console.WriteLine(" Geef de actuele voorraad in");
             Voorraad = Convert.ToInt32(Console.ReadLine());
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Voorraad);
             bool producten = true;
             List<Product> productenLijst = Data.GetProduct();
-            string zoekmethode = "alles" ;
+            string zoekmethode = "alles";
             string parameter = "alles";
-            
-               do
+
+            do
+            {
+                Console.Clear();
+                Menu.MethodeBannerLine("Geef productID in", "Zoek product op naam", "Toon alle producten", "Voeg Schotel toe!");
+                if (IDlijst.Count != 0)
                 {
-                    
-                    Console.Clear();
-                    Menu.MethodeBannerLine("Geef productID in", "Zoek product op naam", "Toon alle producten","Voeg Schotel toe!");
-                    if (IDlijst.Count != 0)
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
+                    Console.WriteLine(HorizontaleLijn);
+                    foreach (var item in IDlijst)
                     {
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
-                        Console.WriteLine(HorizontaleLijn);
-                        foreach (var item in IDlijst)
-                        {
-                            Console.WriteLine($" Je hebt {item.Value} keer {productenLijst[item.Key-1].Naam} geselecteerd.");
-                        }
-                        
-                        Console.WriteLine(HorizontaleLijn);
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine($" Je hebt {item.Value} keer {productenLijst[item.Key - 1].Naam} geselecteerd.");
                     }
+
+                    Console.WriteLine(HorizontaleLijn);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
                     Console.WriteLine(HorizontaleLijn);
 
-                        Console.WriteLine($" Voeg producten toe aan je schotel: {Naam} ");
+                    Console.WriteLine($" Voeg producten toe aan je schotel: {Naam} ");
                     Console.WriteLine(HorizontaleLijn);
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 }
-                    Console.WriteLine();
-                    ProductMenu.OverzichtProductLijst(zoekmethode, parameter);
-                    switch (Menu.MethodeKiezer(4))
-                    {
-                        case 1:
-                            Console.WriteLine(" Geef productID en vervolgens aantal in:");
-                            int productID = Menu.MethodeCheckforID("product");
-                            Console.WriteLine(" Geef het aantal in:");
-                            IDlijst.Add(productID, Menu.MethodeCheckforInt(Console.ReadLine()));
-                            Menu.MethodeSpinner(" wordt togevoegd aan schotel...");
-                            break;
-                        case 2:
-                            Console.WriteLine(" Geef naam in:");
-                            zoekmethode = "naam";
-                            parameter = Console.ReadLine();
-                            break;
-                        case 3:
-                            zoekmethode = "alles";
-                            parameter = "alles";
-                            break;
+                Console.WriteLine();
+                ProductMenu.OverzichtProductLijst(zoekmethode, parameter);
+                switch (Menu.MethodeKiezer(4))
+                {
+                    case 1:
+                        Console.WriteLine(" Geef productID en vervolgens aantal in:");
+                        int productID = Menu.MethodeCheckforID("product");
+                        Console.WriteLine(" Geef het aantal in:");
+                        IDlijst.Add(productID, Menu.MethodeCheckforInt(Console.ReadLine()));
+                        Menu.MethodeSpinner(" wordt togevoegd aan schotel...");
+                        break;
+
+                    case 2:
+                        Console.WriteLine(" Geef naam in:");
+                        zoekmethode = "naam";
+                        parameter = Console.ReadLine();
+                        break;
+
+                    case 3:
+                        zoekmethode = "alles";
+                        parameter = "alles";
+                        break;
+
                     case 4:
                         producten = false;
                         break;
-                        case 0:
-                        SchotelMenu.MenuSchotelEnkel(ID);
-                            break;
-                        default:
-                            break;
-                    }
 
-                } while (producten);
-           
+                    case 0:
+                        SchotelMenu.MenuSchotelEnkel(ID);
+                        break;
+
+                    default:
+                        break;
+                }
+            } while (producten);
 
             Menu.MethodeSpinner("Schotel wordt aangemaakt...");
-
         }
     }
 }

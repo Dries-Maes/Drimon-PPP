@@ -7,8 +7,8 @@ namespace Drimon_Temp
 {
     internal class Serializer
     {
-        
-       private static readonly object foutmelding;
+        private static readonly object foutmelding;
+
         public static void BinarySerialize(List<object> data, string file)
         {
             try

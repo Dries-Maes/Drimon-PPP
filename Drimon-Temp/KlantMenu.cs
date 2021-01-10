@@ -5,13 +5,9 @@ namespace Drimon_Temp
 {
     internal class KlantMenu
     {
-       
-
         public static void MenuKlantZoeken(string zoekmethode = "alles", string parameter = "0", string vanWaar = "nvt")
         {
-            
-
-            Menu.MethodeBannerLine("Klant selecteren", "Klant zoeken" ,"Klant Toevoegen");
+            Menu.MethodeBannerLine("Klant selecteren", "Klant zoeken", "Klant Toevoegen");
             OverzichtKlantLijst(zoekmethode, parameter);
             switch (Menu.MethodeKiezer(3))
             {
@@ -24,18 +20,16 @@ namespace Drimon_Temp
                     Console.Clear();
                     if (vanWaar == "bestelling")
                     {
-                        
                         BestellingMenu.MethodeNieuweBestelling(inputID);
-
                     }
                     MenuKlantEnkel(inputID, "zoeken");
                     break;
+
                 case 2:
                     Console.Clear();
                     Menu.MethodeBannerLine("Zoek op voornaam", "Zoek op naam", "Zoek op straat", "Zoek op postcode");
                     switch (Menu.MethodeKiezer(6))
                     {
-           
                         case 1:
                             Console.WriteLine("\n Geef de voornaam in gevolgd door 'enter':");
                             parameter = Console.ReadLine();
@@ -46,7 +40,7 @@ namespace Drimon_Temp
                             break;
 
                         case 2:
-                            
+
                             Console.WriteLine("\n Geef de naam in gevolgd door 'enter':");
                             parameter = Console.ReadLine();
                             zoekmethode = "naam";
@@ -56,7 +50,7 @@ namespace Drimon_Temp
                             break;
 
                         case 3:
-    
+
                             Console.WriteLine("\n Geef de straatnaam in gevolgd door 'enter':");
                             parameter = Console.ReadLine();
                             zoekmethode = "straat";
@@ -74,6 +68,7 @@ namespace Drimon_Temp
                             Console.Clear();
                             MenuKlantZoeken(zoekmethode, parameter, vanWaar);
                             break;
+
                         case 0:
                             Console.Clear();
                             if (vanWaar == "bestelling")
@@ -85,22 +80,20 @@ namespace Drimon_Temp
                             MenuKlantZoeken(zoekmethode, parameter, vanWaar);
 
                             break;
-
                     }
 
                     break;
+
                 case 3:
                     Console.Clear();
                     MethodeKlantToevoegen();
                     break;
-                case 0:   
+
+                case 0:
                     Console.Clear();
                     Menu.MenuHoofdmenu();
                     break;
             }
-
-
-
         }
 
         public static void MenuKlantEnkel(int klantID, string zoekenToevoegen)
@@ -110,13 +103,13 @@ namespace Drimon_Temp
             switch (Menu.MethodeKiezer(3))
             {
                 case 1:
-                    Console.Clear();                
+                    Console.Clear();
                     MenuKlantEdit(klantID);
-                    
+
                     break;
 
                 case 2:
-                    Console.Clear();                
+                    Console.Clear();
                     Menu.MethodeBannerLine("Nieuwe bestelling plaatsen");
                     BestellingMenu.OverzichtBestellingen("klantID", klantID);
                     switch (Menu.MethodeKiezer(2))
@@ -130,20 +123,20 @@ namespace Drimon_Temp
                             Console.Clear();
                             MenuKlantEnkel(klantID, zoekenToevoegen);
                             break;
+
                         case 0:
                             Console.Clear();
                             MenuKlantEnkel(klantID, zoekenToevoegen);
                             break;
                     }
-                    
-                    
+
                     break;
 
                 case 0:
                     if (zoekenToevoegen == "zoeken")
                     {
                         Console.Clear();
-                        
+
                         MenuKlantZoeken();
                     }
                     else if (zoekenToevoegen == "toevoegen")
@@ -156,60 +149,56 @@ namespace Drimon_Temp
             }
         }
 
-
-        
-
-            public static void MenuKlantEdit(int klantID)
+        public static void MenuKlantEdit(int klantID)
         {
             List<Klant> klantEdit = Data.GetKlant();
 
-            Menu.MethodeBannerLine("Voornaam", "Naam", "Straat", "Huisbusnummer", "Postcode","Telefoonnummer", "Status") ;
+            Menu.MethodeBannerLine("Voornaam", "Naam", "Straat", "Huisbusnummer", "Postcode", "Telefoonnummer", "Status");
             OverzichtKlantEnkel(klantID);
-            
+
             switch (Menu.MethodeKiezer(8))
             {
-                
-
-                case 1:     
+                case 1:
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].VoorNaam = Console.ReadLine();
-                    
+
                     break;
 
                 case 2:
-                    
+
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].AchterNaam = Console.ReadLine();
-                    
+
                     break;
 
                 case 3:
-                    
+
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Straat = Console.ReadLine();
-                    
+
                     break;
 
                 case 4:
-                    
+
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].HuisBusNummer = Console.ReadLine();
-                    
+
                     break;
 
                 case 5:
-                    
+
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
-                    
+
                     break;
 
                 case 6:
-                    
+
                     Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
-                   
+
                     break;
+
                 case 7:
                     klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
                     break;
@@ -218,11 +207,10 @@ namespace Drimon_Temp
                     Console.Clear();
                     MenuKlantEnkel(klantID, "zoeken");
                     break;
-                    
             }
             Data.SetKlant(klantEdit);
-                      Console.Clear();
-                        MenuKlantEdit(klantID);
+            Console.Clear();
+            MenuKlantEdit(klantID);
         }
 
         public static void OverzichtKlantEnkel(int klantID)
@@ -260,7 +248,7 @@ namespace Drimon_Temp
                 case "alles":
                     break;
             }
-            
+
             Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(20) + $"|Adres".PadRight(30) + $"|Postcode".PadRight(10) + $"|Nummer".PadRight(12) + $"|Aanmaakdatum ");
             string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
             Console.ForegroundColor = ConsoleColor.DarkYellow;

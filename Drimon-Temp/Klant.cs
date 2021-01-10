@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace Drimon_Temp
 {
@@ -32,7 +31,7 @@ namespace Drimon_Temp
             Console.WriteLine(" Geef de voornaam in gevolgd door 'enter':");
             VoorNaam = Console.ReadLine();
             Menu.MethodeClearLine(-1);
-            Console.WriteLine(" "+VoorNaam);
+            Console.WriteLine(" " + VoorNaam);
             Console.WriteLine(" Geef de naam in gevolgd door 'enter':");
             AchterNaam = Console.ReadLine();
             Menu.MethodeClearLine(-1);

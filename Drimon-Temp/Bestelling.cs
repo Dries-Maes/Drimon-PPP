@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace Drimon_Temp
 {
@@ -77,22 +76,17 @@ namespace Drimon_Temp
 
         public void MethodeNieuweBestelling() // lege bestelling is mogelijk!
         {
-            
-            
             List<Product> huidigeProducten = Data.GetProduct();
             List<Schotel> huidigeSchotels = Data.GetSchotel();
             bool actief = true;
 
             do
             {
-
-
                 Console.Clear();
                 Menu.MethodeBannerLine("Selecteer product", "selecteer schotel", "plaats bestelling");
-                
+
                 if (schotels.Count != 0 || producten.Count != 0)
                 {
-                    
                     Console.WriteLine($"\n |ID".PadRight(8) + $"|Naam".PadRight(15) + $"|Prijs".PadRight(12) + $"|Stuks".PadRight(20));
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     string HorizontaleLijn = new String('─', 40);
@@ -101,12 +95,10 @@ namespace Drimon_Temp
                     foreach (var item in producten)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(7) + $"|{item.Naam}".PadRight(15) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(20));
-                        
                     }
                     foreach (var item in schotels)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(7) + $"|{item.Naam}".PadRight(15) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(20));
-                       
                     }
                     Console.WriteLine($"\n Totaalprijs van de bestelling is: {MethodeTotaalPrijs()} euro\n");
                 }
@@ -114,7 +106,7 @@ namespace Drimon_Temp
                 {
                     Console.WriteLine("Voeg items toe aan je bestelling. ");
                 }
-                
+
                 switch (Menu.MethodeKiezer(3))
                 {
                     case 1:
@@ -124,7 +116,7 @@ namespace Drimon_Temp
                         Console.WriteLine("\n Geef het productID in:");
                         Product tempProduct = huidigeProducten[Menu.MethodeCheckforID("product") - 1];
                         Menu.MethodeClearLine(-1);
-                        Console.WriteLine(" " +tempProduct.Naam);
+                        Console.WriteLine(" " + tempProduct.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
                         tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
                         Menu.MethodeClearLine(-1);
@@ -133,7 +125,7 @@ namespace Drimon_Temp
 
                         if (tempProduct.AantalBesteld != 0)
                         {
-                                producten.Add(tempProduct);        
+                            producten.Add(tempProduct);
                         }
                         break;
 
@@ -148,27 +140,26 @@ namespace Drimon_Temp
                         Console.WriteLine("\n Geef het aantal in:");
                         tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
                         Menu.MethodeClearLine(-1);
-                        Console.WriteLine(" " + tempSchotel.AantalBesteld +"\n");
+                        Console.WriteLine(" " + tempSchotel.AantalBesteld + "\n");
                         Menu.MethodeSpinner("Schotel wordt toegevoegd ...");
 
-                        if (tempSchotel.AantalBesteld != 0 )
+                        if (tempSchotel.AantalBesteld != 0)
                         {
                             schotels.Add(tempSchotel);
                         }
-                        
+
                         break;
 
                     case 3:
                         actief = false;
                         break;
+
                     case 0:
                         Console.Clear();
                         Menu.MenuHoofdmenu();
                         break;
                 }
             } while (actief);
-            
-            
         }
     }
 }
