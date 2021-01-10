@@ -27,7 +27,7 @@ namespace Drimon_Temp
         public int AantalBesteld { get; set; }
         public bool Actief { get; set; }
 
-        public Schotel(string naam, decimal prijs, int voorraad = 0)
+        public Schotel(string naam, decimal prijs=0, int voorraad = 0)
         {
             IDlijst = new Dictionary<int, int>();
             Naam = naam;
@@ -39,12 +39,79 @@ namespace Drimon_Temp
             ID = Data.GetSchotel().Count + 1;
         }
 
-        public Schotel()
+        
+        public void MethodeNieuweSchotel()
         {
-            Naam = "null"; //ID HANDLING ?
-            Actief = false;
-            Voorraad = 0;
-            DatumAanmaak = DateTime.Now;
+
+            Menu.MethodeBannerLine("0");
+            Console.WriteLine("Geef de naam in van de schotel:");
+            Console.WriteLine(" " + Naam);
+            Console.WriteLine("Schotel prijs:");
+            Prijs = Convert.ToDecimal(Console.ReadLine());
+            Menu.MethodeClearLine(-1);
+            Console.WriteLine(" " + Prijs);
+            Console.WriteLine("Geef de actuele voorraad in"); 
+            Voorraad = Convert.ToInt32(Console.ReadLine());
+            Menu.MethodeClearLine(-1);
+            Console.WriteLine(" " + Voorraad);
+            bool producten = true;
+            List<Product> productenLijst = Data.GetProduct();
+            string zoekmethode = "alles" ;
+            string parameter = "alles";
+            Console.WriteLine("wil je producten toevoegen(j/n)?");
+               do
+                {
+                    
+                    Console.Clear();
+                    Menu.MethodeBannerLine("Geef productID in", "Zoek product op naam", "Toon alle producten","Voeg Schotel toe!");
+                    if (IDlijst.Count != 0)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
+                        Console.WriteLine(HorizontaleLijn);
+                        foreach (var item in IDlijst)
+                        {
+                            Console.WriteLine($"Je hebt {item.Value} keer {productenLijst[item.Key-1].Naam} geselecteerd.");
+                        }
+                        
+                        Console.WriteLine(HorizontaleLijn);
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    }
+                    Console.WriteLine();
+                    ProductMenu.OverzichtProductLijst(zoekmethode, parameter);
+                    switch (Menu.MethodeKiezer(4))
+                    {
+                        case 1:
+                            Console.WriteLine("Geef productID en vervolgens aantal in:");
+                            int productID = Menu.MethodeCheckforID("product");
+                            Console.WriteLine("Geef het aantal in:");
+                            IDlijst.Add(productID, Menu.MethodeCheckforInt(Console.ReadLine()));
+                            Menu.MethodeSpinner("wordt togevoegd aan schotel...");
+                            break;
+                        case 2:
+                            Console.WriteLine("Geef naam in:");
+                            zoekmethode = "naam";
+                            parameter = Console.ReadLine();
+                            break;
+                        case 3:
+                            zoekmethode = "alles";
+                            parameter = "alles";
+                            break;
+                    case 4:
+                        break;
+                        case 0:
+                            producten = false;
+                            break;
+                        default:
+                            break;
+                    }
+
+                } while (producten);
+           
+
+            Menu.MethodeSpinner("Schotel wordt aangemaakt...");
+
         }
     }
 }

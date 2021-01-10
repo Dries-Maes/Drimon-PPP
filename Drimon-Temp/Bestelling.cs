@@ -106,7 +106,7 @@ namespace Drimon_Temp
                     Console.WriteLine($"\n Totaalprijs van de bestelling is: {MethodeTotaalPrijs()} euro\n");
                 }
                 
-                switch (Menu.MethodeKiezer(4))
+                switch (Menu.MethodeKiezer(3))
                 {
                     case 1:
                         Console.Clear();
@@ -131,14 +131,14 @@ namespace Drimon_Temp
                     case 2:
                         Console.Clear();
                         Menu.MethodeBannerLine("0");
-                        SchotelMenu.OverzichtSchotelLijst();
+                        SchotelMenu.OverzichtSchotels();
                         Console.WriteLine("\n Geef het schotel ID in:");
                         Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforID("schotel") - 1];
-                        Menu.MethodeClearLine(-1);
+                        
                         Console.WriteLine(" " + tempSchotel.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
                         tempSchotel.AantalBesteld = Menu.MethodeCheckforID("schotel");
-                        Menu.MethodeClearLine(-1);
+                        
                         Console.WriteLine(" " + tempSchotel.AantalBesteld +"\n");
                         Menu.MethodeSpinner("Schotel wordt toegevoegd ...");
 
