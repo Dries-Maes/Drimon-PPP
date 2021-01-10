@@ -8,10 +8,11 @@ namespace Drimon_Temp
     {
         public static void MenuHoofdmenu()
         {
+            
             Console.Clear();
-            MethodeBannerLine();
-            Console.WriteLine($" 1.Nieuwe bestelling\n 2.Overzicht bestellingen\n 3.Klanten\n 4.Producten beheren\n 5.Intro?");
-            switch (MethodeKiezer(5))
+            MethodeBannerLine("Nieuwe bestelling", "Overzicht bestellingen", "Klanten", "Producten beheren");
+            
+            switch (MethodeKiezer(4))
             {
                 case 1:
                     Console.Clear();
@@ -21,8 +22,11 @@ namespace Drimon_Temp
 
                 case 2:
                     Console.Clear();
-                    BestellingMenu.OverzichtBestellingen();
+                    MethodeSpinner();
+
+
                     BestellingMenu.MenuBestellingenHoofdmenu();
+                    BestellingMenu.OverzichtBestellingen();
                     break;
 
                 case 3:
@@ -36,7 +40,7 @@ namespace Drimon_Temp
                     // go to productenbeheermenu >
                     break;
 
-                case 5:
+                case 0:
                     MethodeIntro();
                     Console.Clear();
                     MenuHoofdmenu();
@@ -56,6 +60,7 @@ namespace Drimon_Temp
                 keuzelijst.Add(menuAantalIntern);
                 menuAantalIntern--;
             } while (menuAantalIntern != 0);
+            keuzelijst.Add(0);
             int input;
             int output = 0;
             do
@@ -92,15 +97,44 @@ namespace Drimon_Temp
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, intendedY);
         }
-        public static void MethodeBannerLine()
+        public static void MethodeBannerLine(string in1 = null, string in2 = null, string in3 = null, string in4 = null, string in5 = null, string in6 = null, string in7 = null)
             {
+            string[] menuItems = new string[7] { in1, in2, in3, in4, in5, in6, in7 } ;
+            List<string> usedItems = new List<string>();
+            foreach (var item in menuItems)
+            {
+                if (!String.IsNullOrEmpty(item)) usedItems.Add(item);
+            }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
             Console.WriteLine(HorizontaleLijn);
-            Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1)); 
-            Console.Write(MethodePadLeftRight("Viswinkel DriMon", Console.WindowWidth / 3)); 
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1));
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write(MethodePadLeftRight(" V i s w i n k e l   D r i M o n ".ToUpper(), Console.WindowWidth / 3));
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"{DateTime.Now}".PadLeft(Console.WindowWidth / 3));
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(HorizontaleLijn);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            if (usedItems.Count != 0)   
+            {
+            Console.Write(" ");
+            for (int j = 0; j < usedItems.Count; j++)
+            {
+                Console.Write(MethodePadLeftRight($"{j + 1}.{usedItems[j]} ", Console.WindowWidth / usedItems.Count - 2));
+            }
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n" + HorizontaleLijn);
+            }
+        
+
+
+
+
+
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Cyan;
             
@@ -122,7 +156,45 @@ namespace Drimon_Temp
             }
             return output;
         }
+        public static int MethodeCheckforID(string typeID)
+        {
+            List<int> IDList = new List<int>();
+            int input = 0;
+            switch (typeID)
+            {
+                case "product":
+                    foreach (var item in Data.GetProduct())
+                    {
+                        IDList.Add(item.ID);
+                    }
+                    while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
+                    break;
+                case "schotel":
+                    foreach (var item in Data.GetSchotel())
+                    {
+                        IDList.Add(item.ID);
+                    }
+                    while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
+                    break;
+                case "klant":
+                    foreach (var item in Data.GetKlant())
+                    {
+                        IDList.Add(item.ID);
+                    }
+                    while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
+                    break;
+                case "bestelling":
+                    foreach (var item in Data.GetBestelling())
+                    {
+                        IDList.Add(item.ID);
+                    }
+                    while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
+                    break;
+            }
+            return input;
+        }
 
+     
         private static void MethodeWriteFullLine(string value)
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -133,16 +205,9 @@ namespace Drimon_Temp
 
         public static void MethodeIntro()
         {
-            for (int i = 0; i < 1; i++)
-            {
-                for (int j = 0; j < 65; j++)
-                {
-                    Console.ResetColor();
-                    Console.Clear();
-
-                    var margin = "".PadLeft(j);
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("" + @"
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("" + @"
                         ██╗   ██╗██╗███████╗██╗    ██╗██╗███╗   ██╗██╗  ██╗███████╗██╗
                         ██║   ██║██║██╔════╝██║    ██║██║████╗  ██║██║ ██╔╝██╔════╝██║
                         ██║   ██║██║███████╗██║ █╗ ██║██║██╔██╗ ██║█████╔╝ █████╗  ██║
@@ -157,67 +222,66 @@ namespace Drimon_Temp
                                 ██████╔╝██║  ██║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║
                                 ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝          ");
 
-                    Console.ResetColor();
+            Console.ResetColor();
 
-                    MethodeWriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
-                    MethodeWriteFullLine(margin + "                       O     o           o");
-                    MethodeWriteFullLine(margin + "         _\\_  o                             o");
-                    MethodeWriteFullLine(margin + "      \\\\/  o\\ .              ______      o");
-                    MethodeWriteFullLine(margin + "      //\\___=              _/  (   \\_");
-                    MethodeWriteFullLine(margin + "        ''       _       _/  (       \\_  O");
-                    MethodeWriteFullLine(margin + "                | \\_   _/  (   (   (0) \\");
-                    MethodeWriteFullLine(margin + "                |== \\_/  (   (          |");
-                    MethodeWriteFullLine(margin + "                |=== _ (   (   (         |");
-                    MethodeWriteFullLine(margin + "                |==_/ \\_ (   (      .   |");
-                    MethodeWriteFullLine(margin + "   _\\_  o       | _/     \\_ (   (    \\__/");
-                    MethodeWriteFullLine(margin + "\\\\/  o\\ .                 \\_ (      _/");
-                    MethodeWriteFullLine(margin + "//\\___=                     |  |___/");
-                    MethodeWriteFullLine(margin + "   ''                      /__/");
-                    MethodeWriteFullLine("");
-
+           
+                for (int j = 0; j < 65; j++)
+                {
+                Console.SetCursorPosition(0, 15);
+                    var margin = "".PadLeft(j);
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "                       O     o           o");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "         _\\_  o                             o");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "      \\\\/  o\\ .              ______      o");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "      //\\___=              _/  (   \\_");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "        ''       _       _/  (       \\_  O");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "                | \\_   _/  (   (   (0) \\");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "                |== \\_/  (   (          |");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "                |=== _ (   (   (         |");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "                |==_/ \\_ (   (      .   |");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "   _\\_  o       | _/     \\_ (   (    \\__/");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "\\\\/  o\\ .                 \\_ (      _/");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "//\\___=                     |  |___/");
+                MethodeClearLine(0);
+                MethodeWriteFullLine(margin + "   ''                      /__/");
+                
                     Thread.Sleep(50);
+
                 }
-            }
+            
         }
         public static void MethodeSpinner()
         {
-            for (int i = 0; i < 1; i++)
-            {
-                for (int j = 0; j < 10; j++)
+            Console.WriteLine(" Product wordt besteld...");
+            
+                for (int j = 0; j < 19; j++)
                 {
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Clear();
-
                     var margin = " ".PadLeft(j);
-
-
-
-                    Console.WriteLine("Product wordt besteld...");
                     Console.Write(margin + ">))´>" );
-                    Console.WriteLine("");
-
-                    Thread.Sleep(50);
-                    Console.ResetColor();
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Thread.Sleep(70);
                 }
-                for (int j = 10; j > 0; j--)
+                for (int j = 19; j > 0; j--)
                 {
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Clear();
-
                     var margin = " ".PadLeft(j);
-
-
-
-                    Console.WriteLine("Product wordt besteld...");
                     Console.Write(margin + "<`((< ");
-                    Console.WriteLine("");
-
-                    Thread.Sleep(50);
-                    Console.ResetColor();
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Thread.Sleep(70);
                 }
-            }
+            
         }
     }
 }

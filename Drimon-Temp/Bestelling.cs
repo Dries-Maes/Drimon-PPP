@@ -109,12 +109,14 @@ namespace Drimon_Temp
                         Console.Clear();
                         ProductMenu.OverzichtProductLijst();
                         Console.WriteLine("\n Geef het productID in:");
-                        Product tempProduct = huidigeProducten[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
+                        Product tempProduct = huidigeProducten[Menu.MethodeCheckforID("product") - 1];
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " +tempProduct.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
-                        tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
-                       Menu.MethodeSpinner();
+                        tempProduct.AantalBesteld = Menu.MethodeCheckforID("product");
+                        Menu.MethodeClearLine(-1);
+                        Console.WriteLine(" " + tempProduct.AantalBesteld + "\n");
+                        Menu.MethodeSpinner();
 
                         if (tempProduct.AantalBesteld != 0)
                         {
@@ -126,12 +128,13 @@ namespace Drimon_Temp
                         Console.Clear();
                         SchotelMenu.OverzichtSchotelLijst();
                         Console.WriteLine("\n Geef het schotel ID in:");
-                        Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforInt(Console.ReadLine()) - 1];
+                        Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforID("schotel") - 1];
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempSchotel.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
-                        tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
-                        
+                        tempSchotel.AantalBesteld = Menu.MethodeCheckforID("schotel");
+                        Menu.MethodeClearLine(-1);
+                        Console.WriteLine(" " + tempSchotel.AantalBesteld +"\n");
                         Menu.MethodeSpinner();
 
                         if (tempSchotel.AantalBesteld != 0 )

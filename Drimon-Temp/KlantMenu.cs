@@ -7,8 +7,9 @@ namespace Drimon_Temp
     {
         public static void MenuKlantHoofdmenu()
         {
-            Console.WriteLine($" 1.Klant zoeken\n 2.Klant Toevoegen\n 3.Terug naar hoofdmenu");
-            switch (Menu.MethodeKiezer(3))
+            Menu.MethodeBannerLine("Klant zoeken", "Klant toevoegen");
+            
+            switch (Menu.MethodeKiezer(2))
             {
                 case 1:
                     Console.Clear();
@@ -21,7 +22,7 @@ namespace Drimon_Temp
                     MethodeKlantToevoegen();
                     break;
 
-                case 3:
+                case 0:
                     Menu.MenuHoofdmenu();
                     break;
             }
@@ -31,6 +32,7 @@ namespace Drimon_Temp
         {
             string userinput;
 
+            Menu.MethodeBannerLine("Klant selecteren", "Klant zoeken");
             Console.WriteLine($"\n 1.Selecteer klant\n 2.Terug\n\n Zoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
 
             switch (Menu.MethodeKiezer(6))
@@ -38,7 +40,7 @@ namespace Drimon_Temp
                 case 1:
 
                     Console.WriteLine("\n Geef het ID gevolgd door 'enter':");
-                    int inputID = Menu.MethodeCheckforInt(Console.ReadLine());
+                    int inputID = Menu.MethodeCheckforID("klant");
                     Console.Clear();
                     if (vanWaar == "bestelling")
                     {
@@ -92,7 +94,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtKlantLijst();
                     Console.WriteLine("\n Geef postcode in gevolgd door 'enter':");
-                    int input2 = Menu.MethodeCheckforInt(Console.ReadLine());
+                    int input2 = Menu.MethodeCheckforID("klant");
                     Console.Clear();
                     OverzichtKlantLijst("postcode", input2.ToString());
                     MenuKlantZoeken(vanWaar);
@@ -194,7 +196,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtKlantEnkel(klantID);
                     Console.WriteLine(" Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
+                    klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforID("klant");
                     break;
 
                 case 6:
