@@ -28,6 +28,7 @@ namespace Drimon_Temp
 
         public void NieuweKlant()
         {
+            Menu.MethodeBannerLine("0");
             Console.WriteLine(" Geef de voornaam in gevolgd door 'enter':");
             VoorNaam = Console.ReadLine();
             Menu.MethodeClearLine(-1);
@@ -45,14 +46,14 @@ namespace Drimon_Temp
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + HuisBusNummer);
             Console.WriteLine(" Geef de postcode in gevolgd door 'enter':");
-            Postcode = Menu.MethodeCheckforID("klant");
+            Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Postcode);
             Console.WriteLine(" Geef de telefoonnummer in gevolgd door 'enter':");
             Telefoonnummer = Console.ReadLine();
             Menu.MethodeClearLine(-1);
             Console.WriteLine(" " + Telefoonnummer);
-            Thread.Sleep(1000);
+            Menu.MethodeSpinner("Klant wordt aangemaakt...");
         }
     }
 }

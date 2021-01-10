@@ -85,28 +85,32 @@ namespace Drimon_Temp
 
             do
             {
+
+
                 Console.Clear();
+                Menu.MethodeBannerLine("Selecteer product", "selecteer schotel", "plaats bestelling");
                 if (schotels.Count != 0 || producten.Count != 0)
                 {
                     
-                    Console.WriteLine($"\n |ID".PadRight(6) + $"| Naam".PadRight(12) + $"| Prijs".PadRight(12) + $"| Stuks".PadRight(12));
+                    Console.WriteLine($"\n |ID".PadRight(8) + $"|Naam".PadRight(15) + $"|Prijs".PadRight(12) + $"|Stuks".PadRight(20));
                     foreach (var item in producten)
                     {
-                        Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
+                        Console.WriteLine($" |{item.ID}".PadRight(7) + $"|{item.Naam}".PadRight(15) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(20));
                         
                     }
                     foreach (var item in schotels)
                     {
-                        Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(12));
+                        Console.WriteLine($" |{item.ID}".PadRight(7) + $"|{item.Naam}".PadRight(15) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(20));
                        
                     }
                     Console.WriteLine($"\n Totaalprijs van de bestelling is: {MethodeTotaalPrijs()} euro\n");
                 }
-                Console.WriteLine($" Dag {Data.GetKlant()[KlantID - 1].VoorNaam}, wat wil je bestellen?\n 1.Een product\n 2.Een schotel\n 3.Annuleer bestelling\n 4.Plaats bestelling!");
+                
                 switch (Menu.MethodeKiezer(4))
                 {
                     case 1:
                         Console.Clear();
+                        Menu.MethodeBannerLine("0");
                         ProductMenu.OverzichtProductLijst();
                         Console.WriteLine("\n Geef het productID in:");
                         Product tempProduct = huidigeProducten[Menu.MethodeCheckforID("product") - 1];
@@ -116,7 +120,7 @@ namespace Drimon_Temp
                         tempProduct.AantalBesteld = Menu.MethodeCheckforID("product");
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempProduct.AantalBesteld + "\n");
-                        Menu.MethodeSpinner();
+                        Menu.MethodeSpinner("Product wordt toegevoegd ...");
 
                         if (tempProduct.AantalBesteld != 0)
                         {
@@ -126,6 +130,7 @@ namespace Drimon_Temp
 
                     case 2:
                         Console.Clear();
+                        Menu.MethodeBannerLine("0");
                         SchotelMenu.OverzichtSchotelLijst();
                         Console.WriteLine("\n Geef het schotel ID in:");
                         Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforID("schotel") - 1];
@@ -135,7 +140,7 @@ namespace Drimon_Temp
                         tempSchotel.AantalBesteld = Menu.MethodeCheckforID("schotel");
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempSchotel.AantalBesteld +"\n");
-                        Menu.MethodeSpinner();
+                        Menu.MethodeSpinner("Schotel wordt toegevoegd ...");
 
                         if (tempSchotel.AantalBesteld != 0 )
                         {
@@ -145,11 +150,11 @@ namespace Drimon_Temp
                         break;
 
                     case 3:
-                        Menu.MenuHoofdmenu();
-                        break;
-
-                    case 4:
                         actief = false;
+                        break;
+                    case 0:
+                        Console.Clear();
+                        Menu.MenuHoofdmenu();
                         break;
                 }
             } while (actief);
