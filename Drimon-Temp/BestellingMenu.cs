@@ -7,7 +7,6 @@ namespace Drimon_Temp
     {
         public static void MenuBestellingenHoofdmenu(string menukeuze = "open", int waarde = 0)
         {
-
             Menu.MethodeBannerLine("Alle bestellingen", "Openstaande", "Afgerond", "Filter op prijs", "Filter op ID");
             Console.WriteLine();
             OverzichtBestellingen(menukeuze, waarde);
@@ -18,17 +17,18 @@ namespace Drimon_Temp
                     Console.Clear();
                     MenuBestellingenHoofdmenu("alles", waarde);
                     break;
-                
 
                 case 2:
                     Console.Clear();
                     MenuBestellingenHoofdmenu("open", waarde);
                     break;
+
                 case 3:
 
                     Console.Clear();
                     MenuBestellingenHoofdmenu("afgerond", waarde);
                     break;
+
                 case 4:
                     Console.Clear();
                     Menu.MethodeBannerLine("Groter dan", "Kleiner dan", "Gelijk aan");
@@ -55,6 +55,7 @@ namespace Drimon_Temp
                             Console.Clear();
                             MenuBestellingenHoofdmenu("=", waarde);
                             break;
+
                         case 0:
                             Console.Clear();
                             MenuBestellingenHoofdmenu(menukeuze, waarde);
@@ -73,20 +74,23 @@ namespace Drimon_Temp
                             Console.Clear();
                             MenuBestellingenHoofdmenu("bestelID", waarde);
                             break;
+
                         case 2:
                             Console.Clear();
                             ProductMenu.MenuProductZoeken();
                             break;
-                            
+
                         case 3:
                             Console.Clear();
                             SchotelMenu.MenuSchotelHoofdmenu();
                             break;
+
                         case 4:
-                            
+
                             Console.Clear();
-                            KlantMenu.MenuKlantZoeken("alles","alles");
+                            KlantMenu.MenuKlantZoeken("alles", "alles");
                             break;
+
                         case 0:
                             Console.Clear();
                             MenuBestellingenHoofdmenu(menukeuze, waarde);
@@ -94,11 +98,9 @@ namespace Drimon_Temp
                     }
                     break;
 
-              
                 case 0:
                     Menu.MenuHoofdmenu();
                     break;
-                    
             }
             MenuBestellingenHoofdmenu(menukeuze, waarde);
         }
@@ -107,7 +109,7 @@ namespace Drimon_Temp
         {
             List<Bestelling> toEdit = Data.GetBestelling();
             List<Bestelling> results = new List<Bestelling>();
-            
+
             switch (zoekmethode)
             {
                 case "klantID":
@@ -141,12 +143,15 @@ namespace Drimon_Temp
                 case "open":
                     results = toEdit.FindAll(x => x.Afgerond == false);
                     break;
+
                 case "alles":
-                     results = toEdit;
+                    results = toEdit;
                     break;
+
                 case "bestelID":
                     results = toEdit.FindAll(x => x.ID == getal);
                     break;
+
                 default:
                     break;
             }
@@ -169,11 +174,9 @@ namespace Drimon_Temp
                     totaalPrijsBestelling += instance.Prijs;
                 }
                 Console.WriteLine($"\n\tTotaalprijs: {totaalPrijsBestelling} euro");
-
-                
             }
-            
         }
+
         public static void MethodeNieuweBestelling(int klantID)
         {
             Bestelling nieuw = new Bestelling(klantID);

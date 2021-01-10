@@ -8,25 +8,22 @@ namespace Drimon_Temp
     {
         public static void MenuHoofdmenu()
         {
-            
             Console.Clear();
             MethodeBannerLine("Nieuwe bestelling", "Bestellingen", "Klanten", "Producten", "Credits");
-            
+
             switch (MethodeKiezer(5))
             {
                 case 1:
                     Console.Clear();
-                    
+
                     KlantMenu.MenuKlantZoeken("alles", "alles", "bestelling");
                     break;
 
                 case 2:
                     Console.Clear();
-                  
-
 
                     BestellingMenu.MenuBestellingenHoofdmenu();
-                    
+
                     break;
 
                 case 3:
@@ -38,12 +35,12 @@ namespace Drimon_Temp
                     Console.Clear();
                     ProductMenu.MenuProductHoofdmenu();
                     break;
+
                 case 5:
                     Console.Clear();
                     Credits.PrintCredits();
                     MenuHoofdmenu();
                     break;
-
 
                 case 0:
                     MethodeIntro();
@@ -102,15 +99,16 @@ namespace Drimon_Temp
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, intendedY);
         }
+
         public static void MethodeBannerLine(string in1 = null, string in2 = null, string in3 = null, string in4 = null, string in5 = null, string in6 = null, string in7 = null)
-            {
-            int noBack = 1; 
+        {
+            int noBack = 1;
             if (in1 == "0")
             {
                 in1 = null;
                 noBack = 0;
             }
-            string[] menuItems = new string[7] { in1, in2, in3, in4, in5, in6, in7 } ;
+            string[] menuItems = new string[7] { in1, in2, in3, in4, in5, in6, in7 };
             List<string> usedItems = new List<string>();
             foreach (var item in menuItems)
             {
@@ -122,11 +120,11 @@ namespace Drimon_Temp
             Console.ForegroundColor = ConsoleColor.Cyan;
             if (noBack != 0)
             {
-                Console.Write(" 0 = Terug ".PadRight(Console.WindowWidth / 3 -1));
+                Console.Write(" 0 = Terug ".PadRight(Console.WindowWidth / 3 - 1));
             }
             else
             {
-                Console.Write(" Vul in  ".PadRight(Console.WindowWidth / 3 -1));
+                Console.Write(" Vul in  ".PadRight(Console.WindowWidth / 3 - 1));
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(MethodePadLeftRight(" V i s w i n k e l   D r i M o n ".ToUpper(), Console.WindowWidth / 3));
@@ -136,34 +134,29 @@ namespace Drimon_Temp
             Console.WriteLine(HorizontaleLijn);
             Console.ForegroundColor = ConsoleColor.Cyan;
 
-            if (usedItems.Count != 0)   
+            if (usedItems.Count != 0)
             {
-            Console.Write(" ");
-            for (int j = 0; j < usedItems.Count; j++)
-            {
-                Console.Write(MethodePadLeftRight($"{j + 1}.{usedItems[j]} ", Console.WindowWidth / usedItems.Count - 2));
-            }
+                Console.Write(" ");
+                for (int j = 0; j < usedItems.Count; j++)
+                {
+                    Console.Write(MethodePadLeftRight($"{j + 1}.{usedItems[j]} ", Console.WindowWidth / usedItems.Count - 2));
+                }
 
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("\n" + HorizontaleLijn);
             }
-        
-
-
-
-
 
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            
         }
+
         public static string MethodePadLeftRight(string source, int length)
         {
             int spaces = length - source.Length;
             int padLeft = spaces / 2 + source.Length;
             return source.PadLeft(padLeft).PadRight(length);
-
         }
+
         public static int MethodeCheckforInt(string stringInput)
         {
             string tocheck = stringInput;
@@ -174,6 +167,7 @@ namespace Drimon_Temp
             }
             return output;
         }
+
         public static int MethodeCheckforID(string typeID)
         {
             List<int> IDList = new List<int>();
@@ -187,6 +181,7 @@ namespace Drimon_Temp
                     }
                     while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
                     break;
+
                 case "schotel":
                     foreach (var item in Data.GetSchotel())
                     {
@@ -194,6 +189,7 @@ namespace Drimon_Temp
                     }
                     while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
                     break;
+
                 case "klant":
                     foreach (var item in Data.GetKlant())
                     {
@@ -201,6 +197,7 @@ namespace Drimon_Temp
                     }
                     while (!IDList.Contains(input = MethodeCheckforInt(Console.ReadLine()))) ;
                     break;
+
                 case "bestelling":
                     foreach (var item in Data.GetBestelling())
                     {
@@ -212,7 +209,6 @@ namespace Drimon_Temp
             return input;
         }
 
-     
         private static void MethodeWriteFullLine(string value)
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -242,11 +238,10 @@ namespace Drimon_Temp
 
             Console.ResetColor();
 
-           
-                for (int j = 0; j < 65; j++)
-                {
+            for (int j = 0; j < 65; j++)
+            {
                 Console.SetCursorPosition(0, 15);
-                    var margin = "".PadLeft(j);
+                var margin = "".PadLeft(j);
                 MethodeClearLine(0);
                 MethodeWriteFullLine(margin + "       . . . . o o O o o oo O o oo o O o");
                 MethodeClearLine(0);
@@ -275,32 +270,30 @@ namespace Drimon_Temp
                 MethodeWriteFullLine(margin + "//\\___=                     |  |___/");
                 MethodeClearLine(0);
                 MethodeWriteFullLine(margin + "   ''                      /__/");
-                
-                    Thread.Sleep(50);
 
-                }
-            
+                Thread.Sleep(50);
+            }
         }
+
         public static void MethodeSpinner(string Opmerking = "")
         {
             Console.WriteLine(" " + Opmerking);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             for (int j = 0; j < 19; j++)
-                {
-                    var margin = " ".PadLeft(j);
-                    Console.Write(margin + ">))´>" );
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                    Thread.Sleep(70);
-                }
-                for (int j = 19; j > 0; j--)
-                {
-                    var margin = " ".PadLeft(j);
-                    Console.Write(margin + "<`((< ");
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                    Thread.Sleep(70);
-                }
+            {
+                var margin = " ".PadLeft(j);
+                Console.Write(margin + ">))´>");
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Thread.Sleep(70);
+            }
+            for (int j = 19; j > 0; j--)
+            {
+                var margin = " ".PadLeft(j);
+                Console.Write(margin + "<`((< ");
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Thread.Sleep(70);
+            }
             Console.ForegroundColor = ConsoleColor.Cyan;
-
         }
     }
 }

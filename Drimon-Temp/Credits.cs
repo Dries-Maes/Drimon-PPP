@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Drimon_Temp
 {
-    class Credits
+    internal class Credits
     {
         public static void PrintCredits()
         {
@@ -118,7 +116,6 @@ ooooooooooooooo++sMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNMNNNNNNNNNNNNNNNNmmmmmmmNNN
 "); Console.SetCursorPosition(0, 0);
             Console.ResetColor();
             Console.ReadKey();
-        
         }
     }
 }

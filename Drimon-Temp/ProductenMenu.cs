@@ -7,13 +7,12 @@ namespace Drimon_Temp
     {
         public static void MenuProductHoofdmenu()
         {
-
             Menu.MethodeBannerLine("Producten beheren", "Schotels beheren");
-            
+
             switch (Menu.MethodeKiezer(3))
             {
                 case 1:
-                    Console.Clear();                 
+                    Console.Clear();
                     MenuProductZoeken();
                     break;
 
@@ -31,18 +30,17 @@ namespace Drimon_Temp
 
         public static void MenuProductZoeken(string zoekmethode = "alles", string parameter = "true", bool status = true, string returpagina = null)
         {
-            Menu.MethodeBannerLine("Toon alles","Selecteer" ,"Zoek op status", "Zoek op naam", "Zoek op schotel", "Voeg toe");
+            Menu.MethodeBannerLine("Toon alles", "Selecteer", "Zoek op status", "Zoek op naam", "Zoek op schotel", "Voeg toe");
             OverzichtProductLijst(zoekmethode, parameter, status);
-            
-            
+
             switch (Menu.MethodeKiezer(6))
             {
                 case 1:
 
-                                    
                     Console.Clear();
                     MenuProductZoeken("status", parameter, true, returpagina);
                     break;
+
                 case 2:
                     if (returpagina == "schotel")
                     {
@@ -61,50 +59,48 @@ namespace Drimon_Temp
                     Console.Clear();
                     if (status)
                     {
-                        
                         MenuProductZoeken("status", parameter, false, returpagina);
                     }
                     else
                     {
-
                         MenuProductZoeken("status", parameter, true, returpagina);
                     }
                     break;
+
                 case 4:
-                            
-                            Console.WriteLine("\nGeef de naam in gevolgd door 'enter':");
-                            parameter = Console.ReadLine();
-                            Console.Clear();
-                            MenuProductZoeken("naam", parameter, status, returpagina);
-                            break;
-                        case 5:
-                            // zoek op schotel > goto schotel overzicht 
-                            Console.WriteLine("todo");
+
+                    Console.WriteLine("\nGeef de naam in gevolgd door 'enter':");
+                    parameter = Console.ReadLine();
+                    Console.Clear();
+                    MenuProductZoeken("naam", parameter, status, returpagina);
                     break;
-               
+
+                case 5:
+                    // zoek op schotel > goto schotel overzicht
+                    Console.WriteLine("todo");
+                    break;
+
                 case 6:
                     Console.Clear();
                     MethodeProductToevoegen();
                     break;
+
                 case 0:
                     Console.Clear();
                     MenuProductHoofdmenu();
                     break;
-
-
             }
         }
 
         public static void MenuProductEnkel(int productID)
         {
-            
             Menu.MethodeBannerLine("Wijzig naam", "Wijzig prijs", "Wijzig voorraad", "Wijzig status", "Toon bestellingen");
             OverzichtProductEnkel(productID);
-            
+
             List<Product> productEdit = Data.GetProduct();
             switch (Menu.MethodeKiezer(5))
             {
-                case 1: 
+                case 1:
                     Console.WriteLine("Geef de nieuwe naam in:");
                     productEdit[productID - 1].Naam = Console.ReadLine();
                     Data.SetProduct(productEdit);
@@ -113,7 +109,7 @@ namespace Drimon_Temp
                     break;
 
                 case 2:
-                   
+
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     productEdit[productID - 1].Prijs = Convert.ToDecimal(Console.ReadLine());
                     Data.SetProduct(productEdit);
@@ -122,7 +118,7 @@ namespace Drimon_Temp
                     break;
 
                 case 3:
-                    
+
                     Console.WriteLine("Geef de nieuwe voorraad in:");
                     productEdit[productID - 1].Voorraad = Convert.ToInt32(Console.ReadLine());
                     Data.SetProduct(productEdit);
@@ -131,7 +127,7 @@ namespace Drimon_Temp
                     break;
 
                 case 4:
-                    
+
                     productEdit[productID - 1].Actief = !productEdit[productID - 1].Actief;
                     Data.SetProduct(productEdit);
                     Console.Clear();
@@ -144,16 +140,13 @@ namespace Drimon_Temp
                     break;
 
                 case 0:
-                        Console.Clear();
-                        MenuProductZoeken();
-   
+                    Console.Clear();
+                    MenuProductZoeken();
 
                     break;
             }
         }
 
-       
-      
         public static void OverzichtProductEnkel(int productID)
         {
             Product objectSelectie = Data.GetProduct().Find(delegate (Product del) { return del.ID == productID; });
@@ -170,11 +163,11 @@ namespace Drimon_Temp
             List<Product> results = Data.GetProduct();
             switch (zoekmethode)
             {
-
                 case "naam":
                     results = Data.GetProduct().FindAll(x => x.Naam.ToLower() == parameter.ToLower());
-                              
+
                     break;
+
                 case "status":
                     results = Data.GetProduct().FindAll(x => x.Actief == status);
                     break;
@@ -182,8 +175,7 @@ namespace Drimon_Temp
                 case "allesalles":
                     break;
             }
-           
-            
+
             Console.WriteLine(" |ID  " + $"|Naam".PadRight(25) + $"|Prijs".PadRight(10) + $"|Voorraad".PadRight(10) + $"|ID".PadRight(10) + $"|Status".PadRight(20) + $"|Aanmaakdatum ");
             string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
             Console.ForegroundColor = ConsoleColor.DarkYellow;

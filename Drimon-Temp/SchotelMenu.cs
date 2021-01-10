@@ -7,17 +7,15 @@ namespace Drimon_Temp
     {
         public static void MenuSchotelHoofdmenu(string menukeuze = "open", int waarde = 0)
         {
-
             Menu.MethodeBannerLine("Alle schotels", "Selecteer", "Zoek op status", "Zoek op product", "Nieuwe schotel");
             OverzichtSchotels(menukeuze, waarde);
-            
+
             switch (Menu.MethodeKiezer(7))
             {
                 case 1:
                     Console.Clear();
                     MenuSchotelHoofdmenu("alles", waarde);
                     break;
-                
 
                 case 2:
                     Console.WriteLine("\n Geef een ID in:");
@@ -25,6 +23,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     MenuSchotelEnkel(waarde);
                     break;
+
                 case 3:
                     Console.Clear();
                     if (menukeuze != "gesloten")
@@ -33,11 +32,13 @@ namespace Drimon_Temp
                     }
                     MenuSchotelHoofdmenu("open", waarde);
                     break;
+
                 case 4:
 
                     Console.Clear();
                     ProductMenu.MenuProductZoeken("alles", "alles", true, "schotel");
                     break;
+
                 case 5:
                     Console.Clear();
                     MethodeNieuweSchotel();
@@ -47,9 +48,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     ProductMenu.MenuProductHoofdmenu();
                     break;
-                    
             }
-            
         }
 
         public static void OverzichtSchotels(string zoekmethode = "alles", int getal = 0)
@@ -67,30 +66,27 @@ namespace Drimon_Temp
             };
             foreach (var item in results)
             {
-                
                 Console.WriteLine($" ID: {item.ID}".PadRight(6) + $"  Naam: {item.Naam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Voorraad: {item.Voorraad}".PadRight(20));
                 Console.Write("\tProducten:");
                 List<Product> producten = Data.GetProduct();
                 foreach (var instance in item.IDlijst)
                 {
-                    Console.Write($"{producten[instance.Key-1].Naam} x {instance.Value}, "); 
+                    Console.Write($"{producten[instance.Key - 1].Naam} x {instance.Value}, ");
                 }
 
                 Console.WriteLine($"\n\tTotaalprijs: {item.Prijs} euro");
-                if (!item.Actief)        
+                if (!item.Actief)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write(" ==>  VERWIJDERD ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 }
                 Console.WriteLine();
-
             }
-            
         }
+
         public static void MethodeNieuweSchotel()
         {
-            
             Menu.MethodeBannerLine("0");
             Console.WriteLine(" Geef de naam in van de schotel:");
             Schotel nieuw = new Schotel(Console.ReadLine());
@@ -99,30 +95,30 @@ namespace Drimon_Temp
             List<Product> producten = Data.GetProduct();
             foreach (var item in nieuw.IDlijst)
             {
-                if (producten[item.Key-1].Voorraad < item.Value)
+                if (producten[item.Key - 1].Voorraad < item.Value)
                 {
                     Console.WriteLine(" Je kan de schotel niet maken, er zijn niet voldoende producten!!!\nDruk op een knop om terug te keren.");
                     Console.Clear();
                     MenuSchotelHoofdmenu();
                 }
 
-               // producten[item.Key].Voorraad -= item.Value; beestje.. 
+                // producten[item.Key].Voorraad -= item.Value; beestje..
             }
             Data.AddSchotel(nieuw);
             Data.SetProduct(producten);
             Console.Clear();
             MenuSchotelHoofdmenu();
         }
+
         public static void MenuSchotelEnkel(int schotelID)
         {
-            
             Menu.MethodeBannerLine("Wijzig naam", "Wijzig prijs", "Wijzig voorraad", "Wijzig status", "Toon bestellingen");
             OverzichtSchotelEnkel(schotelID);
-            
+
             List<Schotel> schotelEdit = Data.GetSchotel();
             switch (Menu.MethodeKiezer(5))
             {
-                case 1: 
+                case 1:
                     Console.WriteLine("Geef de nieuwe naam in:");
                     schotelEdit[schotelID - 1].Naam = Console.ReadLine();
                     Data.SetSchotel(schotelEdit);
@@ -131,7 +127,7 @@ namespace Drimon_Temp
                     break;
 
                 case 2:
-                   
+
                     Console.WriteLine("Geef de nieuwe waarde in:");
                     schotelEdit[schotelID - 1].Prijs = Convert.ToDecimal(Console.ReadLine());
                     Data.SetSchotel(schotelEdit);
@@ -140,7 +136,7 @@ namespace Drimon_Temp
                     break;
 
                 case 3:
-                    
+
                     Console.WriteLine("Geef de nieuwe voorraad in:");
                     schotelEdit[schotelID - 1].Voorraad = Convert.ToInt32(Console.ReadLine());
                     Data.SetSchotel(schotelEdit);
@@ -149,7 +145,7 @@ namespace Drimon_Temp
                     break;
 
                 case 4:
-                    
+
                     schotelEdit[schotelID - 1].Actief = !schotelEdit[schotelID - 1].Actief;
                     Data.SetSchotel(schotelEdit);
                     Console.Clear();
@@ -162,13 +158,13 @@ namespace Drimon_Temp
                     break;
 
                 case 0:
-                        Console.Clear();
-                        MenuSchotelHoofdmenu();
-   
+                    Console.Clear();
+                    MenuSchotelHoofdmenu();
 
                     break;
             }
         }
+
         public static void OverzichtSchotelEnkel(int schotelID)
         {
             Schotel objectSelectie = Data.GetSchotel().Find(delegate (Schotel del) { return del.ID == schotelID; });
@@ -184,9 +180,8 @@ namespace Drimon_Temp
             }
             foreach (var item in objectSelectie.IDlijst)
             {
-                Console.WriteLine($" Product {productSelectie[item.Key-1].Naam}: {item.Value} stuks.");
+                Console.WriteLine($" Product {productSelectie[item.Key - 1].Naam}: {item.Value} stuks.");
             }
-
         }
     }
 }
