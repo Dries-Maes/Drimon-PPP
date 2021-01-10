@@ -30,7 +30,7 @@ namespace Drimon_Temp
         public static void MethodeSchotelSamenstellen(string zoekmethode = "alles", string parameter = "alles")
         {
             OverzichtSchotelLijst();
-
+            /*
             List<Schotel> schotelsedit = Data.GetSchotel();
             List<Schotel> newschotel = new List<Schotel>();
             List<Product> ingredienten = Data.GetProduct();
@@ -42,7 +42,8 @@ namespace Drimon_Temp
             int userinput = Convert.ToInt32(Console.ReadLine());
             ingredient.ID = userinput;
             recept.Add(new Product(ingredient.ID));
-
+            */
+            /*
             foreach (var item in schotelsedit)
             {
             }
@@ -55,7 +56,7 @@ namespace Drimon_Temp
                 {
                     Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Actief}{item.ID}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.ID}".PadRight(20) + $"|{item.ID}");
                 }
-            }
+            }*/
             MenuSchotelZoeken();
         }
 

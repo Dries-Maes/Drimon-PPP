@@ -116,16 +116,16 @@ namespace Drimon_Temp
             Console.ForegroundColor = ConsoleColor.Cyan;
             if (noBack != 0)
             {
-                Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1));
+                Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 -1));
             }
             else
             {
-                Console.Write(" Vul in  ".PadRight(Console.WindowWidth / 3 - 1));
+                Console.Write(" Vul in  ".PadRight(Console.WindowWidth / 3 -1));
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(MethodePadLeftRight(" V i s w i n k e l   D r i M o n ".ToUpper(), Console.WindowWidth / 3));
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"{DateTime.Now}".PadLeft(Console.WindowWidth / 3));
+            Console.WriteLine($"{DateTime.Now} ".PadLeft(Console.WindowWidth / 3));
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(HorizontaleLijn);
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -278,8 +278,8 @@ namespace Drimon_Temp
         public static void MethodeSpinner(string Opmerking = "")
         {
             Console.WriteLine(" " + Opmerking);
-            
-                for (int j = 0; j < 19; j++)
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            for (int j = 0; j < 19; j++)
                 {
                     var margin = " ".PadLeft(j);
                     Console.Write(margin + ">))´>" );
@@ -293,7 +293,8 @@ namespace Drimon_Temp
                     Console.SetCursorPosition(0, Console.CursorTop);
                     Thread.Sleep(70);
                 }
-            
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
         }
     }
 }

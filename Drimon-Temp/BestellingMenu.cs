@@ -74,23 +74,19 @@ namespace Drimon_Temp
                             MenuBestellingenHoofdmenu("bestelID", waarde);
                             break;
                         case 2:
-                            Console.WriteLine("\n Geef een product ID in:");
-                            waarde = Menu.MethodeCheckforID("product");
                             Console.Clear();
-                            MenuBestellingenHoofdmenu("product", waarde);
+                            ProductMenu.MenuProductZoeken();
                             break;
                             
                         case 3:
-                            Console.WriteLine("\n Geef een schotel ID in:");
-                            waarde = Menu.MethodeCheckforID("schotel");
                             Console.Clear();
-                            MenuBestellingenHoofdmenu("schotel", waarde);
+                            SchotelMenu.MenuSchotelZoeken();
                             break;
                         case 4:
                             Console.WriteLine("\n Geef een klant ID in:");
                             waarde = Menu.MethodeCheckforID("klant");
                             Console.Clear();
-                            MenuBestellingenHoofdmenu("klantID", waarde);
+                            KlantMenu.MenuKlantZoeken();
                             break;
                         case 0:
                             Console.Clear();
