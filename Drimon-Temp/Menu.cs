@@ -16,28 +16,27 @@ namespace Drimon_Temp
             {
                 case 1:
                     Console.Clear();
-                    KlantMenu.OverzichtKlantLijst();
-                    KlantMenu.MenuKlantZoeken("bestelling");
+                    
+                    KlantMenu.MenuKlantZoeken("alles", "alles", "bestelling");
                     break;
 
                 case 2:
                     Console.Clear();
-                    MethodeSpinner();
+                  
 
 
                     BestellingMenu.MenuBestellingenHoofdmenu();
-                    BestellingMenu.OverzichtBestellingen();
+                    
                     break;
 
                 case 3:
                     Console.Clear();
-                    KlantMenu.MenuKlantHoofdmenu();
+                    KlantMenu.MenuKlantZoeken();
                     break;
 
                 case 4:
                     Console.Clear();
                     ProductMenu.MenuProductHoofdmenu();
-                    // go to productenbeheermenu >
                     break;
 
                 case 0:
@@ -99,6 +98,12 @@ namespace Drimon_Temp
         }
         public static void MethodeBannerLine(string in1 = null, string in2 = null, string in3 = null, string in4 = null, string in5 = null, string in6 = null, string in7 = null)
             {
+            int noBack = 1; 
+            if (in1 == "0")
+            {
+                in1 = null;
+                noBack = 0;
+            }
             string[] menuItems = new string[7] { in1, in2, in3, in4, in5, in6, in7 } ;
             List<string> usedItems = new List<string>();
             foreach (var item in menuItems)
@@ -109,7 +114,14 @@ namespace Drimon_Temp
             string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
             Console.WriteLine(HorizontaleLijn);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1));
+            if (noBack != 0)
+            {
+                Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 - 1));
+            }
+            else
+            {
+                Console.Write(" Vul in  ".PadRight(Console.WindowWidth / 3 - 1));
+            }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(MethodePadLeftRight(" V i s w i n k e l   D r i M o n ".ToUpper(), Console.WindowWidth / 3));
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -263,9 +275,9 @@ namespace Drimon_Temp
                 }
             
         }
-        public static void MethodeSpinner()
+        public static void MethodeSpinner(string Opmerking = "")
         {
-            Console.WriteLine(" Product wordt besteld...");
+            Console.WriteLine(" " + Opmerking);
             
                 for (int j = 0; j < 19; j++)
                 {

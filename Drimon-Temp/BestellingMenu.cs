@@ -9,7 +9,9 @@ namespace Drimon_Temp
         {
 
             Menu.MethodeBannerLine("Alle bestellingen", "Openstaande", "Afgerond", "Filter op prijs", "Filter op ID");
+            Console.WriteLine();
             OverzichtBestellingen(menukeuze, waarde);
+            Console.SetCursorPosition(0, 0);
             switch (Menu.MethodeKiezer(7))
             {
                 case 1:
@@ -86,7 +88,7 @@ namespace Drimon_Temp
                             break;
                         case 4:
                             Console.WriteLine("\n Geef een klant ID in:");
-                            waarde = Menu.MethodeCheckforID("schotel");
+                            waarde = Menu.MethodeCheckforID("klant");
                             Console.Clear();
                             MenuBestellingenHoofdmenu("klantID", waarde);
                             break;
