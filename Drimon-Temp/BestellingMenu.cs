@@ -5,81 +5,114 @@ namespace Drimon_Temp
 {
     internal class BestellingMenu
     {
-        public static void MenuBestellingenHoofdmenu(string menukeuze = "nietafgerond", int waarde = 0)
+        public static void MenuBestellingenHoofdmenu(string menukeuze = "open", int waarde = 0)
         {
-            int tempWaarde = waarde;
-            OverzichtBestellingen(menukeuze, waarde);
 
-            Console.WriteLine($"\n1.Toon alle bestellingen\n2.Filter op prijs\n3.Filter op product \n4.Filter op schotel \n5.Toon enkel afgeronde bestellingen\n6.Toon enkel open bestellingen \n7.Terug");
-            switch (Menu.Kiezer(7))
+            Menu.MethodeBannerLine("Alle bestellingen", "Openstaande", "Afgerond", "Filter op prijs", "Filter op ID");
+            Console.WriteLine();
+            OverzichtBestellingen(menukeuze, waarde);
+            Console.SetCursorPosition(0, 0);
+            switch (Menu.MethodeKiezer(7))
             {
                 case 1:
                     Console.Clear();
-                    OverzichtBestellingen("alles", waarde);
+                    MenuBestellingenHoofdmenu("alles", waarde);
                     break;
+                
 
                 case 2:
-                    Console.WriteLine("\n1.Groter dan\n2.Kleiner dan\n3.Gelijk aan");
-                    switch (Menu.Kiezer(6))
+                    Console.Clear();
+                    MenuBestellingenHoofdmenu("open", waarde);
+                    break;
+                case 3:
+
+                    Console.Clear();
+                    MenuBestellingenHoofdmenu("afgerond", waarde);
+                    break;
+                case 4:
+                    Console.Clear();
+                    Menu.MethodeBannerLine("Groter dan", "Kleiner dan", "Gelijk aan");
+
+                    switch (Menu.MethodeKiezer(3))
                     {
                         case 1:
-                            Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            Console.WriteLine("\n Geef een geheel getal in:");
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen(">", tempWaarde);
+                            MenuBestellingenHoofdmenu(">", waarde);
                             break;
 
                         case 2:
-                            Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            Console.WriteLine("\n Geef een geheel getal in:");
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen("<", tempWaarde);
+                            MenuBestellingenHoofdmenu("<", waarde);
                             break;
 
                         case 3:
-                            Console.WriteLine("\nGeef een geheel getal in:");
-                            tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
+                            Console.WriteLine("\n Geef een geheel getal in:");
+                            waarde = Menu.MethodeCheckforInt(Console.ReadLine());
                             Console.Clear();
-                            OverzichtBestellingen("=", tempWaarde);
+                            MenuBestellingenHoofdmenu("=", waarde);
+                            break;
+                        case 0:
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu(menukeuze, waarde);
                             break;
                     }
                     break;
 
-                case 3:
-                    Console.WriteLine("\nGeef een product ID in:");
-                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
-                    Console.Clear();
-                    OverzichtBestellingen("product", tempWaarde);
-                    break;
-
-                case 4:
-                    Console.WriteLine("\nGeef een schotel ID in:");
-                    tempWaarde = Menu.MethodeCheckforInt(Console.ReadLine());
-                    Console.Clear();
-                    OverzichtBestellingen("=", tempWaarde);
-                    break;
-
                 case 5:
-
                     Console.Clear();
-                    OverzichtBestellingen("afgerond", waarde);
+                    Menu.MethodeBannerLine("Filter op bestelling ID", "Filter op product ID", "Filter op schotel ID", "Filter op klant ID");
+                    switch (Menu.MethodeKiezer(4))
+                    {
+                        case 1:
+                            Console.WriteLine("\n Geef een bestel-ID in:");
+                            waarde = Menu.MethodeCheckforID("bestelling");
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu("bestelID", waarde);
+                            break;
+                        case 2:
+                            Console.WriteLine("\n Geef een product ID in:");
+                            waarde = Menu.MethodeCheckforID("product");
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu("product", waarde);
+                            break;
+                            
+                        case 3:
+                            Console.WriteLine("\n Geef een schotel ID in:");
+                            waarde = Menu.MethodeCheckforID("schotel");
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu("schotel", waarde);
+                            break;
+                        case 4:
+                            Console.WriteLine("\n Geef een klant ID in:");
+                            waarde = Menu.MethodeCheckforID("klant");
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu("klantID", waarde);
+                            break;
+                        case 0:
+                            Console.Clear();
+                            MenuBestellingenHoofdmenu(menukeuze, waarde);
+                            break;
+                    }
                     break;
 
-                case 6:
-                    Console.Clear();
-                    OverzichtBestellingen("open", waarde);
-                    break;
-
-                case 7:
+              
+                case 0:
                     Menu.MenuHoofdmenu();
                     break;
+                    
             }
+            MenuBestellingenHoofdmenu(menukeuze, waarde);
         }
 
         public static void OverzichtBestellingen(string zoekmethode = "alles", int getal = 0)
         {
             List<Bestelling> toEdit = Data.GetBestelling();
-            List<Bestelling> results = toEdit;
+            List<Bestelling> results = new List<Bestelling>();
+            
             switch (zoekmethode)
             {
                 case "klantID":
@@ -87,15 +120,15 @@ namespace Drimon_Temp
                     break;
 
                 case "<":
-                    results = toEdit.FindAll(x => x.totaalPrijs() < getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() < getal);
                     break;
 
                 case "=":
-                    results = toEdit.FindAll(x => x.totaalPrijs() == getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() == getal);
                     break;
 
                 case ">":
-                    results = toEdit.FindAll(x => x.totaalPrijs() > getal);
+                    results = toEdit.FindAll(x => (int)x.MethodeTotaalPrijs() > getal);
                     break;
 
                 case "product":
@@ -111,9 +144,14 @@ namespace Drimon_Temp
                     break;
 
                 case "open":
-                    results = toEdit.FindAll(x => x.Afgerond == true);
+                    results = toEdit.FindAll(x => x.Afgerond == false);
                     break;
-
+                case "alles":
+                     results = toEdit;
+                    break;
+                case "bestelID":
+                    results = toEdit.FindAll(x => x.ID == getal);
+                    break;
                 default:
                     break;
             }
@@ -121,7 +159,7 @@ namespace Drimon_Temp
             foreach (var item in results)
             {
                 decimal totaalPrijsBestelling = 0.00M;
-                Console.WriteLine($"ID: {item.ID}".PadRight(6) + $"  Klant: {Data.GetKlant()[item.KlantID - 1].VoorNaam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Afgerond: {item.Afgerond.ToString()}".PadRight(20));
+                Console.WriteLine($" ID: {item.ID}".PadRight(6) + $"  Klant: {Data.GetKlant()[item.KlantID - 1].VoorNaam}".PadRight(12) + $"  -  {item.DatumAanmaak}".PadRight(12) + $"  -  Afgerond: {item.Afgerond}".PadRight(20));
                 Console.Write("\tProducten:");
 
                 foreach (var instance in item.Producten)
@@ -137,6 +175,15 @@ namespace Drimon_Temp
                 }
                 Console.WriteLine($"\n\tTotaalprijs: {totaalPrijsBestelling} euro");
             }
+            
+        }
+        public static void MethodeNieuweBestelling(int klantID)
+        {
+            Bestelling nieuw = new Bestelling(klantID);
+            Console.Clear();
+            nieuw.MethodeNieuweBestelling();
+            Data.AddBestelling(nieuw);
+            Menu.MenuHoofdmenu();
         }
     }
 }

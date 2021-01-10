@@ -8,7 +8,7 @@ namespace Drimon_Temp
         public static void MenuProductHoofdmenu()
         {
             Console.WriteLine($"1.Product zoeken \n2.Product Toevoegen \n3.Schotels \n4.Terug naar hoofdmenu");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -36,7 +36,7 @@ namespace Drimon_Temp
         {
             Console.WriteLine($"\n1.Selecteer product\n2.Terug\n\nZoek op: \n  3.Naam\n ");
             string userinput;
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -69,7 +69,7 @@ namespace Drimon_Temp
             OverzichtProductEnkel(productID);
 
             Console.WriteLine($"1.Product aanpassen\n2.Bestellingen tonen\n3.Terug");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -83,7 +83,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     OverzichtProductBestellingen(productID);
                     Console.WriteLine($"1.Bestelling selecteren\n2.Terug");
-                    switch (Menu.Kiezer(2))
+                    switch (Menu.MethodeKiezer(2))
                     {
                         case 1:
                             Console.WriteLine("TODO");                                                  ///////////// TODO > GO TO MAIN BESTELMENU
@@ -121,7 +121,7 @@ namespace Drimon_Temp
             Console.WriteLine
                 ($"1.Verwijder\\herstel product\n2.Terug\n\nWijzig: \n3.naam\n4.prijs\n5.voorraad\n6.status\n");
 
-            switch (Menu.Kiezer(6))
+            switch (Menu.MethodeKiezer(6))
             {
                 case 1:
                     productEdit[productID - 1].Actief = !productEdit[productID - 1].Actief;
@@ -169,24 +169,10 @@ namespace Drimon_Temp
 
         public static void OverzichtProductBestellingen(int ProductID)
         {
-            //Bestelling objectSelectie = Data.GetBestelling().Find(delegate (Bestelling del) { return del.ProductID == ProductID; });
 
-            //Console.WriteLine($"\tID:-{objectSelectie.ID}-------------------------------------------------{ objectSelectie.DatumAanmaak}");
-            //decimal totaalprijs = 0.0M;
-            //foreach (var product in objectSelectie.Producten)
-            //{
-            //    Console.WriteLine($"\t{Data.GetProduct()[product.ID - 1].Naam.PadRight(23)}|\tPrijs: {product.Prijs} euro\t|\t{product.Aantal} stuks");
-            //    totaalprijs += (product.Prijs * product.Aantal);
-            //}
-            //foreach (var schotels in objectSelectie.Schotels)
-            //{
-            //    Console.WriteLine($"\t{Data.GetSchotel()[schotels.ID - 1].Naam.PadRight(23)}|\tPrijs: {schotels.Prijs} euro\t|\t{schotels.Aantal} stuks");
-            //    totaalprijs += (schotels.Prijs * schotels.Aantal);
-            //}
-            //Console.WriteLine($"\tTotaal: {totaalprijs} euro-----------------------------------------{objectSelectie.IsAfgerond()}\n");
-
-            Console.WriteLine("doing stuff");
-        }//AFWERKEN / HERZIEN - verwijs naar BestellinLijst filteren op product
+            //Roep gezoon bestellingen op ipv deze methode, voorbeeld voor product met ID 5:  OverzichtProductLijst("product",  5)
+            Console.WriteLine("To DELETE");
+        }
 
         public static void OverzichtProductEnkel(int productID)
         {
@@ -230,7 +216,7 @@ namespace Drimon_Temp
         public static void MethodeProductToevoegen()
         {
             Product foo = new Product("bar");
-            foo.NieuwProduct();
+            foo.MethodeNieuwProduct();
             Data.AddProduct(foo);
             MenuProductEnkel(foo.ID, "toevoegen");
         }

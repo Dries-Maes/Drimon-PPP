@@ -5,219 +5,224 @@ namespace Drimon_Temp
 {
     internal class KlantMenu
     {
-        public static void MenuKlantHoofdmenu()
+       
+
+        public static void MenuKlantZoeken(string zoekmethode = "alles", string parameter = "0", string vanWaar = "nvt")
         {
-            Console.WriteLine($"1.Klant zoeken\n2.Klant Toevoegen\n3.Terug naar hoofdmenu");
-            switch (Menu.Kiezer(3))
+            
+
+            Menu.MethodeBannerLine("Klant selecteren", "Klant zoeken" ,"Klant Toevoegen");
+            OverzichtKlantLijst(zoekmethode, parameter);
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
+                    Console.WriteLine("\n Geef het ID gevolgd door 'enter':");
+                    int inputID = Menu.MethodeCheckforID("klant");
+                    Menu.MethodeClearLine(-1);
+                    Console.WriteLine(inputID);
+                    Menu.MethodeSpinner("\n Klant wordt geselecteerd...");
                     Console.Clear();
-                    OverzichtKlantLijst();
-                    MenuKlantZoeken();
-                    break;
+                    if (vanWaar == "bestelling")
+                    {
+                        
+                        BestellingMenu.MethodeNieuweBestelling(inputID);
 
+                    }
+                    MenuKlantEnkel(inputID, "zoeken");
+                    break;
                 case 2:
+                    Console.Clear();
+                    Menu.MethodeBannerLine("Zoek op voornaam", "Zoek op naam", "Zoek op straat", "Zoek op postcode");
+                    switch (Menu.MethodeKiezer(6))
+                    {
+           
+                        case 1:
+                            Console.WriteLine("\n Geef de voornaam in gevolgd door 'enter':");
+                            parameter = Console.ReadLine();
+                            zoekmethode = "voornaam";
+                            Menu.MethodeSpinner("Klant wordt gezocht...");
+                            Console.Clear();
+                            MenuKlantZoeken(zoekmethode, parameter, vanWaar);
+                            break;
+
+                        case 2:
+                            
+                            Console.WriteLine("\n Geef de naam in gevolgd door 'enter':");
+                            parameter = Console.ReadLine();
+                            zoekmethode = "naam";
+                            Menu.MethodeSpinner("Klant wordt gezocht...");
+                            Console.Clear();
+                            MenuKlantZoeken(zoekmethode, parameter, vanWaar);
+                            break;
+
+                        case 3:
+    
+                            Console.WriteLine("\n Geef de straatnaam in gevolgd door 'enter':");
+                            parameter = Console.ReadLine();
+                            zoekmethode = "straat";
+                            Menu.MethodeSpinner("Klant wordt gezocht...");
+                            Console.Clear();
+                            MenuKlantZoeken(zoekmethode, parameter, vanWaar);
+                            break;
+
+                        case 4:
+
+                            Console.WriteLine("\n Geef postcode in gevolgd door 'enter':");
+                            parameter = Menu.MethodeCheckforInt(Console.ReadLine()).ToString();
+                            zoekmethode = "postcode";
+                            Menu.MethodeSpinner("Klant wordt gezocht...");
+                            Console.Clear();
+                            MenuKlantZoeken(zoekmethode, parameter, vanWaar);
+                            break;
+                        case 0:
+                            Console.Clear();
+                            if (vanWaar == "bestelling")
+                            {
+                                Console.Clear();
+                                Menu.MenuHoofdmenu();
+                            }
+                            Console.Clear();
+                            MenuKlantZoeken(zoekmethode, parameter, vanWaar);
+
+                            break;
+
+                    }
+
+                    break;
+                case 3:
                     Console.Clear();
                     MethodeKlantToevoegen();
                     break;
-
-                case 3:
+                case 0:   
+                    Console.Clear();
                     Menu.MenuHoofdmenu();
                     break;
             }
-        }
 
-        public static void MenuKlantZoeken(string vanWaar = "nvt")
-        {
-            string userinput;
 
-            Console.WriteLine($"\n1.Selecteer klant\n2.Terug\n\nZoek op: \n  3.Voornaam\n  4.Naam\n  5.Straat\n  6.Postcode");
 
-            switch (Menu.Kiezer(6))
-            {
-                case 1:
-
-                    Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
-                    int input = Menu.MethodeCheckforInt(Console.ReadLine());
-                    Console.Clear();
-                    if (vanWaar == "bestelling")
-                    {
-                        Bestelling nieuw = new Bestelling(input);
-                        Console.Clear();
-                        nieuw.NieuweBestelling();
-                        Data.AddBestelling(nieuw);
-                        Menu.MenuHoofdmenu();
-                    }
-                    MenuKlantEnkel(input, "zoeken");
-                    break;
-
-                case 2:
-                    Console.Clear();
-                    if (vanWaar == "bestelling")
-                    {
-                        Menu.MenuHoofdmenu();
-                    }
-                    MenuKlantHoofdmenu();
-
-                    break;
-
-                case 3:
-                    Console.Clear();
-                    OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de voornaam in gevolgd door 'enter':");
-                    userinput = Console.ReadLine();
-                    Console.Clear();
-                    OverzichtKlantLijst("voornaam", userinput);
-                    MenuKlantZoeken(vanWaar);
-                    break;
-
-                case 4:
-                    Console.Clear();
-                    OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de naam in gevolgd door 'enter':");
-                    userinput = Console.ReadLine();
-                    Console.Clear();
-                    OverzichtKlantLijst("naam", userinput);
-                    MenuKlantZoeken(vanWaar);
-                    break;
-
-                case 5:
-                    Console.Clear();
-                    OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef de straatnaam in gevolgd door 'enter':");
-                    userinput = Console.ReadLine();
-                    Console.Clear();
-                    OverzichtKlantLijst("straat", userinput);
-                    MenuKlantZoeken(vanWaar);
-                    break;
-
-                case 6:
-                    Console.Clear();
-                    OverzichtKlantLijst();
-                    Console.WriteLine("\nGeef postcode in gevolgd door 'enter':");
-                    int input2 = Menu.MethodeCheckforInt(Console.ReadLine());
-                    Console.Clear();
-                    OverzichtKlantLijst("postcode", input2.ToString());
-                    MenuKlantZoeken(vanWaar);
-                    break;
-            }
         }
 
         public static void MenuKlantEnkel(int klantID, string zoekenToevoegen)
         {
+            Menu.MethodeBannerLine("Klant aanpassen", "Bestellingen tonen");
             OverzichtKlantEnkel(klantID);
-
-            Console.WriteLine($"1.Klant aanpassen\n2.Bestellingen tonen\n3.Terug");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
+                    Console.Clear();                
                     MenuKlantEdit(klantID);
-                    Console.Clear();
-                    MenuKlantEnkel(klantID, zoekenToevoegen);
+                    
                     break;
 
                 case 2:
-                    Console.Clear();
-                    BestellingMenu.OverzichtBestellingen("klant", klantID);
-                    Console.WriteLine($"\n1.Nieuwe bestelling plaatsen\n2.Terug");
-                    switch (Menu.Kiezer(2))
+                    Console.Clear();                
+                    Menu.MethodeBannerLine("Nieuwe bestelling plaatsen");
+                    BestellingMenu.OverzichtBestellingen("klantID", klantID);
+                    switch (Menu.MethodeKiezer(2))
                     {
                         case 1:
                             Bestelling nieuw = new Bestelling(klantID);
                             Console.Clear();
-                            nieuw.NieuweBestelling();
+                            Menu.MethodeBannerLine();
+                            nieuw.MethodeNieuweBestelling();
                             Data.AddBestelling(nieuw);
-                            Menu.MenuHoofdmenu();
+                            Console.Clear();
+                            MenuKlantEnkel(klantID, zoekenToevoegen);
                             break;
-
-                        case 2:
+                        case 0:
+                            Console.Clear();
+                            MenuKlantEnkel(klantID, zoekenToevoegen);
                             break;
                     }
-                    Console.Clear();
-                    MenuKlantEnkel(klantID, zoekenToevoegen);
+                    
+                    
                     break;
 
-                case 3:
+                case 0:
                     if (zoekenToevoegen == "zoeken")
                     {
                         Console.Clear();
-                        OverzichtKlantLijst();
+                        
                         MenuKlantZoeken();
                     }
                     else if (zoekenToevoegen == "toevoegen")
                     {
                         Console.Clear();
-                        MenuKlantHoofdmenu();
+                        MenuKlantZoeken();
                     }
 
                     break;
             }
         }
 
-        public static void MenuKlantEdit(int klantID)
+
+        
+
+            public static void MenuKlantEdit(int klantID)
         {
             List<Klant> klantEdit = Data.GetKlant();
 
-            Console.WriteLine($"1.Verwijder\\herstel klant\n2.Terug\n\nWijzig: \n 3.De voornaam\n 4.De naam\n 5.De straat\n 6.Het huisbusnummer\n 7.De postcode\n 8.Het telefoonnummer");
-            switch (Menu.Kiezer(8))
+            Menu.MethodeBannerLine("Voornaam", "Naam", "Straat", "Huisbusnummer", "Postcode","Telefoonnummer", "Status") ;
+            OverzichtKlantEnkel(klantID);
+            
+            switch (Menu.MethodeKiezer(8))
             {
-                case 1:
-                    klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
+                
+
+                case 1:     
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
+                    klantEdit[klantID - 1].VoorNaam = Console.ReadLine();
+                    
                     break;
 
                 case 2:
-                    Console.Clear();
-                    MenuKlantEnkel(klantID, "zoeken");
+                    
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
+                    klantEdit[klantID - 1].AchterNaam = Console.ReadLine();
+                    
                     break;
 
                 case 3:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].VoorNaam = Console.ReadLine();
+                    
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
+                    klantEdit[klantID - 1].Straat = Console.ReadLine();
+                    
                     break;
 
                 case 4:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].AchterNaam = Console.ReadLine();
+                    
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
+                    klantEdit[klantID - 1].HuisBusNummer = Console.ReadLine();
+                    
                     break;
 
                 case 5:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].Straat = Console.ReadLine();
+                    
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
+                    klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
+                    
                     break;
 
                 case 6:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].HuisBusNummer = Console.ReadLine();
-                    break;
-
-                case 7:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
-                    klantEdit[klantID - 1].Postcode = Menu.MethodeCheckforInt(Console.ReadLine());
-                    break;
-
-                case 8:
-                    Console.Clear();
-                    OverzichtKlantEnkel(klantID);
-                    Console.WriteLine("Geef de nieuwe waarde in:");
+                    
+                    Console.WriteLine(" Geef de nieuwe waarde in:");
                     klantEdit[klantID - 1].Telefoonnummer = Console.ReadLine();
+                   
                     break;
+                case 7:
+                    klantEdit[klantID - 1].Actief = !klantEdit[klantID - 1].Actief;
+                    break;
+
+                case 0:
+                    Console.Clear();
+                    MenuKlantEnkel(klantID, "zoeken");
+                    break;
+                    
             }
             Data.SetKlant(klantEdit);
-            Console.Clear();
-            OverzichtKlantEnkel(klantID);
-            MenuKlantEdit(klantID);
+                      Console.Clear();
+                        MenuKlantEdit(klantID);
         }
 
         public static void OverzichtKlantEnkel(int klantID)
@@ -268,9 +273,8 @@ namespace Drimon_Temp
             Klant foo = new Klant("bar");
             foo.NieuweKlant();
             Data.AddKlant(foo);
+            Console.Clear();
             MenuKlantEnkel(foo.ID, "toevoegen");
         }
-
-        
     }
 }

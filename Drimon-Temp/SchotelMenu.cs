@@ -8,7 +8,7 @@ namespace Drimon_Temp
         public static void MenuSchotelHoofdmenu()
         {
             Console.WriteLine($"1.Schotel zoeken\n2.Schotel samenstellen\n3.Terug naar hoofdmenu");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -91,7 +91,7 @@ namespace Drimon_Temp
         {
             Console.WriteLine($"\n1.Selecteer schotel\n2.Terug\n\nZoek op: \n  3.Naam\n  4.Ingedriënt\n ");
             string userinput;
-            switch (Menu.Kiezer(4))
+            switch (Menu.MethodeKiezer(4))
             {
                 case 1:
                     Console.Clear();
@@ -134,7 +134,7 @@ namespace Drimon_Temp
             OverzichtSchotelEnkel(schotelID);
 
             Console.WriteLine($"1.Schotel aanpassen\n2.Bestellingen tonen\n3.Terug");
-            switch (Menu.Kiezer(3))
+            switch (Menu.MethodeKiezer(3))
             {
                 case 1:
                     Console.Clear();
@@ -148,7 +148,7 @@ namespace Drimon_Temp
                     Console.Clear();
                     //OverzichtSchotelBestellingen(schotelID);
                     Console.WriteLine($"1.Bestelling selecteren\n2.Terug");
-                    switch (Menu.Kiezer(2))
+                    switch (Menu.MethodeKiezer(2))
                     {
                         case 1:
                             Console.WriteLine("TODO");                                                  ///////////// TODO > GO TO MAIN BESTELMENU
@@ -196,7 +196,7 @@ namespace Drimon_Temp
             List<Schotel> schotelEdit = Data.GetSchotel();
 
             Console.WriteLine($"1.Verwijder\\herstel schotel\n2.Terug\n\nWijzig: \n 3.Naam\n 4.Prijs\n 5.Voorraad\n 6.Status\n 7.Ingedrienten\n");
-            switch (Menu.Kiezer(7))
+            switch (Menu.MethodeKiezer(7))
             {
                 case 1:
                     schotelEdit[schotelID - 1].Actief = !schotelEdit[schotelID - 1].Actief;
