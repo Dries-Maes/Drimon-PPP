@@ -10,9 +10,9 @@ namespace Drimon_Temp
         {
             
             Console.Clear();
-            MethodeBannerLine("Nieuwe bestelling", "Overzicht bestellingen", "Klanten", "Producten beheren");
+            MethodeBannerLine("Nieuwe bestelling", "Bestellingen", "Klanten", "Producten", "Credits");
             
-            switch (MethodeKiezer(4))
+            switch (MethodeKiezer(5))
             {
                 case 1:
                     Console.Clear();
@@ -38,6 +38,12 @@ namespace Drimon_Temp
                     Console.Clear();
                     ProductMenu.MenuProductHoofdmenu();
                     break;
+                case 5:
+                    Console.Clear();
+                    Credits.PrintCredits();
+                    MenuHoofdmenu();
+                    break;
+
 
                 case 0:
                     MethodeIntro();

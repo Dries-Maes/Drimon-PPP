@@ -29,7 +29,7 @@ namespace Drimon_Temp
             }
         }
 
-        public static void MenuProductZoeken(string zoekmethode = "alles", string parameter = "true", bool status = true)
+        public static void MenuProductZoeken(string zoekmethode = "alles", string parameter = "true", bool status = true, string returpagina = null)
         {
             Menu.MethodeBannerLine("Toon alles","Selecteer" ,"Zoek op status", "Zoek op naam", "Zoek op schotel", "Voeg toe");
             OverzichtProductLijst(zoekmethode, parameter, status);
@@ -38,12 +38,21 @@ namespace Drimon_Temp
             switch (Menu.MethodeKiezer(6))
             {
                 case 1:
+
+                                    
                     Console.Clear();
                     MenuProductZoeken("status", parameter, true);
                     break;
-                case 2: 
+                case 2:
+                    if (returpagina == "schotel")
+                    {
+                        Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
+                        int waarde = Menu.MethodeCheckforID("product");
+                        Console.Clear();
+                        SchotelMenu.MenuSchotelHoofdmenu("product", waarde);
+                    }
                     Console.WriteLine("\nGeef het ID gevolgd door 'enter':");
-                    int inputID = Menu.MethodeCheckforInt(Console.ReadLine());
+                    int inputID = Menu.MethodeCheckforID("product");
                     Console.Clear();
                     MenuProductEnkel(inputID);
                     break;
@@ -53,12 +62,12 @@ namespace Drimon_Temp
                     if (status)
                     {
                         
-                        MenuProductZoeken("status", parameter, false);
+                        MenuProductZoeken("status", parameter, false, returpagina);
                     }
                     else
                     {
 
-                        MenuProductZoeken("status", parameter, true);
+                        MenuProductZoeken("status", parameter, true, returpagina);
                     }
                     break;
                 case 4:
@@ -66,7 +75,7 @@ namespace Drimon_Temp
                             Console.WriteLine("\nGeef de naam in gevolgd door 'enter':");
                             parameter = Console.ReadLine();
                             Console.Clear();
-                            MenuProductZoeken("naam", parameter);
+                            MenuProductZoeken("naam", parameter, status, returpagina);
                             break;
                         case 5:
                             // zoek op schotel > goto schotel overzicht 
@@ -170,7 +179,7 @@ namespace Drimon_Temp
                     results = Data.GetProduct().FindAll(x => x.Actief == status);
                     break;
 
-                case "alles":
+                case "allesalles":
                     break;
             }
             Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Voorraad".PadRight(20) + $"ID".PadRight(10) + $"|Status".PadRight(20) + $"|Aanmaakdatum ");

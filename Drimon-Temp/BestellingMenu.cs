@@ -80,7 +80,7 @@ namespace Drimon_Temp
                             
                         case 3:
                             Console.Clear();
-                            SchotelMenu.MenuSchotelZoeken();
+                            SchotelMenu.MenuSchotelHoofdmenu();
                             break;
                         case 4:
                             Console.WriteLine("\n Geef een klant ID in:");
@@ -170,6 +170,8 @@ namespace Drimon_Temp
                     totaalPrijsBestelling += instance.Prijs;
                 }
                 Console.WriteLine($"\n\tTotaalprijs: {totaalPrijsBestelling} euro");
+
+                
             }
             
         }
@@ -179,7 +181,8 @@ namespace Drimon_Temp
             Console.Clear();
             nieuw.MethodeNieuweBestelling();
             Data.AddBestelling(nieuw);
-            Menu.MenuHoofdmenu();
+            Console.Clear();
+            OverzichtBestellingen("klantID", klantID);
         }
     }
 }
