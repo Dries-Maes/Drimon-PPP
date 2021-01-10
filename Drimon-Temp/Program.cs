@@ -6,10 +6,10 @@ namespace Drimon_Temp
     {
         private static void Main(string[] args)
         {
+            Console.ReadKey();
             Menu.MethodeIntro();
             Menu.MenuHoofdmenu();
 
-            Console.ReadLine();
         }
     }
 }

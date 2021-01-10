@@ -41,7 +41,7 @@ namespace Drimon_Temp
 
                                     
                     Console.Clear();
-                    MenuProductZoeken("status", parameter, true);
+                    MenuProductZoeken("status", parameter, true, returpagina);
                     break;
                 case 2:
                     if (returpagina == "schotel")
@@ -182,11 +182,17 @@ namespace Drimon_Temp
                 case "allesalles":
                     break;
             }
-            Console.WriteLine(" |ID  " + $"|Naam".PadRight(12) + $"|Prijs".PadRight(12) + $"|Voorraad".PadRight(20) + $"ID".PadRight(10) + $"|Status".PadRight(20) + $"|Aanmaakdatum ");
+           
+            
+            Console.WriteLine(" |ID  " + $"|Naam".PadRight(25) + $"|Prijs".PadRight(10) + $"|Voorraad".PadRight(10) + $"|ID".PadRight(10) + $"|Status".PadRight(20) + $"|Aanmaakdatum ");
+            string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(HorizontaleLijn);
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
             foreach (var item in results)
             {
-                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(12) + $"|{item.Prijs}".PadRight(12) + $"|{item.Voorraad}".PadRight(20) + $"|{item.ID}".PadRight(10) + $"|{item.Actief}".PadRight(20) + $"|{item.DatumAanmaak}");
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.Naam}".PadRight(25) + $"|{item.Prijs}".PadRight(10) + $"|{item.Voorraad}".PadRight(10) + $"|{item.ID}".PadRight(10) + $"|{item.Actief}".PadRight(20) + $"|{item.DatumAanmaak}");
             }
         }
 
@@ -195,6 +201,7 @@ namespace Drimon_Temp
             Product foo = new Product("bar");
             foo.MethodeNieuwProduct();
             Data.AddProduct(foo);
+            Console.Clear();
             MenuProductEnkel(foo.ID);
         }
     }

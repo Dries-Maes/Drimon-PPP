@@ -122,7 +122,7 @@ namespace Drimon_Temp
             Console.ForegroundColor = ConsoleColor.Cyan;
             if (noBack != 0)
             {
-                Console.Write(" 0:Terug ".PadRight(Console.WindowWidth / 3 -1));
+                Console.Write(" 0 = Terug ".PadRight(Console.WindowWidth / 3 -1));
             }
             else
             {

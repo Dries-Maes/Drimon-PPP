@@ -89,10 +89,15 @@ namespace Drimon_Temp
 
                 Console.Clear();
                 Menu.MethodeBannerLine("Selecteer product", "selecteer schotel", "plaats bestelling");
+                
                 if (schotels.Count != 0 || producten.Count != 0)
                 {
                     
                     Console.WriteLine($"\n |ID".PadRight(8) + $"|Naam".PadRight(15) + $"|Prijs".PadRight(12) + $"|Stuks".PadRight(20));
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    string HorizontaleLijn = new String('─', 40);
+                    Console.WriteLine(HorizontaleLijn);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     foreach (var item in producten)
                     {
                         Console.WriteLine($" |{item.ID}".PadRight(7) + $"|{item.Naam}".PadRight(15) + $"|{item.Prijs}".PadRight(12) + $"|{item.AantalBesteld}".PadRight(20));
@@ -104,6 +109,10 @@ namespace Drimon_Temp
                        
                     }
                     Console.WriteLine($"\n Totaalprijs van de bestelling is: {MethodeTotaalPrijs()} euro\n");
+                }
+                else
+                {
+                    Console.WriteLine("Voeg items toe aan je bestelling. ");
                 }
                 
                 switch (Menu.MethodeKiezer(3))
@@ -117,7 +126,7 @@ namespace Drimon_Temp
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " +tempProduct.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
-                        tempProduct.AantalBesteld = Menu.MethodeCheckforID("product");
+                        tempProduct.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
                         Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempProduct.AantalBesteld + "\n");
                         Menu.MethodeSpinner("Product wordt toegevoegd ...");
@@ -134,11 +143,11 @@ namespace Drimon_Temp
                         SchotelMenu.OverzichtSchotels();
                         Console.WriteLine("\n Geef het schotel ID in:");
                         Schotel tempSchotel = huidigeSchotels[Menu.MethodeCheckforID("schotel") - 1];
-                        
+                        Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempSchotel.Naam);
                         Console.WriteLine("\n Geef het aantal in:");
-                        tempSchotel.AantalBesteld = Menu.MethodeCheckforID("schotel");
-                        
+                        tempSchotel.AantalBesteld = Menu.MethodeCheckforInt(Console.ReadLine());
+                        Menu.MethodeClearLine(-1);
                         Console.WriteLine(" " + tempSchotel.AantalBesteld +"\n");
                         Menu.MethodeSpinner("Schotel wordt toegevoegd ...");
 

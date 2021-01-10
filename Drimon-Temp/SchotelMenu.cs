@@ -92,20 +92,21 @@ namespace Drimon_Temp
         {
             
             Menu.MethodeBannerLine("0");
-            Console.WriteLine("Geef de naam in van de schotel:");
+            Console.WriteLine(" Geef de naam in van de schotel:");
             Schotel nieuw = new Schotel(Console.ReadLine());
             Console.Clear();
             nieuw.MethodeNieuweSchotel();
             List<Product> producten = Data.GetProduct();
             foreach (var item in nieuw.IDlijst)
             {
-                if (producten[item.Key].Voorraad < item.Value)
+                if (producten[item.Key-1].Voorraad < item.Value)
                 {
-                    Console.WriteLine("Je kan de schotel niet maken, er zijn niet voldoende producten!!!\nDruk op een knop om terug te keren.");
+                    Console.WriteLine(" Je kan de schotel niet maken, er zijn niet voldoende producten!!!\nDruk op een knop om terug te keren.");
                     Console.Clear();
                     MenuSchotelHoofdmenu();
                 }
-                producten[item.Key].Voorraad -= item.Value;
+
+               // producten[item.Key].Voorraad -= item.Value; beestje.. 
             }
             Data.AddSchotel(nieuw);
             Data.SetProduct(producten);

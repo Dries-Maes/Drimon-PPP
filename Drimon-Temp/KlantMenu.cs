@@ -260,11 +260,15 @@ namespace Drimon_Temp
                 case "alles":
                     break;
             }
-            Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(12) + $"|Adres".PadRight(20) + $"|Postcode".PadRight(10) + $"|Telefoonnummer".PadRight(20) + $"|Aanmaakdatum ");
-
+            
+            Console.WriteLine(" |ID  " + $"|Voornaam".PadRight(12) + $"|Naam".PadRight(20) + $"|Adres".PadRight(30) + $"|Postcode".PadRight(10) + $"|Nummer".PadRight(12) + $"|Aanmaakdatum ");
+            string HorizontaleLijn = new String('─', Console.WindowWidth - 1);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(HorizontaleLijn);
+            Console.ForegroundColor = ConsoleColor.Cyan;
             foreach (var item in results)
             {
-                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(12) + $"|{item.Straat}{item.HuisBusNummer}".PadRight(20) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(20) + $"|{item.DatumAanmaak}");
+                Console.WriteLine($" |{item.ID}".PadRight(6) + $"|{item.VoorNaam}".PadRight(12) + $"|{item.AchterNaam}".PadRight(20) + $"|{item.Straat} {item.HuisBusNummer}".PadRight(30) + $"|{item.Postcode}".PadRight(10) + $"|{item.Telefoonnummer}".PadRight(12) + $"|{item.DatumAanmaak}");
             }
         }
 
